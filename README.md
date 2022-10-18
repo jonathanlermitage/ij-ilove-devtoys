@@ -4,10 +4,10 @@
     <a href="">
       <img src="./src/main/resources/META-INF/pluginIcon.svg" width="84" height="84" alt="logo"/>
     </a><br/>
-    Extra Icons
+    I Love DevToys
 </h1>
 
-highly inspired from the Microsoft [DevToys](https://apps.microsoft.com/store/detail/devtoys/9PGCV4V3BK4W?hl=en-us&gl=us) software: Base64, URL and JWT encoders/decoders, UUID, Lorem Ipsum and Hash generators, JSON, YAML, Timestamp converters, Graphics tools... Find these tools in a Tool Window in the top right corner of your IDE.
+An Intellij IDEA (Community and Ultimate) plugin which is highly inspired from the Microsoft [DevToys](https://apps.microsoft.com/store/detail/devtoys/9PGCV4V3BK4W?hl=en-us&gl=us) software: Base64, URL and JWT encoders/decoders, UUID, Lorem Ipsum and Hash generators, JSON, YAML, Timestamp converters, Graphics tools... Find these tools in a Tool Window in the top right corner of your IDE.
 
 The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the Microsoft DevToys software is available on Windows only.<br/>
 
