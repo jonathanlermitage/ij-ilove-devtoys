@@ -1,0 +1,37 @@
+<idea-plugin>
+    <id>lermitage.intellij.ilovedevtoys</id>
+    <name>I Love DevToys</name>
+    <version>REPLACED_BY_GRADLE</version>
+    <vendor email="jonathan.lermitage@gmail.com" url="https://github.com/jonathanlermitage">Jonathan Lermitage</vendor>
+
+    <description><![CDATA[
+      This plugin is highly inspired from the Microsoft <a href="https://apps.microsoft.com/store/detail/devtoys/9PGCV4V3BK4W?hl=en-us&gl=us"><b>DevToys</b></a> software: Base64, URL and JWT encoders/decoders, UUID, Lorem Ipsum and Hash generators, JSON, YAML, Timestamp converters, Graphics tools... Find these tools in a Tool Window in the top right corner of your IDE.<br/>
+      The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the Microsoft DevToys software is available on Windows only.<br/>
+      <b>Work in progress</b>: I am trying to reproduce most of the DevToys features, but it will take some time. Also, contributions are welcome 😎.<br/>
+      If you want to support my work, you can consider buying an <a href="https://plugins.jetbrains.com/plugin/11058-extra-icons">Extra Icons</a> plugin license or make a <a href="https://buymeacoff.ee/jlermitage">donation</a>. Thank you! If you already did this, hum... fiesta! 🥳 (And again, thank you so much!)<br>
+      <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys">GitHub</a> | <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys/issues">Issues</a> | <a href="https://www.linkedin.com/in/jonathan-lermitage/">LinkedIn</a> | <a href="https://vshymanskyy.github.io/StandWithUkraine/">💙 Help Ukraine 💛</a>
+    ]]>
+    </description>
+
+    <change-notes><![CDATA[
+    ]]>
+    </change-notes>
+
+    <!-- How to develop a Tool Window:
+         https://github.com/JetBrains/intellij-sdk-code-samples/tree/main/tool_window
+         https://plugins.jetbrains.com/docs/intellij/tool-windows.html#declarative-setup -->
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
+    <idea-version since-build="222.2680.4"/> <!-- 222.2680.4 needed by DevToysToolWindowFactory:ContentFactory.getInstance() -->
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!--suppress  PluginXmlValidity -->
+        <toolWindow id="DevToys" secondary="false" icon="ilovedevtoys/toolWindowIconSimple.svg" anchor="right"
+                    factoryClass="lermitage.intellij.ilovedevtoys.toolwindow.DevToysToolWindowFactory" order="after Notifications"/>
+    </extensions>
+
+</idea-plugin>
