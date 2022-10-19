@@ -1,6 +1,5 @@
 package lermitage.intellij.ilovedevtoys.toolwindow;
 
-import com.intellij.openapi.wm.ToolWindow;
 import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
 import lermitage.intellij.ilovedevtoys.tools.HashTools;
 import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
@@ -49,7 +48,7 @@ public class DevToysToolWindow {
 
     private final LinkedHashMap<String, JPanel> toolPanelsByTitle = new LinkedHashMap<>();
 
-    public DevToysToolWindow(ToolWindow toolWindow) {
+    public DevToysToolWindow() {
         toolPanelsByTitle.put("Base64 encoder/decoder", base64Panel);
         toolPanelsByTitle.put("URL encoder/decoder", urlCodecPanel);
         toolPanelsByTitle.put("Lorem Ipsum generator", loremIpsumPanel);
