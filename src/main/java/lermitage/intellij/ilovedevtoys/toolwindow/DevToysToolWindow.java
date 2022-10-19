@@ -2,6 +2,8 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 
 import com.intellij.openapi.wm.ToolWindow;
 import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
+import lermitage.intellij.ilovedevtoys.tools.HashTools;
+import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
 import lermitage.intellij.ilovedevtoys.tools.UUIDTools;
 
 import javax.swing.JButton;
@@ -54,7 +56,10 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("UUID generator", uuidPanel);
 
         setupBase64Tool();
+        setupURLCodecTools();
+        setupLoremIpsumTool();
         setupUUIDTool();
+        setupHashTool();
 
         toolPanelsByTitle.forEach((s, jPanel) -> toolComboBox.addItem(s));
         toolComboBox.addActionListener(e -> displayToolPanel(toolComboBox.getItemAt(toolComboBox.getSelectedIndex())));
@@ -110,8 +115,38 @@ public class DevToysToolWindow {
         });
     }
 
+    private void setupURLCodecTools() {
+
+    }
+
+    private void setupLoremIpsumTool() {
+        loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum());
+        loremIpsumGenerateButton.addActionListener(e -> loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum()));
+    }
+
     private void setupUUIDTool() {
-        uuidTextArea.setText(UUIDTools.generateUUID(20));
-        uuidGenerateButton.addActionListener(e -> uuidTextArea.setText(UUIDTools.generateUUID(20)));
+        uuidTextArea.setText(UUIDTools.generateUUIDs(20));
+        uuidGenerateButton.addActionListener(e -> uuidTextArea.setText(UUIDTools.generateUUIDs(20)));
+    }
+
+    private void setupHashTool() {
+        hashInputTextArea.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String input = hashInputTextArea.getText();
+                hashMD5TextField.setText(HashTools.generateMD5(input));
+                hashSHA1TextField.setText(HashTools.generateSHA1(input));
+                hashSHA256TextField.setText(HashTools.generateSHA256(input));
+                hashSHA512TextField.setText(HashTools.generateSHA512(input));
+            }
+        });
     }
 }
