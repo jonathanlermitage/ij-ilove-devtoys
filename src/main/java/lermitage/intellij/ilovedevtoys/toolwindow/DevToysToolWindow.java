@@ -1,6 +1,7 @@
 package lermitage.intellij.ilovedevtoys.toolwindow;
 
 import com.intellij.openapi.wm.ToolWindow;
+import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -8,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedHashMap;
 
 public class DevToysToolWindow {
@@ -44,7 +47,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Lorem Ipsum generator", loremIpsumPanel);
         toolPanelsByTitle.put("Hash generator", hashPanel);
 
-        base64RadioButtonUTF8.setSelected(true);
+        setupBase64Tool();
 
         toolPanelsByTitle.forEach((s, jPanel) -> toolComboBox.addItem(s));
         toolComboBox.addActionListener(e -> displayToolPanel(toolComboBox.getItemAt(toolComboBox.getSelectedIndex())));
@@ -65,5 +68,46 @@ public class DevToysToolWindow {
 
     public JPanel getContent() {
         return mainPanel;
+    }
+
+
+    private void setupBase64Tool() {
+        base64RadioButtonUTF8.setSelected(true);
+        base64RadioButtonUTF8.setToolTipText("Encoding change applies on Raw text or Base64 update.");
+        base64RadioButtonASCII.setToolTipText("Encoding change applies on Raw text or Base64 update.");
+        base64RawTextArea.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                base64Base64TextArea.setText(Base64Tools.toBase64(
+                    base64RawTextArea.getText(),
+                    base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII)
+                );
+            }
+        });
+        base64Base64TextArea.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                base64RawTextArea.setText(Base64Tools.toText(
+                    base64Base64TextArea.getText(),
+                    base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII)
+                );
+            }
+        });
     }
 }

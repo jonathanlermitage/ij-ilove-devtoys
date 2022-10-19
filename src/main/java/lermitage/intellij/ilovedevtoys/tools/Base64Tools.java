@@ -13,10 +13,19 @@ public class Base64Tools {
     public static final Charset US_ASCII = StandardCharsets.US_ASCII;
 
     public static String toBase64(String text, Charset charset) {
-        return B64_ENCODER.encodeToString(text.getBytes(charset));
+        try {
+            return B64_ENCODER.encodeToString(text.getBytes(charset));
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
+        }
     }
 
     public static String toText(String base64, Charset charset) {
-        return new String(B64_DECODER.decode(base64), charset);
+        try {
+            return new String(B64_DECODER.decode(base64), charset);
+
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
+        }
     }
 }
