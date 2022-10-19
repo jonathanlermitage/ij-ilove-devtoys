@@ -4,6 +4,7 @@ import com.intellij.openapi.wm.ToolWindow;
 import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
 import lermitage.intellij.ilovedevtoys.tools.HashTools;
 import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
+import lermitage.intellij.ilovedevtoys.tools.URLTools;
 import lermitage.intellij.ilovedevtoys.tools.UUIDTools;
 
 import javax.swing.JButton;
@@ -58,8 +59,8 @@ public class DevToysToolWindow {
         setupBase64Tool();
         setupURLCodecTools();
         setupLoremIpsumTool();
-        setupUUIDTool();
         setupHashTool();
+        setupUUIDTool();
 
         toolPanelsByTitle.forEach((s, jPanel) -> toolComboBox.addItem(s));
         toolComboBox.addActionListener(e -> displayToolPanel(toolComboBox.getItemAt(toolComboBox.getSelectedIndex())));
@@ -116,7 +117,34 @@ public class DevToysToolWindow {
     }
 
     private void setupURLCodecTools() {
+        urlCodecDecodedTextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
 
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                urlCodecEncodedTextField.setText(URLTools.encodeURL(urlCodecDecodedTextField.getText()));
+            }
+        });
+        urlCodecEncodedTextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                urlCodecDecodedTextField.setText(URLTools.decodeURL(urlCodecEncodedTextField.getText()));
+            }
+        });
     }
 
     private void setupLoremIpsumTool() {
@@ -124,12 +152,8 @@ public class DevToysToolWindow {
         loremIpsumGenerateButton.addActionListener(e -> loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum()));
     }
 
-    private void setupUUIDTool() {
-        uuidTextArea.setText(UUIDTools.generateUUIDs(20));
-        uuidGenerateButton.addActionListener(e -> uuidTextArea.setText(UUIDTools.generateUUIDs(20)));
-    }
-
     private void setupHashTool() {
+        hashInputTextArea.setToolTipText("Nota: hash outputs type is Hex, not Base64.");
         hashInputTextArea.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -148,5 +172,10 @@ public class DevToysToolWindow {
                 hashSHA512TextField.setText(HashTools.generateSHA512(input));
             }
         });
+    }
+
+    private void setupUUIDTool() {
+        uuidTextArea.setText(UUIDTools.generateUUIDs(20));
+        uuidGenerateButton.addActionListener(e -> uuidTextArea.setText(UUIDTools.generateUUIDs(20)));
     }
 }
