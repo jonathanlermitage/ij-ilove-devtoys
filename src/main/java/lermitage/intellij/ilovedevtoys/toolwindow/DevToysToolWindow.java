@@ -148,8 +148,8 @@ public class DevToysToolWindow {
     }
 
     private void setupLoremIpsumTool() {
-        loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum());
-        loremIpsumGenerateButton.addActionListener(e -> loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum()));
+        loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum(200));
+        loremIpsumGenerateButton.addActionListener(e -> loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum(200)));
     }
 
     private void setupHashTool() {

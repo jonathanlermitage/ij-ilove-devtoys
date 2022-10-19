@@ -46,6 +46,8 @@ repositories {
 val junitVersion = "5.9.1"
 
 dependencies {
+    implementation("com.thedeanda:lorem:2.1")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.9.1")
