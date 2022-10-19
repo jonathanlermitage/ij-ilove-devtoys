@@ -2,6 +2,7 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 
 import com.intellij.openapi.wm.ToolWindow;
 import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
+import lermitage.intellij.ilovedevtoys.tools.UUIDTools;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -39,6 +40,10 @@ public class DevToysToolWindow {
     private JTextField hashSHA256TextField;
     private JTextField hashSHA512TextField;
 
+    private JPanel uuidPanel;
+    private JButton uuidGenerateButton;
+    private JTextArea uuidTextArea;
+
     private final LinkedHashMap<String, JPanel> toolPanelsByTitle = new LinkedHashMap<>();
 
     public DevToysToolWindow(ToolWindow toolWindow) {
@@ -46,30 +51,24 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("URL encoder/decoder", urlCodecPanel);
         toolPanelsByTitle.put("Lorem Ipsum generator", loremIpsumPanel);
         toolPanelsByTitle.put("Hash generator", hashPanel);
+        toolPanelsByTitle.put("UUID generator", uuidPanel);
 
         setupBase64Tool();
+        setupUUIDTool();
 
         toolPanelsByTitle.forEach((s, jPanel) -> toolComboBox.addItem(s));
         toolComboBox.addActionListener(e -> displayToolPanel(toolComboBox.getItemAt(toolComboBox.getSelectedIndex())));
         toolComboBox.setSelectedIndex(0);
     }
 
-    private void hideToolPanels() {
-        base64Panel.setVisible(false);
-        urlCodecPanel.setVisible(false);
-        loremIpsumPanel.setVisible(false);
-        hashPanel.setVisible(false);
-    }
-
     private void displayToolPanel(String toolPanelTitle) {
-        hideToolPanels();
+        toolPanelsByTitle.forEach((s, jPanel) -> jPanel.setVisible(false));
         toolPanelsByTitle.get(toolPanelTitle).setVisible(true);
     }
 
     public JPanel getContent() {
         return mainPanel;
     }
-
 
     private void setupBase64Tool() {
         base64RadioButtonUTF8.setSelected(true);
@@ -109,5 +108,10 @@ public class DevToysToolWindow {
                 );
             }
         });
+    }
+
+    private void setupUUIDTool() {
+        uuidTextArea.setText(UUIDTools.generateUUID(20));
+        uuidGenerateButton.addActionListener(e -> uuidTextArea.setText(UUIDTools.generateUUID(20)));
     }
 }
