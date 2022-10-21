@@ -1,3 +1,5 @@
+@file:Suppress("VulnerableLibrariesLocal")
+
 import com.adarshr.gradle.testlogger.theme.ThemeType
 import com.github.benmanes.gradle.versions.reporter.result.Result
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
@@ -46,7 +48,10 @@ repositories {
 val junitVersion = "5.9.1"
 
 dependencies {
-    implementation("com.thedeanda:lorem:2.1")
+    implementation("commons-codec:commons-codec:1.15") // fox Hash
+    implementation("com.thedeanda:lorem:2.1") // for Lorem Ipsum
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.4") // for JSON <> YAML
+    implementation("org.yaml:snakeyaml:1.33") // for JSON <> YAML
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")

@@ -13,6 +13,9 @@ public class Base64Tools {
     public static final Charset US_ASCII = StandardCharsets.US_ASCII;
 
     public static String toBase64(String text, Charset charset) {
+        if (text.isBlank()) {
+            return "";
+        }
         try {
             return B64_ENCODER.encodeToString(text.getBytes(charset));
         } catch (Exception e) {
@@ -22,6 +25,9 @@ public class Base64Tools {
 
     public static String toText(String base64, Charset charset) {
         try {
+            if (base64.isBlank()) {
+                return "";
+            }
             return new String(B64_DECODER.decode(base64), charset);
 
         } catch (Exception e) {
