@@ -25,7 +25,6 @@ See [Makefile](./Makefile) file.
 ## ToDo
 
 * improve the GUI
-  * better tool icons
   * settings: remember last opened tool
   * fix a problem with textarea resizing: when a textarea has a vey long content and the second textarea has only a short text, the resize policy makes one textarea too big, and the other textarea too small. I would like to keep a 50/50 ratio. **Help is welcome**.
 * add more tools, like Base64 from file, GZip encoder/decoder, JWT encoder/decoder, HTML escaper, cron parser, timestamp converter, text tools, graphics tools...

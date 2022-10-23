@@ -1,11 +1,13 @@
 package lermitage.intellij.ilovedevtoys.toolwindow;
 
+import com.intellij.openapi.util.IconLoader;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import java.awt.Component;
 
-public class ComboBoxWithImageRenderer<ImageIcon> extends JLabel implements ListCellRenderer<ImageIcon> {
+public class ComboBoxWithImageRenderer extends JLabel implements ListCellRenderer<Object> {
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     ComboBoxWithImageRenderer() {
@@ -23,9 +25,9 @@ public class ComboBoxWithImageRenderer<ImageIcon> extends JLabel implements List
             setBackground(list.getBackground());
             setForeground(list.getForeground());
         }
-        javax.swing.ImageIcon icon = (javax.swing.ImageIcon) value;
-        setText(icon.getDescription());
-        setIcon(icon);
+        ComboBoxWithImageItem item = (ComboBoxWithImageItem) value;
+        setText(item.title());
+        setIcon(IconLoader.getIcon(item.imagePath(), ComboBoxWithImageRenderer.class));
         setIconTextGap(6);
         return this;
     }

@@ -9,7 +9,6 @@ import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
 import lermitage.intellij.ilovedevtoys.tools.URLTools;
 import lermitage.intellij.ilovedevtoys.tools.UUIDTools;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -17,12 +16,11 @@ import javax.swing.JTextArea;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedHashMap;
-import java.util.Objects;
 
 public class DevToysToolWindow {
 
     private JPanel mainPanel;
-    private JComboBox<ImageIcon> toolComboBox;
+    private JComboBox<Object> toolComboBox;
 
     private JPanel base64Panel;
     private JBRadioButton base64RadioButtonUTF8;
@@ -74,14 +72,14 @@ public class DevToysToolWindow {
         setupUUIDTool();
         setupJSONYAMLTool();
 
-        ClassLoader classLoader = DevToysToolWindow.class.getClassLoader();
         toolPanelsByTitle.forEach((s, toolBoxItem) -> {
-            ImageIcon langImg = new ImageIcon(Objects.requireNonNull(classLoader.getResource(toolBoxItem.iconPath)));
-            langImg.setDescription(s);
-            toolComboBox.addItem(langImg);
+            toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.iconPath));
         });
-        toolComboBox.setRenderer(new ComboBoxWithImageRenderer<>());
-        toolComboBox.addActionListener(e -> displayToolPanel(toolComboBox.getItemAt(toolComboBox.getSelectedIndex()).getDescription()));
+        toolComboBox.setRenderer(new ComboBoxWithImageRenderer());
+        toolComboBox.addActionListener(e -> {
+            ComboBoxWithImageItem item = (ComboBoxWithImageItem) toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
+            displayToolPanel(item.title());
+        });
         toolComboBox.setSelectedIndex(0);
     }
 
