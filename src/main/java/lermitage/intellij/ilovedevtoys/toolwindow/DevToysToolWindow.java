@@ -58,12 +58,12 @@ public class DevToysToolWindow {
     }
 
     public DevToysToolWindow() {
-        toolPanelsByTitle.put("Base64 encoder/decoder", new ToolBoxItem(base64Panel, "ilovedevtoys/tool_base64.png"));
-        toolPanelsByTitle.put("URL encoder/decoder", new ToolBoxItem(urlCodecPanel, "ilovedevtoys/tool_url.png"));
-        toolPanelsByTitle.put("Lorem Ipsum generator", new ToolBoxItem(loremIpsumPanel, "ilovedevtoys/tool_loremipsum.png"));
-        toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, "ilovedevtoys/tool_hash.png"));
-        toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, "ilovedevtoys/tool_uuid.png"));
-        toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, "ilovedevtoys/tool_jsonyaml.png"));
+        toolPanelsByTitle.put("Base64 encoder/decoder", new ToolBoxItem(base64Panel, "ilovedevtoys/Base64EncoderDecoder.svg"));
+        toolPanelsByTitle.put("URL encoder/decoder", new ToolBoxItem(urlCodecPanel, "ilovedevtoys/UrlEncoderDecoder.svg"));
+        toolPanelsByTitle.put("Lorem Ipsum generator", new ToolBoxItem(loremIpsumPanel, "ilovedevtoys/LoremIpsumGenerator.svg"));
+        toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, "ilovedevtoys/HashGenerator.svg"));
+        toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, "ilovedevtoys/UuidGenerator.svg"));
+        toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, "ilovedevtoys/JsonYaml.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
