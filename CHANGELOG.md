@@ -1,6 +1,6 @@
 # I Love DevToys Change Log
 
-## 1.1.0 (WIP, planned for 2022/10/29)
+## 1.1.0 (2022/10/23)
 * reworked icon renderer and improved quality of tools icons.
 
 ## 1.0.0 (2022/10/21)
