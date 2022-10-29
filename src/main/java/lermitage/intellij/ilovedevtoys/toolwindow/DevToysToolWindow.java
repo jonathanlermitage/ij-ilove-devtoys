@@ -3,6 +3,7 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
 import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
+import lermitage.intellij.ilovedevtoys.tools.BENCODEJSONTools;
 import lermitage.intellij.ilovedevtoys.tools.HashTools;
 import lermitage.intellij.ilovedevtoys.tools.JSONYAMLTools;
 import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
@@ -13,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedHashMap;
@@ -51,6 +53,9 @@ public class DevToysToolWindow {
     private JPanel jsonyamlPanel;
     private JTextArea jsonyamlJSONTextArea;
     private JTextArea jsonyamlYAMLTextArea;
+    private JTextArea bencodejsonBENCODETextArea;
+    private JPanel    bencodejsonPanel;
+    private JTextArea bencodejsonJSONTextArea;
 
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -64,6 +69,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, "ilovedevtoys/HashGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, "ilovedevtoys/UuidGenerator.svg"));
         toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, "ilovedevtoys/JsonYaml.svg"));
+        toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, "ilovedevtoys/JsonYaml.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
@@ -71,6 +77,7 @@ public class DevToysToolWindow {
         setupHashTool();
         setupUUIDTool();
         setupJSONYAMLTool();
+        setupBENCODEJSONTool();
 
         toolPanelsByTitle.forEach((s, toolBoxItem) -> {
             toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.iconPath));
@@ -223,6 +230,21 @@ public class DevToysToolWindow {
             @Override
             public void keyReleased(KeyEvent e) {
                 jsonyamlJSONTextArea.setText(JSONYAMLTools.yamlToJson(jsonyamlYAMLTextArea.getText()));
+            }
+        });
+    }
+
+    private void setupBENCODEJSONTool() {
+        bencodejsonBENCODETextArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                bencodejsonJSONTextArea.setText(BENCODEJSONTools.bencodeToJson(bencodejsonBENCODETextArea.getText()));
+            }
+        });
+        bencodejsonJSONTextArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                bencodejsonBENCODETextArea.setText(BENCODEJSONTools.jsonToBencode(bencodejsonJSONTextArea.getText()));
             }
         });
     }
