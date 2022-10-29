@@ -2,21 +2,25 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
-import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
 import lermitage.intellij.ilovedevtoys.tools.BENCODEJSONTools;
+import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
 import lermitage.intellij.ilovedevtoys.tools.HashTools;
 import lermitage.intellij.ilovedevtoys.tools.JSONYAMLTools;
 import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
+import lermitage.intellij.ilovedevtoys.tools.TimestampTools;
 import lermitage.intellij.ilovedevtoys.tools.URLTools;
 import lermitage.intellij.ilovedevtoys.tools.UUIDTools;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.SpinnerNumberModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.time.ZoneId;
 import java.util.LinkedHashMap;
 
 public class DevToysToolWindow {
@@ -54,8 +58,20 @@ public class DevToysToolWindow {
     private JTextArea jsonyamlJSONTextArea;
     private JTextArea jsonyamlYAMLTextArea;
     private JTextArea bencodejsonBENCODETextArea;
-    private JPanel    bencodejsonPanel;
+    private JPanel bencodejsonPanel;
     private JTextArea bencodejsonJSONTextArea;
+
+    private JPanel timestampPanel;
+    private JComboBox<Object> timestampTimezoneComboBox;
+    private JTextArea timestampTextArea;
+    private JSpinner timestampYearSpinner;
+    private JSpinner timestampDaySpinner;
+    private JSpinner timestampMonthSpinner;
+    private JSpinner timestampHourSpinner;
+    private JSpinner timestampMinuteSpinner;
+    private JSpinner timestampSecondSpinner;
+    private JSpinner timestampSpinner;
+    private JButton timestampNowButton;
 
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -69,7 +85,8 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, "ilovedevtoys/HashGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, "ilovedevtoys/UuidGenerator.svg"));
         toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, "ilovedevtoys/JsonYaml.svg"));
-        toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, "ilovedevtoys/JsonYaml.svg"));
+        toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, "ilovedevtoys/BencodeJson.svg"));
+        toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, "ilovedevtoys/Timestamp.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
@@ -78,6 +95,8 @@ public class DevToysToolWindow {
         setupUUIDTool();
         setupJSONYAMLTool();
         setupBENCODEJSONTool();
+        setupTimestampTool();
+        setupDataFakerTool();
 
         toolPanelsByTitle.forEach((s, toolBoxItem) -> {
             toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.iconPath));
@@ -247,5 +266,82 @@ public class DevToysToolWindow {
                 bencodejsonBENCODETextArea.setText(BENCODEJSONTools.jsonToBencode(bencodejsonJSONTextArea.getText()));
             }
         });
+    }
+
+    private void setupTimestampTool() {
+        long now = TimestampTools.getNowAsTimestamp();
+        timestampSpinner.setModel(new SpinnerNumberModel(now, 0L, 9999999999L, 1D));
+        timestampSpinner.setEditor(new JSpinner.NumberEditor(timestampSpinner, "#"));
+        timestampSpinner.setValue(now);
+        updateTimestampToolOnTimestampSpinnerUpdate();
+
+        timestampNowButton.addActionListener(e -> timestampSpinner.setValue(TimestampTools.getNowAsTimestamp()));
+
+        KeyListener timestampSpinnerListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                updateTimestampToolOnTimestampSpinnerUpdate();
+            }
+        };
+
+        timestampTimezoneComboBox.addKeyListener(timestampSpinnerListener);
+        timestampSpinner.addChangeListener(e -> updateTimestampToolOnTimestampSpinnerUpdate());
+
+        KeyListener timestampFieldsKeyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                updateTimestampToolOnTimestampFieldsUpdate();
+            }
+        };
+
+        timestampYearSpinner.addKeyListener(timestampFieldsKeyListener);
+        timestampMonthSpinner.addKeyListener(timestampFieldsKeyListener);
+        timestampDaySpinner.addKeyListener(timestampFieldsKeyListener);
+        timestampHourSpinner.addKeyListener(timestampFieldsKeyListener);
+        timestampMinuteSpinner.addKeyListener(timestampFieldsKeyListener);
+        timestampSecondSpinner.addKeyListener(timestampFieldsKeyListener);
+    }
+
+    private void updateTimestampToolOnTimestampSpinnerUpdate() {
+        Object spinnerValue = timestampSpinner.getValue();
+        long spinnerLongValue;
+        if (spinnerValue instanceof Double) {
+            spinnerLongValue = ((Double) timestampSpinner.getValue()).longValue();
+        } else {
+            spinnerLongValue = (Long) timestampSpinner.getValue();
+        }
+        TimestampTools.TimestampFields timestampFields = TimestampTools.toTimestampFields(spinnerLongValue);
+        timestampYearSpinner.setValue(timestampFields.year());
+        timestampMonthSpinner.setValue(timestampFields.month());
+        timestampDaySpinner.setValue(timestampFields.day());
+        timestampHourSpinner.setValue(timestampFields.hours());
+        timestampMinuteSpinner.setValue(timestampFields.minutes());
+        timestampSecondSpinner.setValue(timestampFields.seconds());
+        timestampTextArea.setText(TimestampTools.getTimeStampAsHumanDatetime(spinnerLongValue, ZoneId.of("Europe/Paris").toString()));
+
+    }
+
+    private void updateTimestampToolOnTimestampFieldsUpdate() {
+
+    }
+
+    private void setupDataFakerTool() {
+
     }
 }
