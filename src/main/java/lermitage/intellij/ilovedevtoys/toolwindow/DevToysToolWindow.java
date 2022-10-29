@@ -21,7 +21,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.ZoneId;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DevToysToolWindow {
 
@@ -75,18 +78,19 @@ public class DevToysToolWindow {
 
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
-    private record ToolBoxItem(JPanel panel, String iconPath) {
+    private record ToolBoxItem(JPanel panel, String toolIconName) {
     }
 
     public DevToysToolWindow() {
-        toolPanelsByTitle.put("Base64 encoder/decoder", new ToolBoxItem(base64Panel, "ilovedevtoys/Base64EncoderDecoder.svg"));
-        toolPanelsByTitle.put("URL encoder/decoder", new ToolBoxItem(urlCodecPanel, "ilovedevtoys/UrlEncoderDecoder.svg"));
-        toolPanelsByTitle.put("Lorem Ipsum generator", new ToolBoxItem(loremIpsumPanel, "ilovedevtoys/LoremIpsumGenerator.svg"));
-        toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, "ilovedevtoys/HashGenerator.svg"));
-        toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, "ilovedevtoys/UuidGenerator.svg"));
-        toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, "ilovedevtoys/JsonYaml.svg"));
-        toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, "ilovedevtoys/BencodeJson.svg"));
-        toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, "ilovedevtoys/Timestamp.svg"));
+        String iconsPath = "ilovedevtoys/toolicons/";
+        toolPanelsByTitle.put("Base64 encoder/decoder", new ToolBoxItem(base64Panel, iconsPath + "Base64EncoderDecoder.svg"));
+        toolPanelsByTitle.put("URL encoder/decoder", new ToolBoxItem(urlCodecPanel, iconsPath + "UrlEncoderDecoder.svg"));
+        toolPanelsByTitle.put("Lorem Ipsum generator", new ToolBoxItem(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
+        toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, iconsPath + "HashGenerator.svg"));
+        toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, iconsPath + "UuidGenerator.svg"));
+        toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
+        toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
+        toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, iconsPath + "Timestamp.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
@@ -99,7 +103,7 @@ public class DevToysToolWindow {
         setupDataFakerTool();
 
         toolPanelsByTitle.forEach((s, toolBoxItem) -> {
-            toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.iconPath));
+            toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.toolIconName));
         });
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());
         toolComboBox.addActionListener(e -> {
@@ -269,6 +273,19 @@ public class DevToysToolWindow {
     }
 
     private void setupTimestampTool() {
+        timestampTimezoneComboBox.setRenderer(new ComboBoxWithImageRenderer());
+        Map<String, String> zoneIdesAndFlags = TimestampTools.getAllAvailableZoneIdesAndFlags();
+        List<String> zoneIds = zoneIdesAndFlags.keySet().stream()
+            .sorted(Comparator.comparing(String::toUpperCase)).toList();
+        zoneIds.forEach(zoneId -> {
+            String flag = zoneIdesAndFlags.get(zoneId);
+            if (flag == null) {
+                flag = "_null";
+            }
+            timestampTimezoneComboBox.addItem(new ComboBoxWithImageItem(
+                zoneId, "ilovedevtoys/flags/" + flag + ".svg"));
+        });
+
         long now = TimestampTools.getNowAsTimestamp();
         timestampSpinner.setModel(new SpinnerNumberModel(now, 0L, 9999999999L, 1D));
         timestampSpinner.setEditor(new JSpinner.NumberEditor(timestampSpinner, "#"));
