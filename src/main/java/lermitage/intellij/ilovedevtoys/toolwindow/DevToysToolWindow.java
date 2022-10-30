@@ -100,23 +100,23 @@ public class DevToysToolWindow {
         String iconsPath = "ilovedevtoys/toolicons/";
         toolPanelsByTitle.put("Base64 encoder/decoder", new ToolBoxItem(base64Panel, iconsPath + "Base64EncoderDecoder.svg"));
         toolPanelsByTitle.put("URL encoder/decoder", new ToolBoxItem(urlCodecPanel, iconsPath + "UrlEncoderDecoder.svg"));
+        toolPanelsByTitle.put("Fake Data generator", new ToolBoxItem(dataFakerPanel, iconsPath + "DataFaker.svg"));
         toolPanelsByTitle.put("Lorem Ipsum generator", new ToolBoxItem(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
         toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, iconsPath + "HashGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, iconsPath + "UuidGenerator.svg"));
         toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
         toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, iconsPath + "Timestamp.svg"));
-        toolPanelsByTitle.put("Data Faker", new ToolBoxItem(dataFakerPanel, iconsPath + "Timestamp.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
+        setupDataFakerTool();
         setupLoremIpsumTool();
         setupHashTool();
         setupUUIDTool();
         setupJSONYAMLTool();
         setupBENCODEJSONTool();
         setupTimestampTool();
-        setupDataFakerTool();
 
         toolPanelsByTitle.forEach((s, toolBoxItem) -> {
             toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.toolIconName));
@@ -206,6 +206,19 @@ public class DevToysToolWindow {
             public void keyReleased(KeyEvent e) {
                 urlCodecDecodedTextField.setText(URLTools.decodeURL(urlCodecEncodedTextField.getText()));
             }
+        });
+    }
+
+    private void setupDataFakerTool() {
+        DataFakerTools.FAKER_GENERATORS.forEach(generator -> dataFakerGeneratorComboBox.addItem(generator));
+        DataFakerTools.FAKER_LOCALES.forEach(locale -> dataFakerLocaleComboBox.addItem(locale));
+
+        dataFakerGenerateButton.addActionListener(e -> {
+            dataFakerTextArea.setText(DataFakerTools.generateFakeData(
+                (String) dataFakerGeneratorComboBox.getSelectedItem(),
+                (String) dataFakerLocaleComboBox.getSelectedItem(),
+                20
+            ));
         });
     }
 
@@ -471,18 +484,5 @@ public class DevToysToolWindow {
             return ZoneId.systemDefault().toString();
         }
         return value.title();
-    }
-
-    private void setupDataFakerTool() {
-        DataFakerTools.FAKER_GENERATORS.forEach(generator -> dataFakerGeneratorComboBox.addItem(generator));
-        DataFakerTools.FAKER_LOCALES.forEach(locale -> dataFakerLocaleComboBox.addItem(locale));
-
-        dataFakerGenerateButton.addActionListener(e -> {
-            dataFakerTextArea.setText(DataFakerTools.generateFakeData(
-                (String) dataFakerGeneratorComboBox.getSelectedItem(),
-                (String) dataFakerLocaleComboBox.getSelectedItem(),
-                20
-            ));
-        });
     }
 }
