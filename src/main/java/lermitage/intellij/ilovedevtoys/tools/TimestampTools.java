@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -28,8 +29,17 @@ public class TimestampTools {
         );
     }
 
-    public static String toTimestamp(TimestampFields timestampFields, ZoneId zoneId) {
-        return null; // todo
+    public static long toTimestamp(TimestampFields timestampFields, String zoneIdAsStr) {
+        ZonedDateTime zonedDateTime = LocalDateTime.of(
+            (int) timestampFields.year(),
+            (int) timestampFields.month(),
+            (int) timestampFields.day(),
+            (int) timestampFields.hours(),
+            (int) timestampFields.minutes(),
+            (int) timestampFields.seconds(),
+            0
+        ).atZone(ZoneId.of(zoneIdAsStr));
+        return zonedDateTime.toEpochSecond();
     }
 
     public static long getNowAsTimestamp() {
@@ -58,7 +68,7 @@ public class TimestampTools {
             .toList();
     }
 
-    public record TimestampFields(int year, int month, int day, int hours, int minutes, int seconds) {
+    public record TimestampFields(long year, long month, long day, long hours, long minutes, long seconds) {
     }
 
     //
