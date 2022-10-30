@@ -38,6 +38,9 @@ public class ComboBoxWithImageRenderer extends JLabel implements ListCellRendere
             setForeground(list.getForeground());
         }
         ComboBoxWithImageItem item = (ComboBoxWithImageItem) value;
+        if (item == null) {
+            return this;
+        }
         setText(item.title());
         try {
             setIcon(IconLoader.getIcon(item.imagePath(), ComboBoxWithImageRenderer.class));

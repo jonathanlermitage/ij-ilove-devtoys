@@ -8,7 +8,6 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -59,13 +58,6 @@ public class TimestampTools {
             .withZoneSameInstant(ZoneId.of("UTC")));
 
         return zoneIdAsStr + " (GMT " + zoneOffsetText + ") Date and Time:\n" + datetimeAsText + "\n\nUTC Date and Time:\n" + utcDatetimeAsText;
-    }
-
-    public static List<String> filterZoneIdByName(String filter) {
-        return getAllAvailableZoneIdesAndFlags().keySet().stream()
-            .filter(zoneId -> zoneId.toUpperCase().contains(filter.toUpperCase()))
-            .sorted()
-            .toList();
     }
 
     public record TimestampFields(long year, long month, long day, long hours, long minutes, long seconds) {

@@ -13,9 +13,11 @@ import lermitage.intellij.ilovedevtoys.tools.UUIDTools;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -75,6 +77,8 @@ public class DevToysToolWindow {
     private JSpinner timestampSecondSpinner;
     private JSpinner timestampSpinner;
     private JButton timestampNowButton;
+    private JTextField timestampFilterTextField;
+    private JLabel timestampWarningNoZoneIdLabel;
 
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -293,14 +297,15 @@ public class DevToysToolWindow {
         });
 
         // select default ZoneId in selector
-        String defaultZoneIdAsStr = ZoneId.systemDefault().toString();
         for (int i = 0; i < timestampTimezoneComboBox.getItemCount(); i++) {
             ComboBoxWithImageItem comboBoxWithImageItem = timestampTimezoneComboBox.getItemAt(i);
-            if (comboBoxWithImageItem.title().equalsIgnoreCase(defaultZoneIdAsStr)) {
+            if (comboBoxWithImageItem.title().equalsIgnoreCase(ZoneId.systemDefault().toString())) {
                 timestampTimezoneComboBox.setSelectedIndex(i);
                 break;
             }
         }
+
+        timestampWarningNoZoneIdLabel.setVisible(false);
 
         long now = TimestampTools.getNowAsTimestamp();
         timestampSpinner.setModel(new SpinnerNumberModel(now, 0L, 9999999999L, 1D));
@@ -314,9 +319,12 @@ public class DevToysToolWindow {
         timestampMinuteSpinner.setEditor(new JSpinner.NumberEditor(timestampMinuteSpinner, "#"));
         timestampSecondSpinner.setEditor(new JSpinner.NumberEditor(timestampSecondSpinner, "#"));
 
-        updateTimestampToolOnTimestampSpinnerUpdate();
+        updateTimestampToolOnTimestampSpinnerUpdate(true);
 
-        timestampNowButton.addActionListener(e -> timestampSpinner.setValue(TimestampTools.getNowAsTimestamp()));
+        timestampNowButton.addActionListener(e -> {
+            timestampSpinner.setValue(TimestampTools.getNowAsTimestamp());
+            updateTimestampToolOnTimestampSpinnerUpdate(true);
+        });
 
         KeyListener timestampSpinnerListener = new KeyListener() {
             @Override
@@ -329,12 +337,14 @@ public class DevToysToolWindow {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                updateTimestampToolOnTimestampSpinnerUpdate();
+                if (timestampTimezoneComboBox.getItemCount() > 0) {
+                    updateTimestampToolOnTimestampSpinnerUpdate(false);
+                }
             }
         };
 
         timestampTimezoneComboBox.addKeyListener(timestampSpinnerListener);
-        timestampSpinner.addChangeListener(e -> updateTimestampToolOnTimestampSpinnerUpdate());
+        timestampSpinner.addChangeListener(e -> updateTimestampToolOnTimestampSpinnerUpdate(false));
 
         timestampYearSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMonthSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
@@ -342,10 +352,58 @@ public class DevToysToolWindow {
         timestampHourSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMinuteSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampSecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
+
+        timestampFilterTextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                timestampTimezoneComboBox.setSelectedIndex(-1);
+                timestampTimezoneComboBox.removeAllItems();
+                //timestampTimezoneComboBox.removeAll();
+                Map<String, String> zoneIdsAndFlags = TimestampTools.getAllAvailableZoneIdesAndFlags();
+                List<String> zoneIds = zoneIdsAndFlags.keySet().stream()
+                    .filter(zoneId -> zoneId.toUpperCase().contains(timestampFilterTextField.getText().toUpperCase()))
+                    .sorted(Comparator.comparing(String::toUpperCase)).toList();
+                if (zoneIds.isEmpty()) {
+                    timestampTimezoneComboBox.setVisible(false);
+                    timestampTimezoneComboBox.setSelectedIndex(-1);
+                    timestampWarningNoZoneIdLabel.setVisible(true);
+                } else {
+                    zoneIds.forEach(zoneId -> {
+                        String flag = zoneIdsAndFlags.get(zoneId);
+                        if (flag == null) {
+                            flag = "_null";
+                        }
+                        timestampTimezoneComboBox.addItem(new ComboBoxWithImageItem(
+                            zoneId, "ilovedevtoys/flags/" + flag + ".svg"));
+                    });
+                    timestampTimezoneComboBox.setVisible(true);
+                    timestampTimezoneComboBox.setSelectedIndex(0);
+                    timestampWarningNoZoneIdLabel.setVisible(false);
+
+                    if (timestampFilterTextField.getText().isBlank()) {
+                        for (int i = 0; i < timestampTimezoneComboBox.getItemCount(); i++) {
+                            ComboBoxWithImageItem comboBoxWithImageItem = timestampTimezoneComboBox.getItemAt(i);
+                            if (comboBoxWithImageItem.title().equalsIgnoreCase(ZoneId.systemDefault().toString())) {
+                                timestampTimezoneComboBox.setSelectedIndex(i);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 
-    private void updateTimestampToolOnTimestampSpinnerUpdate() {
-        if (timestampUpdateTriggeredByCode) {
+    private void updateTimestampToolOnTimestampSpinnerUpdate(boolean forceUpdate) {
+        if (!forceUpdate && timestampUpdateTriggeredByCode) {
             timestampUpdateTriggeredByCode = false;
             return;
         }
