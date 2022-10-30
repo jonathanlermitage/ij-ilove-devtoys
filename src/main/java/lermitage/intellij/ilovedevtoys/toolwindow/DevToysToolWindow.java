@@ -4,6 +4,7 @@ import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
 import lermitage.intellij.ilovedevtoys.tools.BENCODEJSONTools;
 import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
+import lermitage.intellij.ilovedevtoys.tools.DataFakerTools;
 import lermitage.intellij.ilovedevtoys.tools.HashTools;
 import lermitage.intellij.ilovedevtoys.tools.JSONYAMLTools;
 import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
@@ -80,6 +81,12 @@ public class DevToysToolWindow {
     private JTextField timestampFilterTextField;
     private JLabel timestampWarningNoZoneIdLabel;
 
+    private JPanel dataFakerPanel;
+    private JComboBox<String> dataFakerGeneratorComboBox;
+    private JButton dataFakerGenerateButton;
+    private JComboBox<String> dataFakerLocaleComboBox;
+    private JTextArea dataFakerTextArea;
+
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
     // TimestampTool: used to avoid infinitive loops on timestamp spinners update (main spinner
@@ -99,6 +106,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
         toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, iconsPath + "Timestamp.svg"));
+        toolPanelsByTitle.put("Data Faker", new ToolBoxItem(dataFakerPanel, iconsPath + "Timestamp.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
@@ -115,7 +123,7 @@ public class DevToysToolWindow {
         });
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());
         toolComboBox.addActionListener(e -> {
-            ComboBoxWithImageItem item = (ComboBoxWithImageItem) toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
+            ComboBoxWithImageItem item = toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
             displayToolPanel(item.title());
         });
         toolComboBox.setSelectedIndex(0);
@@ -466,6 +474,15 @@ public class DevToysToolWindow {
     }
 
     private void setupDataFakerTool() {
+        DataFakerTools.FAKER_GENERATORS.forEach(generator -> dataFakerGeneratorComboBox.addItem(generator));
+        DataFakerTools.FAKER_LOCALES.forEach(locale -> dataFakerLocaleComboBox.addItem(locale));
 
+        dataFakerGenerateButton.addActionListener(e -> {
+            dataFakerTextArea.setText(DataFakerTools.generateFakeData(
+                (String) dataFakerGeneratorComboBox.getSelectedItem(),
+                (String) dataFakerLocaleComboBox.getSelectedItem(),
+                20
+            ));
+        });
     }
 }
