@@ -3,7 +3,7 @@
 ## 1.2.0 (WIP)
 * add BENCODE <> JSON tool. Thx to contributor **kpouer**.
 * add Timestamp tool.
-* WIP: add Data Faker tool.
+* add Data Faker tool.
 
 ## 1.1.0 (2022/10/23)
 * reworked icon renderer and improved quality of tools icons.
