@@ -36,6 +36,7 @@ public class DevToysToolWindow {
 
     private JPanel mainPanel;
     private JComboBox<ComboBoxWithImageItem> toolComboBox;
+    private JLabel helpLabel;
 
     private JPanel base64Panel;
     private JBRadioButton base64RadioButtonUTF8;
@@ -99,7 +100,6 @@ public class DevToysToolWindow {
     private JTextArea setDiffTextArea1;
     private JTextArea setDiffResultTextArea;
     private JCheckBox setDiffIgnoreEmptyLinesCheckBox;
-    private JLabel helpLabel;
 
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -121,7 +121,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
         toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, iconsPath + "Timestamp.svg"));
-        toolPanelsByTitle.put("Set Diff", new ToolBoxItem(setDiffPanel, iconsPath + "SetDiff.svg"));
+        toolPanelsByTitle.put("Set Diff viewer", new ToolBoxItem(setDiffPanel, iconsPath + "SetDiff.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
@@ -189,7 +189,7 @@ public class DevToysToolWindow {
                         "please hit the <i>Update from timestamp</i> or<br>" +
                         "<i>Update from fields</i> button.</html>");
                 }
-                case "Set Diff" -> {
+                case "Set Diff viewer" -> {
                     helpLabel.setVisible(true);
                     helpLabel.setToolTipText("<html>" +
                         "Type some text in Set 1 and Set 2 then hit <i>Compare</i><br>" +

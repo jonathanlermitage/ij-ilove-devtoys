@@ -26,10 +26,9 @@ See [Makefile](./Makefile) file.
 
 * improve the GUI
   * settings: remember last opened tool
-  * fix a problem with textarea resizing: when a textarea has a vey long content and the second textarea has only a short text, the resize policy makes one textarea too big, and the other textarea too small. I would like to keep a 50/50 ratio. **Help is welcome**.
-* add more tools, like Base64 from file, GZip encoder/decoder, JWT encoder/decoder, HTML escaper, cron parser, timestamp converter, text tools, graphics tools...
+* add more tools, like Base64 from file, GZip encoder/decoder, JWT encoder/decoder, HTML escaper, cron parser, text tools, graphics tools...
 
-Nota: I think we don't need to reproduce tools that exist in IntelliJ already, like the regex tester and markdown previewer.
+Nota: I think we don't need to reproduce tools that exist in IntelliJ already, like the regex tester, diff viewer, conflict resolver, and markdown previewer.
 
 ## License
 
@@ -42,6 +41,7 @@ This project integrates original or modified components and files from:
 * Miguel De Anda, [MIT License](https://github.com/mdeanda/lorem/blob/master/license.txt) -> using the Lorem library for generating Lorem Ipsum strings 
 * FasterXML, LLC, [Apache License](https://github.com/FasterXML/jackson-core/blob/2.14/LICENSE) -> using the Jackson core, databind and dataformat-yam libraries for handling JSON/YAML conversion
 * SnakeYaml, [Apache License](https://bitbucket.org/snakeyaml/snakeyaml/src/master/LICENSE.txt) -> using the SnakeYaml library for handling JSON/YAML conversion
+* DataFaker.net, [Apache License](https://github.com/datafaker-net/datafaker/blob/main/LICENSE) -> using the Data Faker library for generating fake data
 
 ## Screenshot
 
