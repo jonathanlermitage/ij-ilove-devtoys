@@ -1,6 +1,6 @@
 # I Love DevToys Change Log
 
-## 1.2.0 (WIP)
+## 1.2.0 (2022/11/01)
 * add BENCODE <> JSON tool. Thx to contributor **kpouer**.
 * add Timestamp tool.
 * add Data Faker tool.
