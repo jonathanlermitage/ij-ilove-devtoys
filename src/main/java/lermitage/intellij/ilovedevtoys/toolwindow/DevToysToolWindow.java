@@ -8,11 +8,13 @@ import lermitage.intellij.ilovedevtoys.tools.DataFakerTools;
 import lermitage.intellij.ilovedevtoys.tools.HashTools;
 import lermitage.intellij.ilovedevtoys.tools.JSONYAMLTools;
 import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
+import lermitage.intellij.ilovedevtoys.tools.SetDiffTools;
 import lermitage.intellij.ilovedevtoys.tools.TimestampTools;
 import lermitage.intellij.ilovedevtoys.tools.URLTools;
 import lermitage.intellij.ilovedevtoys.tools.UUIDTools;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -87,6 +89,14 @@ public class DevToysToolWindow {
     private JComboBox<String> dataFakerLocaleComboBox;
     private JTextArea dataFakerTextArea;
 
+    private JPanel setDiffPanel;
+    private JButton setDiffCompareButton;
+    private JCheckBox setDiffCaseSensitiveCheckBox;
+    private JTextArea setDiffTextArea2;
+    private JTextArea setDiffTextArea1;
+    private JTextArea setDiffResultTextArea;
+    private JCheckBox setDiffIgnoreEmptyLinesCheckBox;
+
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
     // TimestampTool: used to avoid infinitive loops on timestamp spinners update (main spinner
@@ -107,6 +117,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
         toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, iconsPath + "Timestamp.svg"));
+        toolPanelsByTitle.put("Set Diff", new ToolBoxItem(setDiffPanel, iconsPath + "SetDiff.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
@@ -117,6 +128,7 @@ public class DevToysToolWindow {
         setupJSONYAMLTool();
         setupBENCODEJSONTool();
         setupTimestampTool();
+        setupSetDiffTool();
 
         toolPanelsByTitle.forEach((s, toolBoxItem) -> {
             toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.toolIconName));
@@ -484,5 +496,20 @@ public class DevToysToolWindow {
             return ZoneId.systemDefault().toString();
         }
         return value.title();
+    }
+
+    private void setupSetDiffTool() {
+        setDiffCaseSensitiveCheckBox.setSelected(true);
+        setDiffIgnoreEmptyLinesCheckBox.setSelected(true);
+        setDiffCompareButton.addActionListener(e -> {
+            setDiffResultTextArea.setText(
+                SetDiffTools.compareSets(
+                    setDiffTextArea1.getText(),
+                    setDiffTextArea2.getText(),
+                    setDiffCaseSensitiveCheckBox.isSelected(),
+                    setDiffIgnoreEmptyLinesCheckBox.isSelected()
+                )
+            );
+        });
     }
 }

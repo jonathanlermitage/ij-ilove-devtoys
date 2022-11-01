@@ -4,6 +4,7 @@
 * add BENCODE <> JSON tool. Thx to contributor **kpouer**.
 * add Timestamp tool.
 * add Data Faker tool.
+* add Set Diff tool: a tool that tells if two files have the same lines but in any order.
 
 ## 1.1.0 (2022/10/23)
 * reworked icon renderer and improved quality of tools icons.
