@@ -73,16 +73,18 @@ public class DevToysToolWindow {
     private JPanel timestampPanel;
     private JComboBox<ComboBoxWithImageItem> timestampTimezoneComboBox;
     private JTextArea timestampTextArea;
+    private JSpinner timestampSpinner;
+    private JButton timestampNowButton;
+    private JButton timestampUpdateFromTimestampButton;
+    private JTextField timestampFilterTextField;
+    private JButton timestampUpdateFromFieldsButton;
+    private JLabel timestampWarningNoZoneIdLabel;
     private JSpinner timestampYearSpinner;
     private JSpinner timestampDaySpinner;
     private JSpinner timestampMonthSpinner;
     private JSpinner timestampHourSpinner;
     private JSpinner timestampMinuteSpinner;
     private JSpinner timestampSecondSpinner;
-    private JSpinner timestampSpinner;
-    private JButton timestampNowButton;
-    private JTextField timestampFilterTextField;
-    private JLabel timestampWarningNoZoneIdLabel;
 
     private JPanel dataFakerPanel;
     private JComboBox<String> dataFakerGeneratorComboBox;
@@ -182,16 +184,17 @@ public class DevToysToolWindow {
                     helpLabel.setVisible(true);
                     helpLabel.setToolTipText("<html>" +
                         "Type a timestamp or update datetime field(s)<br>" +
-                        "then conversion happens automatically.<br>" +
-                        "<b>Nota</b>: if you update a value without using<br>" +
-                        "a spinner (up/down buttons), please click<br>" +
-                        "in the text area in order to force update.</html>");
+                        "then conversion should happen automatically.<br>" +
+                        "<b>Nota</b>: if automatic conversion doesn't work,<br>" +
+                        "please hit the <i>Update from timestamp</i> or<br>" +
+                        "<i>Update from fields</i> button.</html>");
                 }
                 case "Set Diff" -> {
                     helpLabel.setVisible(true);
                     helpLabel.setToolTipText("<html>" +
-                        "Type some text in Set 1 and Set 2 then it will say<br>" +
-                        "if some lines exist only in Set 1 or in Set 2.</html>");
+                        "Type some text in Set 1 and Set 2 then hit <i>Compare</i><br>" +
+                        "in order to see if some lines exist only in Set 1 or<br>" +
+                        "in Set 2.</html>");
                 }
             }
         });
@@ -487,6 +490,11 @@ public class DevToysToolWindow {
                 }
             }
         });
+
+        timestampUpdateFromTimestampButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
+        timestampUpdateFromFieldsButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
+        timestampUpdateFromTimestampButton.addActionListener(e -> updateTimestampToolOnTimestampSpinnerUpdate(true));
+        timestampUpdateFromFieldsButton.addActionListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
     }
 
     private void updateTimestampToolOnTimestampSpinnerUpdate(boolean forceUpdate) {
