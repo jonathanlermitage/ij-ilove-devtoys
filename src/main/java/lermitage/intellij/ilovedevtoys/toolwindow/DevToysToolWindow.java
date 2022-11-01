@@ -1,5 +1,6 @@
 package lermitage.intellij.ilovedevtoys.toolwindow;
 
+import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
 import lermitage.intellij.ilovedevtoys.tools.BENCODEJSONTools;
@@ -96,6 +97,7 @@ public class DevToysToolWindow {
     private JTextArea setDiffTextArea1;
     private JTextArea setDiffResultTextArea;
     private JCheckBox setDiffIgnoreEmptyLinesCheckBox;
+    private JLabel helpLabel;
 
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -134,9 +136,64 @@ public class DevToysToolWindow {
             toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.toolIconName));
         });
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());
+
+        helpLabel.setText("");
+        helpLabel.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/contextHelp.svg", DevToysToolWindow.class));
+        helpLabel.setToolTipText("");
+        helpLabel.setVisible(false);
+
         toolComboBox.addActionListener(e -> {
             ComboBoxWithImageItem item = toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
             displayToolPanel(item.title());
+
+            helpLabel.setVisible(false);
+            switch (item.title()) {
+                case "Base64 encoder/decoder" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>" +
+                        "Type some text or Base64 and it will be<br>" +
+                        "automatically converted as you type.</html>");
+                }
+                case "URL encoder/decoder" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>" +
+                        "Type decoded or encoded URL and it will be<br>" +
+                        "automatically converted as you type.</html>");
+                }
+                case "Hash generator" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>" +
+                        "Type text and various hash values will<br>" +
+                        "be automatically computed as you type.</html>");
+                }
+                case "JSON <> YAML converter" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>" +
+                        "Type some JSON or YAML and it will be<br>" +
+                        "automatically converted as you type.</html>");
+                }
+                case "BENCODE <> JSON converter" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>" +
+                        "Type some BENCODE or JSON and it will be<br>" +
+                        "automatically converted as you type.</html>");
+                }
+                case "Timestamp converter" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>" +
+                        "Type a timestamp or update datetime field(s)<br>" +
+                        "then conversion happens automatically.<br>" +
+                        "<b>Nota</b>: if you update a value without using<br>" +
+                        "a spinner (up/down buttons), please click<br>" +
+                        "in the text area in order to force update.</html>");
+                }
+                case "Set Diff" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>" +
+                        "Type some text in Set 1 and Set 2 then it will say<br>" +
+                        "if some lines exist only in Set 1 or in Set 2.</html>");
+                }
+            }
         });
         toolComboBox.setSelectedIndex(0);
     }
@@ -359,7 +416,7 @@ public class DevToysToolWindow {
             updateTimestampToolOnTimestampSpinnerUpdate(true);
         });
 
-        KeyListener timestampSpinnerListener = new KeyListener() {
+        timestampTimezoneComboBox.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -374,11 +431,8 @@ public class DevToysToolWindow {
                     updateTimestampToolOnTimestampSpinnerUpdate(false);
                 }
             }
-        };
-
-        timestampTimezoneComboBox.addKeyListener(timestampSpinnerListener);
+        });
         timestampSpinner.addChangeListener(e -> updateTimestampToolOnTimestampSpinnerUpdate(false));
-
         timestampYearSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMonthSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampDaySpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
