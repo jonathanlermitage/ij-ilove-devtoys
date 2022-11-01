@@ -21,7 +21,7 @@
       <li>add BENCODE &lt;&gt; JSON tool. Thx to contributor <b>kpouer</b>.</li>
       <li>add Timestamp tool.</li>
       <li>add Data Faker tool.</li>
-      <li>add Set Diff tool: a tool that tells if two files have the same lines but in any order.</li>
+      <li>add Set Diff tool: it tells if two files have the same lines but in any order.</li>
     </ul>
     1.1.0 (2022/10/23)
     <ul>
