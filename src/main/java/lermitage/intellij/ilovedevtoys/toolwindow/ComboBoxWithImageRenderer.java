@@ -22,7 +22,7 @@ public class ComboBoxWithImageRenderer extends JLabel implements ListCellRendere
     private static final Logger LOGGER = Logger.getInstance(ComboBoxWithImageRenderer.class);
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    ComboBoxWithImageRenderer() {
+    public ComboBoxWithImageRenderer() {
         setOpaque(true);
         setHorizontalAlignment(LEFT);
         setVerticalAlignment(CENTER);
