@@ -15,17 +15,19 @@ public class SetDiffTools {
             List<String> set2ToCompareWith = caseSensitive ? set2OrderedLines : set2OrderedLinesUpperCase;
 
             StringBuilder sb = new StringBuilder();
-            for (String line : set1OrderedLines) {
+            for (int i = 0; i < set1OrderedLines.size(); i++) {
+                String line = set1OrderedLines.get(i);
                 if (!line.isEmpty() || !ignoreEmptyLines) {
                     if (!set2ToCompareWith.contains(caseSensitive ? line : line.toUpperCase())) {
-                        sb.append(">>> line '").append(line).append("' from Set 1 is missing in Set 2\n");
+                        sb.append(">>> line ").append(i + 1).append(" '").append(line).append("' from Set 1 is missing in Set 2\n");
                     }
                 }
             }
-            for (String line : set2OrderedLines) {
+            for (int i = 0; i < set2OrderedLines.size(); i++) {
+                String line = set2OrderedLines.get(i);
                 if (!line.isEmpty() || !ignoreEmptyLines) {
                     if (!set1ToCompareWith.contains(caseSensitive ? line : line.toUpperCase())) {
-                        sb.append("<<< line '").append(line).append("' from Set 2 is missing in Set 1\n");
+                        sb.append("<<< line ").append(i + 1).append(" '").append(line).append("' from Set 2 is missing in Set 1\n");
                     }
                 }
             }

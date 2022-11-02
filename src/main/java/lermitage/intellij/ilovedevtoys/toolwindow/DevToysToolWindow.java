@@ -115,24 +115,24 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Base64 encoder/decoder", new ToolBoxItem(base64Panel, iconsPath + "Base64EncoderDecoder.svg"));
         toolPanelsByTitle.put("URL encoder/decoder", new ToolBoxItem(urlCodecPanel, iconsPath + "UrlEncoderDecoder.svg"));
         toolPanelsByTitle.put("Fake Data generator", new ToolBoxItem(dataFakerPanel, iconsPath + "DataFaker.svg"));
+        toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, iconsPath + "Timestamp.svg"));
+        toolPanelsByTitle.put("Set Diff viewer", new ToolBoxItem(setDiffPanel, iconsPath + "SetDiff.svg"));
         toolPanelsByTitle.put("Lorem Ipsum generator", new ToolBoxItem(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
         toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, iconsPath + "HashGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, iconsPath + "UuidGenerator.svg"));
         toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
-        toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, iconsPath + "Timestamp.svg"));
-        toolPanelsByTitle.put("Set Diff viewer", new ToolBoxItem(setDiffPanel, iconsPath + "SetDiff.svg"));
 
         setupBase64Tool();
         setupURLCodecTools();
         setupDataFakerTool();
+        setupTimestampTool();
+        setupSetDiffTool();
         setupLoremIpsumTool();
         setupHashTool();
         setupUUIDTool();
         setupJSONYAMLTool();
         setupBENCODEJSONTool();
-        setupTimestampTool();
-        setupSetDiffTool();
 
         toolPanelsByTitle.forEach((s, toolBoxItem) -> {
             toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.toolIconName));
