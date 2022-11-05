@@ -1,5 +1,10 @@
 # I Love DevToys Change Log
 
+## 1.3.0 (WIP)
+* add ASCII <> HEX tool. Thx to contributor **kpouer**.
+* WIP: add (un)Escaper tool.
+* rework tools ordering.
+
 ## 1.2.0 (2022/11/01)
 * add BENCODE <> JSON tool. Thx to contributor **kpouer**.
 * add Timestamp tool.

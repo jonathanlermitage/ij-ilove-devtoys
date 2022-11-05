@@ -16,6 +16,12 @@
     </description>
 
     <change-notes><![CDATA[
+    1.3.0 (WIP)
+    <ul>
+      <li>add ASCII &lt;&gt; HEX tool. Thx to contributor <b>kpouer</b>.</li>
+      <li>WIP: add (un)Escaper tool.</li>
+      <li>rework tools ordering.</li>
+    </ul>
     1.2.0 (2022/11/01)
     <ul>
       <li>add BENCODE &lt;&gt; JSON tool. Thx to contributor <b>kpouer</b>.</li>

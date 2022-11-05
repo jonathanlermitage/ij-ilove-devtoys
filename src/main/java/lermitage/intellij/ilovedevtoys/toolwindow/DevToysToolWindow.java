@@ -84,29 +84,31 @@ public class DevToysToolWindow {
     private JTextArea setDiffTextArea2;
     private JTextArea setDiffResultTextArea;
     private JCheckBox setDiffIgnoreEmptyLinesCheckBox;
+
     private JPanel asciihexPanel;
     private JTextArea asciihexASCIITextArea;
     private JTextArea asciihexHEXTextArea;
     private JCheckBox asciihexSpacesCheckBox;
 
-    private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
+    private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
-    private record ToolBoxItem(JPanel panel, String toolIconName) {
+    private record PanelAndIcon(JPanel panel, String icon) {
     }
 
     public DevToysToolWindow() {
         String iconsPath = "ilovedevtoys/toolicons/";
-        toolPanelsByTitle.put("Base64 encoder/decoder", new ToolBoxItem(base64Panel, iconsPath + "Base64EncoderDecoder.svg"));
-        toolPanelsByTitle.put("URL encoder/decoder", new ToolBoxItem(urlCodecPanel, iconsPath + "UrlEncoderDecoder.svg"));
-        toolPanelsByTitle.put("Fake Data generator", new ToolBoxItem(dataFakerPanel, iconsPath + "DataFaker.svg"));
-        toolPanelsByTitle.put("Timestamp converter", new ToolBoxItem(timestampPanel, iconsPath + "Timestamp.svg"));
-        toolPanelsByTitle.put("Set Diff viewer", new ToolBoxItem(setDiffPanel, iconsPath + "SetDiff.svg"));
-        toolPanelsByTitle.put("Lorem Ipsum generator", new ToolBoxItem(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
-        toolPanelsByTitle.put("Hash generator", new ToolBoxItem(hashPanel, iconsPath + "HashGenerator.svg"));
-        toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, iconsPath + "UuidGenerator.svg"));
-        toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
-        toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
-        toolPanelsByTitle.put("ASCII <> HEX converter", new ToolBoxItem(asciihexPanel, iconsPath + "AsciiHex.svg"));
+        toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "Base64EncoderDecoder.svg"));
+        toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "UrlEncoderDecoder.svg"));
+        toolPanelsByTitle.put("CSV/HTML/Java/JS/XML (un)escaper", new PanelAndIcon(urlCodecPanel, iconsPath + "Escaper.svg"));
+        toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "DataFaker.svg"));
+        toolPanelsByTitle.put("Timestamp converter", new PanelAndIcon(timestampPanel, iconsPath + "Timestamp.svg"));
+        toolPanelsByTitle.put("Set Diff viewer", new PanelAndIcon(setDiffPanel, iconsPath + "SetDiff.svg"));
+        toolPanelsByTitle.put("Lorem Ipsum generator", new PanelAndIcon(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
+        toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "HashGenerator.svg"));
+        toolPanelsByTitle.put("UUID generator", new PanelAndIcon(uuidPanel, iconsPath + "UuidGenerator.svg"));
+        toolPanelsByTitle.put("JSON <> YAML converter", new PanelAndIcon(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
+        toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
+        toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
 
         new Base64ToolSetup(
             base64RadioButtonUTF8,
@@ -167,9 +169,7 @@ public class DevToysToolWindow {
             asciihexHEXTextArea,
             asciihexSpacesCheckBox).setup();
 
-        toolPanelsByTitle.forEach((s, toolBoxItem) -> {
-            toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.toolIconName));
-        });
+        toolPanelsByTitle.forEach((title, panelAndIcon) -> toolComboBox.addItem(new ComboBoxWithImageItem(title, panelAndIcon.icon)));
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());
 
         helpLabel.setText("");
