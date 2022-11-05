@@ -3,16 +3,7 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.BENCODEJSONToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.Base64ToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.DataFakerToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.HashToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONYAMLToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.LoremIpsumToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.SetDiffToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.TimestampToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.URLCodecToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.UUIDToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.*;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -93,6 +84,10 @@ public class DevToysToolWindow {
     private JTextArea setDiffTextArea2;
     private JTextArea setDiffResultTextArea;
     private JCheckBox setDiffIgnoreEmptyLinesCheckBox;
+    private JPanel asciihexPanel;
+    private JTextArea asciihexASCIITextArea;
+    private JTextArea asciihexHEXTextArea;
+    private JCheckBox asciihexSpacesCheckBox;
 
     private final LinkedHashMap<String, ToolBoxItem> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -111,6 +106,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("UUID generator", new ToolBoxItem(uuidPanel, iconsPath + "UuidGenerator.svg"));
         toolPanelsByTitle.put("JSON <> YAML converter", new ToolBoxItem(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new ToolBoxItem(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
+        toolPanelsByTitle.put("ASCII <> HEX converter", new ToolBoxItem(asciihexPanel, iconsPath + "AsciiHex.svg"));
 
         new Base64ToolSetup(
             base64RadioButtonUTF8,
@@ -166,6 +162,10 @@ public class DevToysToolWindow {
         new BENCODEJSONToolSetup(
             bencodejsonBENCODETextArea,
             bencodejsonJSONTextArea).setup();
+        new ASCIIHEXToolSetup(
+            asciihexASCIITextArea,
+            asciihexHEXTextArea,
+            asciihexSpacesCheckBox).setup();
 
         toolPanelsByTitle.forEach((s, toolBoxItem) -> {
             toolComboBox.addItem(new ComboBoxWithImageItem(s, toolBoxItem.toolIconName));
