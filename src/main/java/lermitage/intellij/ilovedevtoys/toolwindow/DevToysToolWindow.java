@@ -90,6 +90,11 @@ public class DevToysToolWindow {
     private JTextArea asciihexHEXTextArea;
     private JCheckBox asciihexSpacesCheckBox;
 
+    private JPanel escapePanel;
+    private JComboBox<String> escapeComboBox;
+    private JTextArea unescapedTextArea;
+    private JTextArea escapedTextArea;
+
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
@@ -99,7 +104,6 @@ public class DevToysToolWindow {
         String iconsPath = "ilovedevtoys/toolicons/";
         toolPanelsByTitle.put("Base64 encoder/decoder", new PanelAndIcon(base64Panel, iconsPath + "Base64EncoderDecoder.svg"));
         toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "UrlEncoderDecoder.svg"));
-        toolPanelsByTitle.put("CSV/HTML/Java/JS/XML (un)escaper", new PanelAndIcon(urlCodecPanel, iconsPath + "Escaper.svg"));
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "DataFaker.svg"));
         toolPanelsByTitle.put("Timestamp converter", new PanelAndIcon(timestampPanel, iconsPath + "Timestamp.svg"));
         toolPanelsByTitle.put("Set Diff viewer", new PanelAndIcon(setDiffPanel, iconsPath + "SetDiff.svg"));
@@ -109,6 +113,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("JSON <> YAML converter", new PanelAndIcon(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
         toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
+        toolPanelsByTitle.put("CSV/HTML/Java/JS/XML (un)escaper", new PanelAndIcon(escapePanel, iconsPath + "Escaper.svg"));
 
         new Base64ToolSetup(
             base64RadioButtonUTF8,
@@ -168,6 +173,9 @@ public class DevToysToolWindow {
             asciihexASCIITextArea,
             asciihexHEXTextArea,
             asciihexSpacesCheckBox).setup();
+        new EscapeToolSetup(escapeComboBox,
+            unescapedTextArea,
+            escapedTextArea).setup();
 
         toolPanelsByTitle.forEach((title, panelAndIcon) -> toolComboBox.addItem(new ComboBoxWithImageItem(title, panelAndIcon.icon)));
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());

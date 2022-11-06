@@ -2,7 +2,7 @@
 
 ## 1.3.0 (WIP)
 * add ASCII <> HEX tool. Thx to contributor **kpouer**.
-* WIP: add (un)Escaper tool.
+* add (un)Escaper tool.
 * rework tools ordering.
 
 ## 1.2.0 (2022/11/01)
