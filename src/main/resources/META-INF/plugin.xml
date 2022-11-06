@@ -5,13 +5,25 @@
     <vendor email="jonathan.lermitage@gmail.com" url="https://github.com/jonathanlermitage">Jonathan Lermitage</vendor>
 
     <description><![CDATA[
-      This free plugin is highly inspired from the <a href="https://devtoys.app"><b>DevToys</b></a> software available on Windows: Base64, URL and JWT encoders/decoders, UUID, Lorem Ipsum and Hash generators, JSON, YAML, Timestamp converters, Graphics tools... Find these tools in a Tool Window in the top right corner of your IDE.<br/>
+      This free plugin is highly inspired from the <a href="https://devtoys.app"><b>DevToys</b></a> software available on Windows. Find these tools in a Tool Window in the top right corner of your IDE:
+      <ul>
+        <li>Base64 encoder/decoder</li>
+        <li>URL encoder/decoder</li>
+        <li>Fake Data generator (addresses, Chuck Norris facts, Job titles, Pokemon names, Rick and Morty characters, The It Crowd quotes...)</li>
+        <li>Timestamp converter</li>
+        <li>Set Diff viewer (compare two texts, ignoring lines ordering)</li>
+        <li>Lorem Ipsum generator</li>
+        <li>Hash generator (MD5, SHA1,256,384,512)</li>
+        <li>UUID generator</li>
+        <li>JSON &lt;&gt; YAML converter</li>
+        <li>BENCODE &lt;&gt; JSON converter</li>
+        <li>ASCII &lt;&gt; HEX converter</li>
+        <li>CSV/HTML/Java/JS/XML (un)escaper</li>
+      </ul>
       The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only.<br/>
-      <b>Work in progress</b>: I am trying to reproduce most of the DevToys features, but it will take some time. Also, contributions are welcome 😎.<br/>
+      <b>Work in progress</b>: I am trying to reproduce most of the DevToys features, while adding some exclusive features, so it will take some time. Also, contributions are welcome 😎.<br/>
       If you want to support my work, you can consider buying an <a href="https://plugins.jetbrains.com/plugin/11058-extra-icons">Extra Icons</a> plugin license or make a <a href="https://buymeacoff.ee/jlermitage">donation</a>. Thank you!<br>
-      <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys">GitHub</a> | <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys/issues">Issues</a> | <a href="https://www.linkedin.com/in/jonathan-lermitage/">LinkedIn</a> | <a href="https://vshymanskyy.github.io/StandWithUkraine/">💙 Help Ukraine 💛</a><br/>
-      <br/>
-      <img src="https://raw.githubusercontent.com/jonathanlermitage/ij-ilove-devtoys/master/plugin_screenshot_small.png"/>
+      <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys">GitHub</a> | <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys/issues">Issues</a> | <a href="https://www.linkedin.com/in/jonathan-lermitage/">LinkedIn</a> | <a href="https://vshymanskyy.github.io/StandWithUkraine/">💙 Help Ukraine 💛</a>
     ]]>
     </description>
 
