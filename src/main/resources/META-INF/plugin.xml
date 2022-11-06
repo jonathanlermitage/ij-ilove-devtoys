@@ -11,6 +11,7 @@
         <li>URL encoder/decoder</li>
         <li>Fake Data generator (addresses, Chuck Norris facts, Job titles, Pokemon names, Rick and Morty characters, The It Crowd quotes...)</li>
         <li>Timestamp converter</li>
+        <li>Cron parser (Unix, Quartz, Spring 5.3+, Cron4j)</li>
         <li>Set Diff viewer (compare two texts, ignoring lines ordering)</li>
         <li>Lorem Ipsum generator</li>
         <li>Hash generator (MD5, SHA1,256,384,512)</li>
@@ -32,6 +33,7 @@
     <ul>
       <li>add ASCII &lt;&gt; HEX tool. Thx to contributor <b>kpouer</b>.</li>
       <li>add (un)Escaper tool.</li>
+      <li>WIP: add Cron parser.</li>
       <li>rework tools ordering.</li>
       <li>dependencies upgrade</li>
     </ul>

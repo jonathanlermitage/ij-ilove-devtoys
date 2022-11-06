@@ -54,6 +54,7 @@ dependencies {
     implementation("org.yaml:snakeyaml:1.33") // for JSON <> YAML
     implementation("com.dampcake:bencode:1.4") // for JSON <> BENCODE
     implementation("net.datafaker:datafaker:1.6.0") // for Data Faker
+    implementation("com.cronutils:cron-utils:9.2.0") // for cron expression parser
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
