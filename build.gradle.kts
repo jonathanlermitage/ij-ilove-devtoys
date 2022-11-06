@@ -50,7 +50,7 @@ val junitVersion = "5.9.1"
 dependencies {
     implementation("commons-codec:commons-codec:1.15") // fox Hash
     implementation("com.thedeanda:lorem:2.1") // for Lorem Ipsum
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.4") // for JSON <> YAML
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.0") // for JSON <> YAML
     implementation("org.yaml:snakeyaml:1.33") // for JSON <> YAML
     implementation("com.dampcake:bencode:1.4") // for JSON <> BENCODE
     implementation("net.datafaker:datafaker:1.6.0") // for Data Faker

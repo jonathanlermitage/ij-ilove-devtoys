@@ -33,6 +33,7 @@
       <li>add ASCII &lt;&gt; HEX tool. Thx to contributor <b>kpouer</b>.</li>
       <li>add (un)Escaper tool.</li>
       <li>rework tools ordering.</li>
+      <li>dependencies upgrade</li>
     </ul>
     1.2.0 (2022/11/01)
     <ul>

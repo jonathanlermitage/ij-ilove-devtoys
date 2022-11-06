@@ -4,6 +4,7 @@
 * add ASCII <> HEX tool. Thx to contributor **kpouer**.
 * add (un)Escaper tool.
 * rework tools ordering.
+* dependencies upgrade.
 
 ## 1.2.0 (2022/11/01)
 * add BENCODE <> JSON tool. Thx to contributor **kpouer**.
