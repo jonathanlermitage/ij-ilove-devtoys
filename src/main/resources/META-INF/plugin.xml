@@ -8,7 +8,7 @@
       This free plugin is highly inspired from the <a href="https://devtoys.app"><b>DevToys</b></a> software available on Windows: Base64, URL and JWT encoders/decoders, UUID, Lorem Ipsum and Hash generators, JSON, YAML, Timestamp converters, Graphics tools... Find these tools in a Tool Window in the top right corner of your IDE.<br/>
       The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only.<br/>
       <b>Work in progress</b>: I am trying to reproduce most of the DevToys features, but it will take some time. Also, contributions are welcome 😎.<br/>
-      If you want to support my work, you can consider buying an <a href="https://plugins.jetbrains.com/plugin/11058-extra-icons">Extra Icons</a> plugin license or make a <a href="https://buymeacoff.ee/jlermitage">donation</a>. Thank you! If you already did this, hum... fiesta! 🥳 (And again, thank you so much!)<br>
+      If you want to support my work, you can consider buying an <a href="https://plugins.jetbrains.com/plugin/11058-extra-icons">Extra Icons</a> plugin license or make a <a href="https://buymeacoff.ee/jlermitage">donation</a>. Thank you!<br>
       <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys">GitHub</a> | <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys/issues">Issues</a> | <a href="https://www.linkedin.com/in/jonathan-lermitage/">LinkedIn</a> | <a href="https://vshymanskyy.github.io/StandWithUkraine/">💙 Help Ukraine 💛</a><br/>
       <br/>
       <img src="https://raw.githubusercontent.com/jonathanlermitage/ij-ilove-devtoys/master/plugin_screenshot_small.png"/>
