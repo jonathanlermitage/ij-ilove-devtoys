@@ -7,7 +7,21 @@
     I Love DevToys
 </h1>
 
-An Intellij IDEA (Community and Ultimate) free plugin which is highly inspired from the [DevToys](https://devtoys.app) software available on Windows: Base64, URL and JWT encoders/decoders, UUID, Lorem Ipsum and Hash generators, JSON, YAML, Timestamp converters, Graphics tools... Find these tools in a Tool Window in the top right corner of your IDE.
+An Intellij IDEA (Community and Ultimate) free plugin which is highly inspired from the [DevToys](https://devtoys.app) software available on Windows.  
+Find useful tools in a Tool Window in the top right corner of your IDE:
+* Base64 encoder/decoder</li>
+* URL encoder/decoder
+* Fake Data generator (addresses, Chuck Norris facts, Job titles, Pokemon names, Rick and Morty characters, The It Crowd quotes...)
+* Timestamp converter
+* Cron parser (Unix, Quartz, Spring 5.3+, Cron4j)
+* Set Diff viewer (compare two texts, ignoring lines ordering)
+* Lorem Ipsum generator
+* Hash generator (MD5, SHA1,256,384,512)
+* UUID generator
+* JSON &lt;&gt; YAML converter
+* BENCODE &lt;&gt; JSON converter
+* ASCII &lt;&gt; HEX converter
+* CSV/HTML/Java/JS/XML (un)escaper
 
 The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only.<br/>
 

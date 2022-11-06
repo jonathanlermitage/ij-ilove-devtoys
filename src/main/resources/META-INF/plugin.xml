@@ -5,7 +5,7 @@
     <vendor email="jonathan.lermitage@gmail.com" url="https://github.com/jonathanlermitage">Jonathan Lermitage</vendor>
 
     <description><![CDATA[
-      This free plugin is highly inspired from the <a href="https://devtoys.app"><b>DevToys</b></a> software available on Windows. Find these tools in a Tool Window in the top right corner of your IDE:
+      This free plugin is highly inspired from the <a href="https://devtoys.app"><b>DevToys</b></a> software available on Windows. Find useful tools in a Tool Window in the top right corner of your IDE:
       <ul>
         <li>Base64 encoder/decoder</li>
         <li>URL encoder/decoder</li>
