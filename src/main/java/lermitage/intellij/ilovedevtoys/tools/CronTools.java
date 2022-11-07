@@ -43,12 +43,16 @@ public class CronTools {
             StringBuilder result = new StringBuilder("Description: " + description + "\n");
             lastExecution.ifPresent(dateTime -> result.append("Last execution: ").append(DATETIME_FORMAT_24H.format(dateTime)).append("\n"));
             if (executionDates.isEmpty()) {
-                result.append("Next execution: none");
+                result.append("Next executions: none");
             } else {
                 result.append("Next executions:\n");
-            }
-            for (ZonedDateTime executionDate : executionDates) {
-                result.append("- ").append(DATETIME_FORMAT_24H.format(executionDate)).append("\n");
+                int idx = 1;
+                for (ZonedDateTime executionDate : executionDates) {
+                    result.append("- ").append(DATETIME_FORMAT_24H.format(executionDate)).append("\n");
+                    if (idx++ > 20) {
+                        break;
+                    }
+                }
             }
             return result.toString().trim();
         } catch (Exception e) {

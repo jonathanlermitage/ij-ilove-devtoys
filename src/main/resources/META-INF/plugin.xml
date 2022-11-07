@@ -33,7 +33,7 @@
     <ul>
       <li>add ASCII &lt;&gt; HEX tool. Thx to contributor <b>kpouer</b>.</li>
       <li>add (un)Escaper tool.</li>
-      <li>WIP: add Cron parser.</li>
+      <li>add Cron parser tool.</li>
       <li>rework tools ordering.</li>
       <li>dependencies upgrade</li>
     </ul>

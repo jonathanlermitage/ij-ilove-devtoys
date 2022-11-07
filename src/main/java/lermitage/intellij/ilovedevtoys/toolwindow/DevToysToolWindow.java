@@ -3,7 +3,19 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.*;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.ASCIIHEXToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.BENCODEJSONToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.Base64ToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.CronToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.DataFakerToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.EscapeToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.HashToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONYAMLToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.LoremIpsumToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.SetDiffToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.TimestampToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.URLCodecToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.UUIDToolSetup;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -95,6 +107,12 @@ public class DevToysToolWindow {
     private JTextArea unescapedTextArea;
     private JTextArea escapedTextArea;
 
+    private JPanel cronPanel;
+    private JTextField cronExpressionTextField;
+    private JComboBox<String> cronTypeComboBox;
+    private JTextArea cronTextArea;
+    private JButton explainButton;
+
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
@@ -106,6 +124,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("URL encoder/decoder", new PanelAndIcon(urlCodecPanel, iconsPath + "UrlEncoderDecoder.svg"));
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "DataFaker.svg"));
         toolPanelsByTitle.put("Timestamp converter", new PanelAndIcon(timestampPanel, iconsPath + "Timestamp.svg"));
+        toolPanelsByTitle.put("Cron parser", new PanelAndIcon(cronPanel, iconsPath + "CronParser.svg"));
         toolPanelsByTitle.put("Set Diff viewer", new PanelAndIcon(setDiffPanel, iconsPath + "SetDiff.svg"));
         toolPanelsByTitle.put("Lorem Ipsum generator", new PanelAndIcon(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "HashGenerator.svg"));
@@ -143,6 +162,10 @@ public class DevToysToolWindow {
             timestampHourSpinner,
             timestampMinuteSpinner,
             timestampSecondSpinner).setup();
+        new CronToolSetup(cronExpressionTextField,
+            cronTypeComboBox,
+            cronTextArea,
+            explainButton).setup();
         new SetDiffToolSetup(
             setDiffCompareButton,
             setDiffCaseSensitiveCheckBox,

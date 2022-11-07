@@ -3,7 +3,7 @@
 ## 1.3.0 (WIP)
 * add ASCII <> HEX tool. Thx to contributor **kpouer**.
 * add (un)Escaper tool.
-* WIP: add Cron parser.
+* add Cron parser tool.
 * rework tools ordering.
 * dependencies upgrade.
 
