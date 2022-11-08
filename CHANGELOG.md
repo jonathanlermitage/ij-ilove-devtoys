@@ -4,6 +4,7 @@
 * add ASCII <> HEX tool. Thx to contributor **kpouer**.
 * add (un)Escaper tool.
 * add Cron parser tool.
+* add JSON to String tool.
 * rework tools ordering.
 * dependencies upgrade.
 

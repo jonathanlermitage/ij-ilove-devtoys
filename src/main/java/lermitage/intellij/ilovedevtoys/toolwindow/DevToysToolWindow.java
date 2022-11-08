@@ -10,6 +10,7 @@ import lermitage.intellij.ilovedevtoys.toolwindow.setup.CronToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.DataFakerToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.EscapeToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.HashToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONStringToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONYAMLToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.LoremIpsumToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.SetDiffToolSetup;
@@ -113,6 +114,10 @@ public class DevToysToolWindow {
     private JTextArea cronTextArea;
     private JButton explainButton;
 
+    private JPanel jsonStringPanel;
+    private JTextArea jsonStringJsonArea;
+    private JTextArea jsonStringStringTextArea;
+
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
@@ -129,6 +134,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Lorem Ipsum generator", new PanelAndIcon(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "HashGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new PanelAndIcon(uuidPanel, iconsPath + "UuidGenerator.svg"));
+        toolPanelsByTitle.put("JSON to String converter", new PanelAndIcon(jsonStringPanel, iconsPath + "JsonString.svg"));
         toolPanelsByTitle.put("JSON <> YAML converter", new PanelAndIcon(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
         toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
@@ -186,6 +192,9 @@ public class DevToysToolWindow {
         new UUIDToolSetup(
             uuidGenerateButton,
             uuidTextArea).setup();
+        new JSONStringToolSetup(
+            jsonStringJsonArea,
+            jsonStringStringTextArea).setup();
         new JSONYAMLToolSetup(
             jsonyamlJSONTextArea,
             jsonyamlYAMLTextArea).setup();
@@ -231,6 +240,12 @@ public class DevToysToolWindow {
                     helpLabel.setToolTipText("<html>" +
                         "Type text and various hash values will<br>" +
                         "be automatically computed as you type.</html>");
+                }
+                case "JSON to String converter" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>" +
+                        "Type some JSON and it will be automatically<br>" +
+                        "converted to String as you type.</html>");
                 }
                 case "JSON <> YAML converter" -> {
                     helpLabel.setVisible(true);

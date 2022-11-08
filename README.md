@@ -22,6 +22,7 @@ Find useful tools in a Tool Window in the top right corner of your IDE:
 * BENCODE &lt;&gt; JSON converter
 * ASCII &lt;&gt; HEX converter
 * CSV/HTML/Java/JS/XML (un)escaper
+* Etc...
 
 The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only.<br/>
 
@@ -56,6 +57,7 @@ This project integrates original or modified components and files from:
 * FasterXML, LLC, [Apache License](https://github.com/FasterXML/jackson-core/blob/2.14/LICENSE) -> using the Jackson core, databind and dataformat-yam libraries for handling JSON/YAML conversion
 * SnakeYaml, [Apache License](https://bitbucket.org/snakeyaml/snakeyaml/src/master/LICENSE.txt) -> using the SnakeYaml library for handling JSON/YAML conversion
 * DataFaker.net, [Apache License](https://github.com/datafaker-net/datafaker/blob/main/LICENSE) -> using the Data Faker library for generating fake data
+* cron-parser.com, [Apache License](https://github.com/jmrozanec/cron-utils/blob/master/LICENSE) -> using the Cron-utils library for parsing cron expressions
 
 ## Screenshot
 

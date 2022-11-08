@@ -16,6 +16,7 @@
         <li>Lorem Ipsum generator</li>
         <li>Hash generator (MD5, SHA1,256,384,512)</li>
         <li>UUID generator</li>
+        <li>JSON to String converter</li>
         <li>JSON &lt;&gt; YAML converter</li>
         <li>BENCODE &lt;&gt; JSON converter</li>
         <li>ASCII &lt;&gt; HEX converter</li>
@@ -34,6 +35,7 @@
       <li>add ASCII &lt;&gt; HEX tool. Thx to contributor <b>kpouer</b>.</li>
       <li>add (un)Escaper tool.</li>
       <li>add Cron parser tool.</li>
+      <li>add JSON to String tool.</li>
       <li>rework tools ordering.</li>
       <li>dependencies upgrade</li>
     </ul>
