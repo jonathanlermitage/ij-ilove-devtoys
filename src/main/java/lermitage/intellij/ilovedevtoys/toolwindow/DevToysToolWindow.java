@@ -132,7 +132,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("JSON <> YAML converter", new PanelAndIcon(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
         toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
-        toolPanelsByTitle.put("CSV/HTML/Java/JS/XML (un)escaper", new PanelAndIcon(escapePanel, iconsPath + "Escaper.svg"));
+        toolPanelsByTitle.put("(Un)Escaper for HTML, etc.", new PanelAndIcon(escapePanel, iconsPath + "Escaper.svg"));
 
         new Base64ToolSetup(
             base64RadioButtonUTF8,
