@@ -51,13 +51,15 @@ MIT License. In other words, you can do what you want: this project is entirely 
 
 This project integrates original or modified components and files from:
 
-* Etienne Baudoux, [MIT License](https://github.com/veler/DevToys/blob/main/LICENSE.md) -> created tool icons from original DevToys tools SVG icons, and yeah, the global idea of this plugin!
-* The Apache Software Foundation, [Apache License](https://commons.apache.org) -> using the Apache Commons Codec and Apache Commons Lang libraries for handling Hash and CSV/HTML/Java/JS/XML Escaping functionalities
-* Miguel De Anda, [MIT License](https://github.com/mdeanda/lorem/blob/master/license.txt) -> using the Lorem library for generating Lorem Ipsum strings 
-* FasterXML, LLC, [Apache License](https://github.com/FasterXML/jackson-core/blob/2.14/LICENSE) -> using the Jackson core, databind and dataformat-yam libraries for handling JSON/YAML conversion
-* SnakeYaml, [Apache License](https://bitbucket.org/snakeyaml/snakeyaml/src/master/LICENSE.txt) -> using the SnakeYaml library for handling JSON/YAML conversion
-* DataFaker.net, [Apache License](https://github.com/datafaker-net/datafaker/blob/main/LICENSE) -> using the Data Faker library for generating fake data
-* cron-parser.com, [Apache License](https://github.com/jmrozanec/cron-utils/blob/master/LICENSE) -> using the Cron-utils library for parsing cron expressions
+* Etienne Baudoux, [MIT License](https://github.com/veler/DevToys/blob/main/LICENSE.md) -> created tool icons from original `DevToys` tools SVG icons, and yeah, the global idea of this plugin!
+* The Apache Software Foundation, [Apache License](https://commons.apache.org) -> using the `Apache Commons Codec` and `Apache Commons Lang` libraries for handling Hash and CSV/HTML/Java/JS/XML Escaping functionalities
+* Miguel De Anda, [MIT License](https://github.com/mdeanda/lorem/blob/master/license.txt) -> using the `Lorem` library for generating Lorem Ipsum strings 
+* FasterXML, LLC, [Apache License](https://github.com/FasterXML/jackson-core/blob/2.14/LICENSE) -> using the `Jackson core`, `databind` and `dataformat-yaml` libraries for handling JSON/YAML conversion
+* SnakeYaml, [Apache License](https://bitbucket.org/snakeyaml/snakeyaml/src/master/LICENSE.txt) -> using the `SnakeYaml` library for handling JSON/YAML conversion
+* Adam Peck, [Apache License](https://github.com/dampcake/bencode/blob/master/LICENSE) -> using the `bencode` library for handling BENCODE/JSON conversion
+* DataFaker.net, [Apache License](https://github.com/datafaker-net/datafaker/blob/main/LICENSE) -> using the `Data Faker` library for generating fake data
+* cron-parser.com, [Apache License](https://github.com/jmrozanec/cron-utils/blob/master/LICENSE) -> using the `Cron-utils` library for parsing cron expressions
+* codearte.io, [Apache License](https://github.com/Codearte/props2yaml/blob/master/LICENSE) -> using the `props2yaml` library for handling Properties to YAML conversion
 
 ## Screenshot
 
