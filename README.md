@@ -59,7 +59,7 @@ This project integrates original or modified components and files from:
 * Adam Peck, [Apache License](https://github.com/dampcake/bencode/blob/master/LICENSE) -> using the `bencode` library for handling BENCODE/JSON conversion
 * DataFaker.net, [Apache License](https://github.com/datafaker-net/datafaker/blob/main/LICENSE) -> using the `Data Faker` library for generating fake data
 * cron-parser.com, [Apache License](https://github.com/jmrozanec/cron-utils/blob/master/LICENSE) -> using the `Cron-utils` library for parsing cron expressions
-* codearte.io, [Apache License](https://github.com/Codearte/props2yaml/blob/master/LICENSE) -> using the `props2yaml` library for handling Properties to YAML conversion
+* codearte.io, [Apache License](https://github.com/Codearte/props2yaml/blob/master/LICENSE) -> using a modified `props2yaml` library for handling Properties to YAML conversion (see modified sources in `src/main/java/io.codearte.props2yaml`)
 
 ## Screenshot
 

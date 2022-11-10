@@ -12,32 +12,32 @@ class PropertiesYAMLToolsTest {
         assertEquals(
             """
                 logging:
-                    file:
-                        name: myapplication.log
+                  file:
+                    name: myapplication.log
                 xxx:
-                    property: health, info, refresh, shutdown, selftest, listProcessors, foo, bar
+                  property: health, info, refresh, shutdown, selftest, listProcessors, foo, bar
                 ---
                 spring:
-                    config:
-                        activate:
-                            on-profile: dev
-                    datasource:
-                        password: password
-                        url: jdbc:h2:dev
-                        username: SA
+                  config:
+                    activate:
+                      on-profile: dev
+                  datasource:
+                    password: password
+                    url: jdbc:h2:dev
+                    username: SA
                 xxx:
-                    property: devValue
+                  property: devValue
                 ---
                 spring:
-                    config:
-                        activate:
-                            on-profile: prod
-                    datasource:
-                        password: password
-                        url: jdbc:h2:prod
-                        username: prodUser
+                  config:
+                    activate:
+                      on-profile: prod
+                  datasource:
+                    password: password
+                    url: jdbc:h2:prod
+                    username: prodUser
                 xxx:
-                    property: prodValue""",
+                  property: prodValue""",
             PropertiesYAMLTools.propertiesToYaml("""
                 logging.file.name=myapplication.log
                 xxx.property=health, info, refresh, shutdown, selftest, listProcessors, foo, bar
@@ -60,15 +60,15 @@ class PropertiesYAMLToolsTest {
         assertEquals(
             """
                 spring:
-                    config:
-                        activate:
-                            on-profile: dev
-                    datasource:
-                        password: password
-                        url: jdbc:h2:dev
-                        username: SA
+                  config:
+                    activate:
+                      on-profile: dev
+                  datasource:
+                    password: password
+                    url: jdbc:h2:dev
+                    username: SA
                 xxx:
-                    property: devValue3""",
+                  property: devValue3""",
             PropertiesYAMLTools.propertiesToYaml("""
                 spring.config.activate.on-profile=dev
                 spring.datasource.password=password
@@ -84,18 +84,18 @@ class PropertiesYAMLToolsTest {
         assertEquals(
             """
                 logging:
-                    file:
-                        name: myapplication.log
+                  file:
+                    name: myapplication.log
                 spring:
-                    config:
-                        activate:
-                            on-profile: prod
-                    datasource:
-                        password: password
-                        url: jdbc:h2:prod
-                        username: prodUser
+                  config:
+                    activate:
+                      on-profile: prod
+                  datasource:
+                    password: password
+                    url: jdbc:h2:prod
+                    username: prodUser
                 xxx:
-                    property: prodValue""",
+                  property: prodValue""",
             PropertiesYAMLTools.propertiesToYaml("""
                 logging.file.name=myapplication.log
                 xxx.property=health, info, refresh, shutdown, selftest, listProcessors, foo, bar

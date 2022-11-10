@@ -13,6 +13,7 @@ import lermitage.intellij.ilovedevtoys.toolwindow.setup.HashToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONStringToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONYAMLToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.LoremIpsumToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.PropertiesYamlToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.SetDiffToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.TimestampToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.URLCodecToolSetup;
@@ -118,6 +119,11 @@ public class DevToysToolWindow {
     private JTextArea jsonStringJsonArea;
     private JTextArea jsonStringStringTextArea;
 
+    private JPanel propertiesYamlPanel;
+    private JComboBox<String> propertiesYamlTypeComboBox;
+    private JTextArea propertiesYamlPropertiesTextArea;
+    private JTextArea propertiesYamlYamlTextArea;
+
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
@@ -137,6 +143,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("JSON to String converter", new PanelAndIcon(jsonStringPanel, iconsPath + "JsonString.svg"));
         toolPanelsByTitle.put("JSON <> YAML converter", new PanelAndIcon(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
+        toolPanelsByTitle.put("Properties to YAML converter", new PanelAndIcon(propertiesYamlPanel, iconsPath + "PropertiesYaml.svg"));
         toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
         toolPanelsByTitle.put("Text escape/unescape", new PanelAndIcon(escapePanel, iconsPath + "Escaper.svg"));
 
@@ -201,6 +208,10 @@ public class DevToysToolWindow {
         new BENCODEJSONToolSetup(
             bencodejsonBENCODETextArea,
             bencodejsonJSONTextArea).setup();
+        new PropertiesYamlToolSetup(
+            propertiesYamlTypeComboBox,
+            propertiesYamlPropertiesTextArea,
+            propertiesYamlYamlTextArea).setup();
         new ASCIIHEXToolSetup(
             asciihexASCIITextArea,
             asciihexHEXTextArea,

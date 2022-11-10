@@ -5,6 +5,7 @@
 * add (un)Escaper tool.
 * add Cron parser tool.
 * add JSON to String tool.
+* add Properties to YAML tool (including Spring profiles support).
 * rework tools ordering.
 * dependencies upgrade.
 

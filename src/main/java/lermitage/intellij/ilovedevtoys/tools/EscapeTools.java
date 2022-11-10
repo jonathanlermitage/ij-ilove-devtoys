@@ -4,7 +4,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 public class EscapeTools {
 
-    public static enum EscapeType {
+    public enum EscapeType {
         CSV,
         HTML,
         JAVA,
