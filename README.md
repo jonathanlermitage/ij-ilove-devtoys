@@ -41,7 +41,7 @@ See [Makefile](./Makefile) file.
 
 * improve the GUI
   * settings: remember last opened tool
-* add more tools, like Base64 from file, GZip encoder/decoder, JWT encoder/decoder, HTML escaper, cron parser, text tools, graphics tools...
+* add more tools, like Base64 from file, GZip encoder/decoder, JWT encoder/decoder, text tools, graphics tools...
 
 Nota: I think we don't need to reproduce tools that exist in IntelliJ already, like the regex tester, diff viewer, conflict resolver, and markdown previewer.
 
@@ -59,7 +59,7 @@ This project integrates original or modified components and files from:
 * Adam Peck, [Apache License](https://github.com/dampcake/bencode/blob/master/LICENSE) -> using the `bencode` library for handling BENCODE/JSON conversion
 * DataFaker.net, [Apache License](https://github.com/datafaker-net/datafaker/blob/main/LICENSE) -> using the `Data Faker` library for generating fake data
 * cron-parser.com, [Apache License](https://github.com/jmrozanec/cron-utils/blob/master/LICENSE) -> using the `Cron-utils` library for parsing cron expressions
-* codearte.io, [Apache License](https://github.com/Codearte/props2yaml/blob/master/LICENSE) -> using a modified `props2yaml` library for handling Properties to YAML conversion (see modified sources in `src/main/java/io.codearte.props2yaml`)
+* codearte.io, [Apache License](https://github.com/Codearte/props2yaml/blob/master/LICENSE) -> using a modified version of `props2yaml` library for handling Properties to YAML conversion (see modified sources in `src/main/java/io.codearte.props2yaml`)
 
 ## Screenshot
 
