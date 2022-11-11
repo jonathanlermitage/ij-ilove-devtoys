@@ -7,7 +7,7 @@ import javax.swing.JTextArea;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Base64ToolSetup {
+public class Base64ToolSetup extends AbstractToolSetup {
 
     private final JBRadioButton base64RadioButtonUTF8;
     private final JBRadioButton base64RadioButtonASCII;
@@ -43,6 +43,8 @@ public class Base64ToolSetup {
                     base64RawTextArea.getText(),
                     base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII)
                 );
+                base64Base64TextArea.setCaretPosition(0);
+                updateWithBestNumberOfRows(base64RawTextArea, base64Base64TextArea);
             }
         });
         base64Base64TextArea.addKeyListener(new KeyListener() {
@@ -60,6 +62,8 @@ public class Base64ToolSetup {
                     base64Base64TextArea.getText(),
                     base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII)
                 );
+                base64RawTextArea.setCaretPosition(0);
+                updateWithBestNumberOfRows(base64RawTextArea, base64Base64TextArea);
             }
         });
     }

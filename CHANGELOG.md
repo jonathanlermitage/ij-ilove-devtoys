@@ -1,12 +1,14 @@
 # I Love DevToys Change Log
 
-## 1.3.0 (WIP)
+## 1.3.0 (2022/11/11)
 * add ASCII <> HEX tool. Thx to contributor **kpouer**.
 * add (un)Escaper tool.
 * add Cron parser tool.
 * add JSON to String tool.
 * add Properties to YAML tool (including Spring profiles support).
 * rework tools ordering.
+* hopefully fix TextAreas unwanted resizing.
+* various UI improvements.
 * dependencies upgrade.
 
 ## 1.2.0 (2022/11/01)

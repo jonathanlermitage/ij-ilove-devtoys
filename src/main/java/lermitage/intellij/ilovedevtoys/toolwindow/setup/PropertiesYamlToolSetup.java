@@ -8,7 +8,7 @@ import javax.swing.JTextArea;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class PropertiesYamlToolSetup {
+public class PropertiesYamlToolSetup extends AbstractToolSetup {
 
     private final JComboBox<String> propertiesYamlTypeComboBox;
     private final JTextArea propertiesYamlPropertiesTextArea;
@@ -39,5 +39,7 @@ public class PropertiesYamlToolSetup {
         propertiesYamlYamlTextArea.setText(PropertiesYAMLTools.propertiesToYaml(
             propertiesYamlPropertiesTextArea.getText(),
             PropertiesType.valueOf((String) propertiesYamlTypeComboBox.getSelectedItem())));
+        propertiesYamlYamlTextArea.setCaretPosition(0);
+        updateWithBestNumberOfRows(propertiesYamlPropertiesTextArea, propertiesYamlYamlTextArea);
     }
 }

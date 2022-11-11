@@ -6,12 +6,12 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 
-public class SetDiffToolSetup {
+public class SetDiffToolSetup extends AbstractToolSetup {
 
     private final JButton setDiffCompareButton;
     private final JCheckBox setDiffCaseSensitiveCheckBox;
-    private final JTextArea setDiffTextArea2;
     private final JTextArea setDiffTextArea1;
+    private final JTextArea setDiffTextArea2;
     private final JTextArea setDiffResultTextArea;
     private final JCheckBox setDiffIgnoreEmptyLinesCheckBox;
 
@@ -41,6 +41,8 @@ public class SetDiffToolSetup {
                     setDiffIgnoreEmptyLinesCheckBox.isSelected()
                 )
             );
+            setDiffResultTextArea.setCaretPosition(0);
+            updateWithBestNumberOfRows(setDiffTextArea1, setDiffTextArea2, setDiffResultTextArea);
         });
     }
 }

@@ -33,7 +33,7 @@
     </description>
 
     <change-notes><![CDATA[
-    1.3.0 (WIP)
+    1.3.0 (2022/11/11)
     <ul>
       <li>add ASCII &lt;&gt; HEX tool. Thx to contributor <b>kpouer</b>.</li>
       <li>add (un)Escaper tool.</li>
@@ -41,6 +41,8 @@
       <li>add JSON to String tool.</li>
       <li>add Properties to YAML tool (including Spring profiles support).</li>
       <li>rework tools ordering.</li>
+      <li>hopefully fix TextAreas unwanted resizing.</li>
+      <li>various UI improvements.</li>
       <li>dependencies upgrade</li>
     </ul>
     1.2.0 (2022/11/01)

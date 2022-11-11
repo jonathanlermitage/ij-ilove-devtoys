@@ -6,7 +6,7 @@ import javax.swing.JTextArea;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class BENCODEJSONToolSetup {
+public class BENCODEJSONToolSetup extends AbstractToolSetup {
 
     private final JTextArea bencodejsonBENCODETextArea;
     private final JTextArea bencodejsonJSONTextArea;
@@ -22,12 +22,16 @@ public class BENCODEJSONToolSetup {
             @Override
             public void keyReleased(KeyEvent e) {
                 bencodejsonJSONTextArea.setText(BENCODEJSONTools.bencodeToJson(bencodejsonBENCODETextArea.getText()));
+                bencodejsonJSONTextArea.setCaretPosition(0);
+                updateWithBestNumberOfRows(bencodejsonBENCODETextArea, bencodejsonJSONTextArea);
             }
         });
         bencodejsonJSONTextArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 bencodejsonBENCODETextArea.setText(BENCODEJSONTools.jsonToBencode(bencodejsonJSONTextArea.getText()));
+                bencodejsonBENCODETextArea.setCaretPosition(0);
+                updateWithBestNumberOfRows(bencodejsonBENCODETextArea, bencodejsonJSONTextArea);
             }
         });
     }

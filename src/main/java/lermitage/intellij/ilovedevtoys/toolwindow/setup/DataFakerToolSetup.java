@@ -33,6 +33,7 @@ public class DataFakerToolSetup {
                 (String) dataFakerLocaleComboBox.getSelectedItem(),
                 20
             ));
+            dataFakerTextArea.setCaretPosition(0);
         });
     }
 }

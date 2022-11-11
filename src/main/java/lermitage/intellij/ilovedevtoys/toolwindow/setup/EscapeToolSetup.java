@@ -7,7 +7,7 @@ import javax.swing.JTextArea;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class EscapeToolSetup {
+public class EscapeToolSetup extends AbstractToolSetup {
 
     private final JComboBox<String> escapeComboBox;
     private final JTextArea unescapedTextArea;
@@ -32,6 +32,8 @@ public class EscapeToolSetup {
                 escapedTextArea.setText(EscapeTools.escape(
                     unescapedTextArea.getText(),
                     EscapeTools.EscapeType.valueOf((String) escapeComboBox.getSelectedItem())));
+                escapedTextArea.setCaretPosition(0);
+                updateWithBestNumberOfRows(unescapedTextArea, escapedTextArea);
             }
         });
         escapedTextArea.addKeyListener(new KeyAdapter() {
@@ -40,6 +42,8 @@ public class EscapeToolSetup {
                 unescapedTextArea.setText(EscapeTools.unescape(
                     escapedTextArea.getText(),
                     EscapeTools.EscapeType.valueOf((String) escapeComboBox.getSelectedItem())));
+                unescapedTextArea.setCaretPosition(0);
+                updateWithBestNumberOfRows(unescapedTextArea, escapedTextArea);
             }
         });
     }

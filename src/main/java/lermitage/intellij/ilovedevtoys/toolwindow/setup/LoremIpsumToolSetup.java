@@ -18,6 +18,9 @@ public class LoremIpsumToolSetup {
 
     public void setup() {
         loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum(200));
-        loremIpsumGenerateButton.addActionListener(e -> loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum(200)));
+        loremIpsumGenerateButton.addActionListener(e -> {
+            loremIpsumTextArea.setText(LoremIpsumTools.generateLoremIpsum(200));
+            loremIpsumTextArea.setCaretPosition(0);
+        });
     }
 }

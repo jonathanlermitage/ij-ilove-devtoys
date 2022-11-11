@@ -18,6 +18,9 @@ public class UUIDToolSetup {
 
     public void setup() {
         uuidTextArea.setText(UUIDTools.generateUUIDs(20));
-        uuidGenerateButton.addActionListener(e -> uuidTextArea.setText(UUIDTools.generateUUIDs(20)));
+        uuidGenerateButton.addActionListener(e -> {
+            uuidTextArea.setText(UUIDTools.generateUUIDs(20));
+            uuidTextArea.setCaretPosition(0);
+        });
     }
 }
