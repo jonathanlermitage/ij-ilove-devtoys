@@ -46,6 +46,7 @@ repositories {
 }
 
 val junitVersion = "5.9.1"
+val junitPlatformLauncher = "1.9.1"
 
 dependencies {
     implementation("commons-codec:commons-codec:1.15") // fox Hash
@@ -57,9 +58,9 @@ dependencies {
     implementation("com.cronutils:cron-utils:9.2.0") // for cron expression parser
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.9.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:$junitPlatformLauncher")
 }
 
 intellij {
@@ -93,12 +94,6 @@ tasks {
     }
     withType<Test> {
         useJUnitPlatform()
-
-        // TODO check JUnit and Gradle updates and remove this workaround asap
-        // gradle 7.5 + JUnit workaround https://docs.gradle.org/7.5/userguide/upgrading_version_7.html#removes_implicit_add_opens_for_test_workers
-        jvmArgs("--add-opens=java.base/java.io=ALL-UNNAMED")
-        jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED")
-        jvmArgs("--add-opens=java.base/java.util=ALL-UNNAMED")
     }
     jacocoTestReport {
         reports {
