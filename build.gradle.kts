@@ -1,6 +1,7 @@
 @file:Suppress("VulnerableLibrariesLocal")
 
 import com.adarshr.gradle.testlogger.theme.ThemeType
+import com.github.benmanes.gradle.versions.reporter.PlainTextReporter
 import com.github.benmanes.gradle.versions.reporter.result.Result
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import com.palantir.gradle.gitversion.VersionDetails
@@ -12,7 +13,7 @@ plugins {
     id("com.adarshr.test-logger") version "3.2.0" // https://github.com/radarsh/gradle-test-logger-plugin
     id("com.palantir.git-version") version "0.15.0" // https://github.com/palantir/gradle-git-version
     id("org.jetbrains.intellij") version "1.9.0" // https://github.com/JetBrains/gradle-intellij-plugin
-    id("com.github.ben-manes.versions") version "0.43.0" // https://github.com/ben-manes/gradle-versions-plugin
+    id("com.github.ben-manes.versions") version "0.44.0" // https://github.com/ben-manes/gradle-versions-plugin
     id("biz.lermitage.oga") version "1.1.1"
 }
 
@@ -111,12 +112,12 @@ tasks {
             isNonStable(candidate.version)
         }
         outputFormatter = closureOf<Result> {
-            if (outdated.dependencies.isNotEmpty()) {
-                logger.quiet("The following dependencies have later release versions:")
-                outdated.dependencies.forEach { dependency ->
-                    logger.quiet("- ${dependency.group}:${dependency.name} [${dependency.version} -> ${dependency.available.release}]")
-                }
+            unresolved.dependencies.removeIf {
+                val coordinates = "${it.group}:${it.name}"
+                coordinates.startsWith("unzipped.com") || coordinates.startsWith("com.jetbrains:ideaI")
             }
+            PlainTextReporter(project, revision, gradleReleaseChannel)
+                .write(System.out, this)
         }
     }
     runIde {
