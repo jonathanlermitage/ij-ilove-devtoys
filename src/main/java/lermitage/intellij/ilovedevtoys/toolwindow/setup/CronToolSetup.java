@@ -88,7 +88,7 @@ public class CronToolSetup extends AbstractToolSetup {
                                     //noinspection BusyWait
                                     Thread.sleep(1000);
                                     nbSec++;
-                                    explainButton.setText("Explain (computing, " + nbSec + "/" + TIMEOUT_SEC + " sec elapsed...)");
+                                    explainButton.setText("Explain (computing, " + nbSec + " sec elapsed...)");
                                     if (nbSec >= TIMEOUT_SEC) {
                                         cronTextArea.setText("Error: spent too much time computing cron expression's next " +
                                             "executions (" + TIMEOUT_SEC + " seconds max). Please lower the number of days " +
