@@ -6,7 +6,7 @@ import lermitage.intellij.ilovedevtoys.tools.URLTools;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class URLCodecToolSetup {
+public class URLCodecToolSetup extends AbstractToolSetup {
 
     private final JBTextField urlCodecDecodedTextField;
     private final JBTextField urlCodecEncodedTextField;

@@ -7,7 +7,7 @@ import javax.swing.JTextArea;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class HashToolSetup {
+public class HashToolSetup extends AbstractToolSetup {
 
     private final JTextArea hashInputTextArea;
     private final JBTextField hashMD5TextField;

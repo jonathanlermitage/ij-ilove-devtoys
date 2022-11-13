@@ -1,5 +1,8 @@
 # I Love DevToys Change Log
 
+## 1.4.0 (WIP)
+* improve Cron parser tool.
+
 ## 1.3.0 (2022/11/11)
 * add ASCII <> HEX tool. Thx to contributor **kpouer**.
 * add (un)Escaper tool.

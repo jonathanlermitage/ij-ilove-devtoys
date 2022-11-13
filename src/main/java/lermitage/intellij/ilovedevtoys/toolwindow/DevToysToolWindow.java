@@ -111,6 +111,7 @@ public class DevToysToolWindow {
 
     private JPanel cronPanel;
     private JTextField cronExpressionTextField;
+    private JSpinner cronExpressionHowManyDaysSpinner;
     private JComboBox<String> cronTypeComboBox;
     private JTextArea cronTextArea;
     private JButton explainButton;
@@ -176,6 +177,7 @@ public class DevToysToolWindow {
             timestampMinuteSpinner,
             timestampSecondSpinner).setup();
         new CronToolSetup(cronExpressionTextField,
+            cronExpressionHowManyDaysSpinner,
             cronTypeComboBox,
             cronTextArea,
             explainButton).setup();

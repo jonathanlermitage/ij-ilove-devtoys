@@ -5,7 +5,7 @@ import lermitage.intellij.ilovedevtoys.tools.LoremIpsumTools;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-public class LoremIpsumToolSetup {
+public class LoremIpsumToolSetup extends AbstractToolSetup {
 
     private final JButton loremIpsumGenerateButton;
     private final JTextArea loremIpsumTextArea;

@@ -20,7 +20,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class TimestampToolSetup {
+public class TimestampToolSetup extends AbstractToolSetup {
 
     private final JComboBox<ComboBoxWithImageItem> timestampTimezoneComboBox;
     private final JTextArea timestampTextArea;
@@ -202,7 +202,7 @@ public class TimestampToolSetup {
         }
         try {
             timestampUpdateTriggeredByCode = true;
-            long spinnerLongValue = getTimestampFieldSpinnerValue(timestampSpinner);
+            long spinnerLongValue = getSpinnerValue(timestampSpinner);
             TimestampTools.TimestampFields timestampFields = TimestampTools.toTimestampFields(spinnerLongValue);
             timestampYearSpinner.setValue(timestampFields.year());
             timestampMonthSpinner.setValue(timestampFields.month());
@@ -224,12 +224,12 @@ public class TimestampToolSetup {
         try {
             timestampUpdateTriggeredByCode = true;
             TimestampTools.TimestampFields timestampFields = new TimestampTools.TimestampFields(
-                getTimestampFieldSpinnerValue(timestampYearSpinner),
-                getTimestampFieldSpinnerValue(timestampMonthSpinner),
-                getTimestampFieldSpinnerValue(timestampDaySpinner),
-                getTimestampFieldSpinnerValue(timestampHourSpinner),
-                getTimestampFieldSpinnerValue(timestampMinuteSpinner),
-                getTimestampFieldSpinnerValue(timestampSecondSpinner)
+                getSpinnerValue(timestampYearSpinner),
+                getSpinnerValue(timestampMonthSpinner),
+                getSpinnerValue(timestampDaySpinner),
+                getSpinnerValue(timestampHourSpinner),
+                getSpinnerValue(timestampMinuteSpinner),
+                getSpinnerValue(timestampSecondSpinner)
             );
             long computedTimestamp = TimestampTools.toTimestamp(timestampFields, getTimestampSelectedZoneIdAsStr());
             timestampSpinner.setValue(computedTimestamp);
@@ -239,16 +239,7 @@ public class TimestampToolSetup {
         }
     }
 
-    private long getTimestampFieldSpinnerValue(JSpinner jSpinner) {
-        Object spinnerValue = jSpinner.getValue();
-        if (spinnerValue instanceof Double) {
-            return ((Double) jSpinner.getValue()).longValue();
-        }
-        if (spinnerValue instanceof Integer) {
-            return ((Integer) jSpinner.getValue()).longValue();
-        }
-        return (Long) jSpinner.getValue();
-    }
+
 
     private String getTimestampSelectedZoneIdAsStr() {
         ComboBoxWithImageItem value = (ComboBoxWithImageItem) timestampTimezoneComboBox.getSelectedItem();

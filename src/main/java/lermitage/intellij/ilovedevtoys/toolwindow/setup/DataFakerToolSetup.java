@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
-public class DataFakerToolSetup {
+public class DataFakerToolSetup extends AbstractToolSetup {
 
     private final JComboBox<String> dataFakerGeneratorComboBox;
     private final JButton dataFakerGenerateButton;

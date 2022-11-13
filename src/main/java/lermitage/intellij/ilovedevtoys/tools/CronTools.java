@@ -20,7 +20,7 @@ public class CronTools {
     private static final DateTimeFormatter DATETIME_FORMAT_24H = DateTimeFormatter.ofPattern("yyyy-MM-dd E HH:mm:ss");
     private static final ZoneId DEFAULT_ZONE_ID = ZoneId.systemDefault();
 
-    public static String explainAndGetDates(String cronStr, CronType cronType, int nbDays) {
+    public static String explainAndGetDates(String cronStr, CronType cronType, long nbDays) {
         try {
             CronDefinition cronDefinition = CronDefinitionBuilder.instanceDefinitionFor(cronType);
             CronParser parser = new CronParser(cronDefinition);
@@ -49,7 +49,10 @@ public class CronTools {
                 int idx = 1;
                 for (ZonedDateTime executionDate : executionDates) {
                     result.append("- ").append(DATETIME_FORMAT_24H.format(executionDate)).append("\n");
-                    if (idx++ > 20) {
+                    if (idx++ > 200) {
+                        result.append("\n").append(executionDates.size()).append(" executions found, but ")
+                            .append("showing the 200 first executions only.\n")
+                            .append("Result is truncated to preserve the responsiveness of the IDE.");
                         break;
                     }
                 }

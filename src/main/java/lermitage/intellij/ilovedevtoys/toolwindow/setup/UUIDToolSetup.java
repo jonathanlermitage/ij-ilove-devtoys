@@ -5,7 +5,7 @@ import lermitage.intellij.ilovedevtoys.tools.UUIDTools;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-public class UUIDToolSetup {
+public class UUIDToolSetup extends AbstractToolSetup {
 
     private final JButton uuidGenerateButton;
     private final JTextArea uuidTextArea;
