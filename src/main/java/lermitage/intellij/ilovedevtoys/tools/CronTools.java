@@ -31,12 +31,11 @@ public class CronTools {
             String description = descriptor.describe(parser.parse(cronStr));
 
             ExecutionTime executionTime = ExecutionTime.forCron(quartzCron);
-            ZonedDateTime zonedDateTime = LocalDateTime.now().atZone(DEFAULT_ZONE_ID);
 
             ZonedDateTime startDate = LocalDateTime.now().atZone(DEFAULT_ZONE_ID);
-            ZonedDateTime endDate = LocalDateTime.now().plusDays(nbDays).atZone(DEFAULT_ZONE_ID);
+            ZonedDateTime endDate = startDate.plusDays(nbDays);
 
-            Optional<ZonedDateTime> lastExecution = executionTime.lastExecution(zonedDateTime);
+            Optional<ZonedDateTime> lastExecution = executionTime.lastExecution(startDate);
 
             List<ZonedDateTime> executionDates = executionTime.getExecutionDates(startDate, endDate);
 
