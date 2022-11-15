@@ -2,6 +2,8 @@
 
 ## 1.4.0 (WIP)
 * improve Cron parser tool.
+* add JSON support to (un)Escaper tool.
+* minor code rework.
 
 ## 1.3.0 (2022/11/11)
 * add ASCII <> HEX tool. Thx to contributor **kpouer**.

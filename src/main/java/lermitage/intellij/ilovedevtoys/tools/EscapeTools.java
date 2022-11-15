@@ -9,6 +9,7 @@ public class EscapeTools {
         HTML,
         JAVA,
         JAVASCRIPT,
+        JSON,
         XML
     }
 
@@ -22,6 +23,7 @@ public class EscapeTools {
                 case HTML -> StringEscapeUtils.escapeHtml(unescaped);
                 case JAVA -> StringEscapeUtils.escapeJava(unescaped);
                 case JAVASCRIPT -> StringEscapeUtils.escapeJavaScript(unescaped);
+                case JSON -> org.apache.commons.text.StringEscapeUtils.escapeJson(unescaped);
                 case XML -> StringEscapeUtils.escapeXml(unescaped);
             };
         } catch (Exception e) {
@@ -39,6 +41,7 @@ public class EscapeTools {
                 case HTML -> StringEscapeUtils.unescapeHtml(escaped);
                 case JAVA -> StringEscapeUtils.unescapeJava(escaped);
                 case JAVASCRIPT -> StringEscapeUtils.unescapeJavaScript(escaped);
+                case JSON -> org.apache.commons.text.StringEscapeUtils.unescapeJson(escaped);
                 case XML -> StringEscapeUtils.unescapeXml(escaped);
             };
         } catch (Exception e) {

@@ -36,6 +36,8 @@
     1.4.0 (WIP)
     <ul>
       <li>improve Cron parser tool.</li>
+      <li>add JSON support to (un)Escaper tool.</li>
+      <li>minor code rework.</li>
     </ul>
     1.3.0 (2022/11/11)
     <ul>
