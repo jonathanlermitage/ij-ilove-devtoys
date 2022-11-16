@@ -1,6 +1,6 @@
 # I Love DevToys Change Log
 
-## 1.4.0 (WIP)
+## 1.4.0 (2022/11/17)
 * improve Cron parser tool.
 * add JSON support to (un)Escaper tool.
 * minor code rework.

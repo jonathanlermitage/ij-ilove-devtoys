@@ -33,7 +33,7 @@
     </description>
 
     <change-notes><![CDATA[
-    1.4.0 (WIP)
+    1.4.0 (2022/11/17)
     <ul>
       <li>improve Cron parser tool.</li>
       <li>add JSON support to (un)Escaper tool.</li>
