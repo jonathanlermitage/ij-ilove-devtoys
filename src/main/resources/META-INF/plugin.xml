@@ -21,7 +21,7 @@
         <li>JSON &lt;&gt; YAML converter</li>
         <li>BENCODE &lt;&gt; JSON converter</li>
         <li>ASCII &lt;&gt; HEX converter</li>
-        <li>CSV/HTML/Java/JS/XML (un)escaper</li>
+        <li>CSV/HTML/Java/JS/JSON/XML (un)escaper</li>
       </ul>
       The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only.<br/>
       <b>Work in progress</b>: I am trying to reproduce most of the DevToys features, while adding some exclusive features, so it will take some time. Also, contributions are welcome 😎.<br/>

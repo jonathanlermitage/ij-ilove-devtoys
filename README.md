@@ -21,7 +21,7 @@ Find useful tools in a Tool Window in the top right corner of your IDE:
 * JSON &lt;&gt; YAML converter
 * BENCODE &lt;&gt; JSON converter
 * ASCII &lt;&gt; HEX converter
-* CSV/HTML/Java/JS/XML (un)escaper
+* CSV/HTML/Java/JS/JSON/XML (un)escaper
 * Etc...
 
 The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only.<br/>
