@@ -1,5 +1,9 @@
 # I Love DevToys Change Log
 
+## 1.5.0 (WIP)
+* dependencies upgrade. Fixes Data Faker tools for some non-English locales.
+* added more locales to the Data Faker tools.
+
 ## 1.4.0 (2022/11/17)
 * improve Cron parser tool.
 * add JSON support to (un)Escaper tool.

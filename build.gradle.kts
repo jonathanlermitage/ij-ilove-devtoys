@@ -12,7 +12,7 @@ plugins {
     id("jacoco")
     id("com.adarshr.test-logger") version "3.2.0" // https://github.com/radarsh/gradle-test-logger-plugin
     id("com.palantir.git-version") version "0.15.0" // https://github.com/palantir/gradle-git-version
-    id("org.jetbrains.intellij") version "1.9.0" // https://github.com/JetBrains/gradle-intellij-plugin
+    id("org.jetbrains.intellij") version "1.10.0" // https://github.com/JetBrains/gradle-intellij-plugin
     id("com.github.ben-manes.versions") version "0.44.0" // https://github.com/ben-manes/gradle-versions-plugin
     id("biz.lermitage.oga") version "1.1.1"
 }
@@ -52,10 +52,10 @@ val junitPlatformLauncher = "1.9.1"
 dependencies {
     implementation("commons-codec:commons-codec:1.15") // fox Hash
     implementation("com.thedeanda:lorem:2.1") // for Lorem Ipsum
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.0") // for JSON <> YAML
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.1") // for JSON <> YAML
     implementation("com.dampcake:bencode:1.4") // for JSON <> BENCODE
     implementation("com.cronutils:cron-utils:9.2.0") // for cron expression parser
-    implementation("net.datafaker:datafaker:1.6.0") // for Data Faker
+    implementation("net.datafaker:datafaker:1.7.0") // for Data Faker
     implementation("org.yaml:snakeyaml:1.33") // for JSON <> YAML
     implementation("org.apache.commons:commons-text:1.10.0") // for JSON (un)escape
 
