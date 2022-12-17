@@ -13,6 +13,7 @@ import lermitage.intellij.ilovedevtoys.toolwindow.setup.HashToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONStringToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONYAMLToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.LoremIpsumToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.PasswordStrengthToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.PropertiesYamlToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.SetDiffToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.TimestampToolSetup;
@@ -60,6 +61,10 @@ public class DevToysToolWindow {
     private JPanel uuidPanel;
     private JButton uuidGenerateButton;
     private JTextArea uuidTextArea;
+
+    private JPanel passwordStrengthPanel;
+    private JTextField passwordStrengthPasswordTextField;
+    private JTextArea passwordStrengthReportTextArea;
 
     private JPanel jsonyamlPanel;
     private JTextArea jsonyamlJSONTextArea;
@@ -141,12 +146,13 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Lorem Ipsum generator", new PanelAndIcon(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "HashGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new PanelAndIcon(uuidPanel, iconsPath + "UuidGenerator.svg"));
-        toolPanelsByTitle.put("JSON to String converter", new PanelAndIcon(jsonStringPanel, iconsPath + "JsonString.svg"));
-        toolPanelsByTitle.put("JSON <> YAML converter", new PanelAndIcon(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
-        toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
-        toolPanelsByTitle.put("Properties to YAML converter", new PanelAndIcon(propertiesYamlPanel, iconsPath + "PropertiesYaml.svg"));
-        toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
+        toolPanelsByTitle.put("Password strength evaluator", new PanelAndIcon(passwordStrengthPanel, iconsPath + "PasswordStrengthEvaluator.svg"));
         toolPanelsByTitle.put("Text escape/unescape", new PanelAndIcon(escapePanel, iconsPath + "Escaper.svg"));
+        toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
+        toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
+        toolPanelsByTitle.put("JSON <> YAML converter", new PanelAndIcon(jsonyamlPanel, iconsPath + "JsonYaml.svg"));
+        toolPanelsByTitle.put("JSON to String converter", new PanelAndIcon(jsonStringPanel, iconsPath + "JsonString.svg"));
+        toolPanelsByTitle.put("Properties to YAML converter ", new PanelAndIcon(propertiesYamlPanel, iconsPath + "PropertiesYaml.svg"));
 
         new Base64ToolSetup(
             base64RadioButtonUTF8,
@@ -221,9 +227,13 @@ public class DevToysToolWindow {
         new EscapeToolSetup(escapeComboBox,
             unescapedTextArea,
             escapedTextArea).setup();
+        new PasswordStrengthToolSetup(
+            passwordStrengthPasswordTextField,
+            passwordStrengthReportTextArea).setup();
 
         toolPanelsByTitle.forEach((title, panelAndIcon) -> toolComboBox.addItem(new ComboBoxWithImageItem(title, panelAndIcon.icon)));
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());
+        toolComboBox.setMaximumRowCount(11);
 
         helpLabel.setText("");
         helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", DevToysToolWindow.class));

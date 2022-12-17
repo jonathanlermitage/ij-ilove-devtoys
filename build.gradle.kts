@@ -6,13 +6,15 @@ import com.github.benmanes.gradle.versions.reporter.result.Result
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import com.palantir.gradle.gitversion.VersionDetails
 import groovy.lang.Closure
+import org.jetbrains.changelog.Changelog
 
 plugins {
     id("java")
     id("jacoco")
     id("com.adarshr.test-logger") version "3.2.0" // https://github.com/radarsh/gradle-test-logger-plugin
     id("com.palantir.git-version") version "0.15.0" // https://github.com/palantir/gradle-git-version
-    id("org.jetbrains.intellij") version "1.10.0" // https://github.com/JetBrains/gradle-intellij-plugin
+    id("org.jetbrains.intellij") version "1.10.1" // https://github.com/JetBrains/gradle-intellij-plugin
+    id("org.jetbrains.changelog") version "2.0.0" // https://github.com/JetBrains/gradle-changelog-plugin
     id("com.github.ben-manes.versions") version "0.44.0" // https://github.com/ben-manes/gradle-versions-plugin
     id("biz.lermitage.oga") version "1.1.1"
 }
@@ -58,6 +60,7 @@ dependencies {
     implementation("net.datafaker:datafaker:1.7.0") // for Data Faker
     implementation("org.yaml:snakeyaml:1.33") // for JSON <> YAML
     implementation("org.apache.commons:commons-text:1.10.0") // for JSON (un)escape
+    implementation("com.nulab-inc:zxcvbn:1.7.0") // for password strength evaluation
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
@@ -72,6 +75,11 @@ intellij {
     sandboxDir.set("${rootProject.projectDir}/.idea-sandbox/${shortenIdeVersion(pluginIdeaVersion)}")
     updateSinceUntilBuild.set(false)
     version.set(pluginIdeaVersion)
+}
+
+changelog {
+    headerParserRegex.set("(.*)".toRegex())
+    itemPrefix.set("*")
 }
 
 testlogger {
@@ -127,6 +135,13 @@ tasks {
     }
     buildSearchableOptions {
         enabled = false
+    }
+    patchPluginXml {
+        changeNotes.set(provider {
+            with(changelog) {
+                renderItem(getLatest(), Changelog.OutputType.HTML)
+            }
+        })
     }
 }
 

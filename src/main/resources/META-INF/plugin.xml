@@ -27,53 +27,8 @@
       <b>Work in progress</b>: I am trying to reproduce most of the DevToys features, while adding some exclusive features, so it will take some time. Also, contributions are welcome 😎.<br/>
       If you want to support my work, you can consider buying an <a href="https://plugins.jetbrains.com/plugin/11058-extra-icons">Extra Icons</a> plugin license or make a <a href="https://buymeacoff.ee/jlermitage">donation</a>. Thank you!<br>
       <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys">GitHub</a> | <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys/issues">Issues</a> | <a href="https://www.linkedin.com/in/jonathan-lermitage/">LinkedIn</a> | <a href="https://youtrack.jetbrains.com/issue/MP-4248">up-vote MP-4248</a> | <a href="https://vshymanskyy.github.io/StandWithUkraine/">💙 Help Ukraine 💛</a><br>
-      <br>
-      <img src="https://raw.githubusercontent.com/jonathanlermitage/ij-ilove-devtoys/master/plugin_screenshot_small.png" alt="screenshot"/>
     ]]>
     </description>
-
-    <change-notes><![CDATA[
-    1.4.0 (2022/11/17)
-    <ul>
-      <li>improve Cron parser tool.</li>
-      <li>add JSON support to (un)Escaper tool.</li>
-      <li>minor code rework.</li>
-    </ul>
-    1.3.0 (2022/11/11)
-    <ul>
-      <li>add ASCII &lt;&gt; HEX tool. Thx to contributor <b>kpouer</b>.</li>
-      <li>add (un)Escaper tool.</li>
-      <li>add Cron parser tool.</li>
-      <li>add JSON to String tool.</li>
-      <li>add Properties to YAML tool (including Spring profiles support).</li>
-      <li>rework tools ordering.</li>
-      <li>hopefully fix TextAreas unwanted resizing.</li>
-      <li>various UI improvements.</li>
-      <li>dependencies upgrade.</li>
-    </ul>
-    1.2.0 (2022/11/01)
-    <ul>
-      <li>add BENCODE &lt;&gt; JSON tool. Thx to contributor <b>kpouer</b>.</li>
-      <li>add Timestamp tool.</li>
-      <li>add Data Faker tool.</li>
-      <li>add Set Diff tool: it tells if two files have the same lines but in any order.</li>
-    </ul>
-    1.1.0 (2022/10/23)
-    <ul>
-      <li>reworked icon renderer and improved quality of tools icons.</li>
-    </ul>
-    1.0.0 (2022/10/21)
-    <ul>
-      <li>first stable release 🎉.</li>
-      <li>add Base64 tool.</li>
-      <li>add Hash (md5, sha1, sha256, sha384, sha512) tool.</li>
-      <li>add JSON &lt;&gt; YAML tool.</li>
-      <li>add Lorem Ipsum tool.</li>
-      <li>add URL tool.</li>
-      <li>add UUID tool.</li>
-    </ul>
-    ]]>
-    </change-notes>
 
     <!-- How to develop a Tool Window:
          https://github.com/JetBrains/intellij-sdk-code-samples/tree/main/tool_window

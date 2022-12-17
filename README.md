@@ -60,6 +60,7 @@ This project integrates original or modified components and files from:
 * DataFaker.net, [Apache License](https://github.com/datafaker-net/datafaker/blob/main/LICENSE) -> using the `Data Faker` library for generating fake data
 * cron-parser.com, [Apache License](https://github.com/jmrozanec/cron-utils/blob/master/LICENSE) -> using the `Cron-utils` library for parsing cron expressions
 * codearte.io, [Apache License](https://github.com/Codearte/props2yaml/blob/master/LICENSE) -> using a modified version of `props2yaml` library for handling Properties to YAML conversion (see modified sources in `src/main/java/io.codearte.props2yaml`)
+* Nulab Inc, [MIT License](https://github.com/nulab/zxcvbn4j/blob/master/LICENSE.txt) -> using the `zxcvbn4j` library for handling password strength evaluation
 
 ## Screenshot
 

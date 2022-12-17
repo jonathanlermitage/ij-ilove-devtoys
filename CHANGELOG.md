@@ -1,8 +1,9 @@
 # I Love DevToys Change Log
 
-## 1.5.0 (WIP)
-* dependencies upgrade. Fixes Data Faker tools for some non-English locales.
-* added more locales to the Data Faker tools.
+## 1.5.0 (2022/12/17)
+* add [zxcvbn](https://github.com/nulab/zxcvbn4j) Password strength evaluator.
+* add more locales to the Data Faker tools.
+* dependencies upgrade: fix Data Faker tools for some non-English locales.
 
 ## 1.4.0 (2022/11/17)
 * improve Cron parser tool.
