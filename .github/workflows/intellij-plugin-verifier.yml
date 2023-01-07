@@ -27,7 +27,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           ide-versions: |
-            ideaIC:2022.2.3
+            ideaIC:2022.3.1
           failure-levels: | # see https://github.com/ChrisCarini/intellij-platform-plugin-verifier-action#failure-levels
             OVERRIDE_ONLY_API_USAGES
             NON_EXTENDABLE_API_USAGES

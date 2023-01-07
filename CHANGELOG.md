@@ -1,5 +1,10 @@
 # I Love DevToys Change Log
 
+## 1.6.0 (2023/01/07)
+* fix some bugs with Timestamp tool. 
+* Timestamp tool now supports epoch in milliseconds.
+* add IBAN to Data Faker tool.
+
 ## 1.5.0 (2022/12/17)
 * add [zxcvbn](https://github.com/nulab/zxcvbn4j) Password strength evaluator.
 * add more locales to the Data Faker tools.

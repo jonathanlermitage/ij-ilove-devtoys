@@ -89,6 +89,9 @@ public class DevToysToolWindow {
     private JSpinner timestampHourSpinner;
     private JSpinner timestampMinuteSpinner;
     private JSpinner timestampSecondSpinner;
+    private JSpinner timestampMillisecondSpinner;
+    private JComboBox<String> timestampResolutionComboBox;
+    private JLabel timestampMillisecondLabel;
 
     private JPanel dataFakerPanel;
     private JComboBox<String> dataFakerGeneratorComboBox;
@@ -181,7 +184,10 @@ public class DevToysToolWindow {
             timestampMonthSpinner,
             timestampHourSpinner,
             timestampMinuteSpinner,
-            timestampSecondSpinner).setup();
+            timestampSecondSpinner,
+            timestampMillisecondSpinner,
+            timestampResolutionComboBox,
+            timestampMillisecondLabel).setup();
         new CronToolSetup(cronExpressionTextField,
             cronExpressionHowManyDaysSpinner,
             cronTypeComboBox,
@@ -286,9 +292,7 @@ public class DevToysToolWindow {
                     helpLabel.setVisible(true);
                     helpLabel.setToolTipText("<html>" +
                         "Type a timestamp or update datetime field(s)<br>" +
-                        "then conversion should happen automatically.<br>" +
-                        "<b>Nota</b>: if automatic conversion doesn't work,<br>" +
-                        "please hit the <i>Update from timestamp</i> or<br>" +
+                        "then hit the <i>Update from timestamp</i> or<br>" +
                         "<i>Update from fields</i> button.</html>");
                 }
                 case "Set Diff viewer" -> {

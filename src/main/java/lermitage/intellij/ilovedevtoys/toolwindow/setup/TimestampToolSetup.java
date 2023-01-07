@@ -36,10 +36,9 @@ public class TimestampToolSetup extends AbstractToolSetup {
     private final JSpinner timestampHourSpinner;
     private final JSpinner timestampMinuteSpinner;
     private final JSpinner timestampSecondSpinner;
-
-    // Used to avoid infinitive loops on timestamp spinners update (main spinner updates detailed
-    // spinners (year, month... second spinners), and detailed spinners update main spinner).
-    private boolean timestampUpdateTriggeredByCode = false;
+    private final JSpinner timestampMillisecondSpinner;
+    private final JComboBox<String> timestampResolutionComboBox;
+    private final JLabel timestampMillisecondLabel;
 
     public TimestampToolSetup(JComboBox<ComboBoxWithImageItem> timestampTimezoneComboBox,
                               JTextArea timestampTextArea,
@@ -54,7 +53,10 @@ public class TimestampToolSetup extends AbstractToolSetup {
                               JSpinner timestampMonthSpinner,
                               JSpinner timestampHourSpinner,
                               JSpinner timestampMinuteSpinner,
-                              JSpinner timestampSecondSpinner) {
+                              JSpinner timestampSecondSpinner,
+                              JSpinner timestampMillisecondSpinner,
+                              JComboBox<String> timestampResolutionComboBox,
+                              JLabel timestampMillisecondLabel) {
         this.timestampTimezoneComboBox = timestampTimezoneComboBox;
         this.timestampTextArea = timestampTextArea;
         this.timestampSpinner = timestampSpinner;
@@ -69,6 +71,9 @@ public class TimestampToolSetup extends AbstractToolSetup {
         this.timestampHourSpinner = timestampHourSpinner;
         this.timestampMinuteSpinner = timestampMinuteSpinner;
         this.timestampSecondSpinner = timestampSecondSpinner;
+        this.timestampMillisecondSpinner = timestampMillisecondSpinner;
+        this.timestampResolutionComboBox = timestampResolutionComboBox;
+        this.timestampMillisecondLabel = timestampMillisecondLabel;
     }
 
     public void setup() {
@@ -96,10 +101,22 @@ public class TimestampToolSetup extends AbstractToolSetup {
             }
         }
 
+        timestampResolutionComboBox.addItem("seconds");
+        timestampResolutionComboBox.addItem("milliseconds");
+        timestampResolutionComboBox.addItemListener(e -> {
+            timestampMillisecondSpinner.setValue(0);
+            timestampMillisecondSpinner.setVisible(!isEpochSec());
+            timestampMillisecondLabel.setVisible(!isEpochSec());
+        });
+        timestampMillisecondSpinner.setValue(0);
+        timestampMillisecondSpinner.setVisible(!isEpochSec());
+        timestampMillisecondLabel.setVisible(!isEpochSec());
+        timestampResolutionComboBox.setSelectedIndex(0);
+
         timestampWarningNoZoneIdLabel.setVisible(false);
 
-        long now = TimestampTools.getNowAsTimestamp();
-        timestampSpinner.setModel(new SpinnerNumberModel(now, 0L, 9999999999L, 1D));
+        long now = TimestampTools.getNowAsTimestampSec();
+        timestampSpinner.setModel(new SpinnerNumberModel(now, 0D, 9999999999999D, 1D));
         timestampSpinner.setEditor(new JSpinner.NumberEditor(timestampSpinner, "#"));
         timestampSpinner.setValue(now);
 
@@ -109,12 +126,17 @@ public class TimestampToolSetup extends AbstractToolSetup {
         timestampHourSpinner.setEditor(new JSpinner.NumberEditor(timestampHourSpinner, "#"));
         timestampMinuteSpinner.setEditor(new JSpinner.NumberEditor(timestampMinuteSpinner, "#"));
         timestampSecondSpinner.setEditor(new JSpinner.NumberEditor(timestampSecondSpinner, "#"));
+        timestampMillisecondSpinner.setEditor(new JSpinner.NumberEditor(timestampMillisecondSpinner, "#"));
 
-        updateTimestampToolOnTimestampSpinnerUpdate(true);
+        updateTimestampToolOnTimestampSpinnerUpdate();
 
         timestampNowButton.addActionListener(e -> {
-            timestampSpinner.setValue(TimestampTools.getNowAsTimestamp());
-            updateTimestampToolOnTimestampSpinnerUpdate(true);
+            if (timestampResolutionComboBox.getSelectedIndex() == 0) {
+                timestampSpinner.setValue(TimestampTools.getNowAsTimestampSec());
+            } else {
+                timestampSpinner.setValue(TimestampTools.getNowAsTimestampMillis());
+            }
+            updateTimestampToolOnTimestampSpinnerUpdate();
         });
 
         timestampTimezoneComboBox.addKeyListener(new KeyListener() {
@@ -129,17 +151,18 @@ public class TimestampToolSetup extends AbstractToolSetup {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (timestampTimezoneComboBox.getItemCount() > 0) {
-                    updateTimestampToolOnTimestampSpinnerUpdate(false);
+                    updateTimestampToolOnTimestampSpinnerUpdate();
                 }
             }
         });
-        timestampSpinner.addChangeListener(e -> updateTimestampToolOnTimestampSpinnerUpdate(false));
+        /*timestampSpinner.addChangeListener(e -> updateTimestampToolOnTimestampSpinnerUpdate(false));
         timestampYearSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMonthSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampDaySpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampHourSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMinuteSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampSecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
+        timestampMillisecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());*/
 
         timestampFilterTextField.addKeyListener(new KeyListener() {
             @Override
@@ -191,55 +214,49 @@ public class TimestampToolSetup extends AbstractToolSetup {
 
         timestampUpdateFromTimestampButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
         timestampUpdateFromFieldsButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
-        timestampUpdateFromTimestampButton.addActionListener(e -> updateTimestampToolOnTimestampSpinnerUpdate(true));
+        timestampUpdateFromTimestampButton.addActionListener(e -> updateTimestampToolOnTimestampSpinnerUpdate());
         timestampUpdateFromFieldsButton.addActionListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
     }
 
-    private void updateTimestampToolOnTimestampSpinnerUpdate(boolean forceUpdate) {
-        if (!forceUpdate && timestampUpdateTriggeredByCode) {
-            timestampUpdateTriggeredByCode = false;
-            return;
-        }
+    private void updateTimestampToolOnTimestampSpinnerUpdate() {
         try {
-            timestampUpdateTriggeredByCode = true;
             long spinnerLongValue = getSpinnerValue(timestampSpinner);
-            TimestampTools.TimestampFields timestampFields = TimestampTools.toTimestampFields(spinnerLongValue);
+            TimestampTools.TimestampFields timestampFields = TimestampTools.toTimestampFields(spinnerLongValue, isEpochSec());
             timestampYearSpinner.setValue(timestampFields.year());
             timestampMonthSpinner.setValue(timestampFields.month());
             timestampDaySpinner.setValue(timestampFields.day());
             timestampHourSpinner.setValue(timestampFields.hours());
             timestampMinuteSpinner.setValue(timestampFields.minutes());
             timestampSecondSpinner.setValue(timestampFields.seconds());
-            timestampTextArea.setText(TimestampTools.getTimeStampAsHumanDatetime(spinnerLongValue, getTimestampSelectedZoneIdAsStr()));
+            timestampMillisecondSpinner.setValue(timestampFields.millis());
+            timestampTextArea.setText(TimestampTools.getTimeStampAsHumanDatetime(spinnerLongValue, getTimestampSelectedZoneIdAsStr(), isEpochSec()));
         } catch (Exception e) {
             timestampTextArea.setText("Error: " + e.getMessage());
         }
     }
 
     private void updateTimestampToolOnTimestampFieldsUpdate() {
-        if (timestampUpdateTriggeredByCode) {
-            timestampUpdateTriggeredByCode = false;
-            return;
-        }
         try {
-            timestampUpdateTriggeredByCode = true;
             TimestampTools.TimestampFields timestampFields = new TimestampTools.TimestampFields(
                 getSpinnerValue(timestampYearSpinner),
                 getSpinnerValue(timestampMonthSpinner),
                 getSpinnerValue(timestampDaySpinner),
                 getSpinnerValue(timestampHourSpinner),
                 getSpinnerValue(timestampMinuteSpinner),
-                getSpinnerValue(timestampSecondSpinner)
+                getSpinnerValue(timestampSecondSpinner),
+                getSpinnerValue(timestampMillisecondSpinner)
             );
-            long computedTimestamp = TimestampTools.toTimestamp(timestampFields, getTimestampSelectedZoneIdAsStr());
+            long computedTimestamp = TimestampTools.toTimestamp(timestampFields, getTimestampSelectedZoneIdAsStr(), isEpochSec());
             timestampSpinner.setValue(computedTimestamp);
-            timestampTextArea.setText(TimestampTools.getTimeStampAsHumanDatetime(computedTimestamp, getTimestampSelectedZoneIdAsStr()));
+            timestampTextArea.setText(TimestampTools.getTimeStampAsHumanDatetime(computedTimestamp, getTimestampSelectedZoneIdAsStr(), isEpochSec()));
         } catch (Exception e) {
             timestampTextArea.setText("Error: " + e.getMessage());
         }
     }
 
-
+    private boolean isEpochSec() {
+        return timestampResolutionComboBox.getSelectedIndex() == 0;
+    }
 
     private String getTimestampSelectedZoneIdAsStr() {
         ComboBoxWithImageItem value = (ComboBoxWithImageItem) timestampTimezoneComboBox.getSelectedItem();

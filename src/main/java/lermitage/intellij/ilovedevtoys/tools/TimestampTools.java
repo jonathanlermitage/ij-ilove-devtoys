@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -13,10 +12,15 @@ import java.util.Set;
 
 public class TimestampTools {
 
-    private static final DateTimeFormatter DATETIME_FORMAT_24H = DateTimeFormatter.ofPattern("yyyy-MM-dd E HH:mm:ss");
+    private static final DateTimeFormatter DATETIME_FORMAT_24H = DateTimeFormatter.ofPattern("yyyy-MM-dd E HH:mm:ss.SSS");
 
-    public static TimestampFields toTimestampFields(long timestampAsLong) {
-        Timestamp timestamp = new Timestamp(timestampAsLong > 9999999999L ? timestampAsLong : timestampAsLong * 1000);
+    public static TimestampFields toTimestampFields(long timestampAsLong, boolean isEpochSec) {
+        Timestamp timestamp;
+        if (isEpochSec) {
+            timestamp = new Timestamp(timestampAsLong * 1000);
+        } else {
+            timestamp = new Timestamp(timestampAsLong);
+        }
         LocalDateTime localDateTime = timestamp.toLocalDateTime();
         return new TimestampFields(
             localDateTime.getYear(),
@@ -24,32 +28,53 @@ public class TimestampTools {
             localDateTime.getDayOfMonth(),
             localDateTime.getHour(),
             localDateTime.getMinute(),
-            localDateTime.getSecond()
+            localDateTime.getSecond(),
+            localDateTime.getNano() / 1_000_000L
         );
     }
 
-    public static long toTimestamp(TimestampFields timestampFields, String zoneIdAsStr) {
-        ZonedDateTime zonedDateTime = LocalDateTime.of(
-            (int) timestampFields.year(),
-            (int) timestampFields.month(),
-            (int) timestampFields.day(),
-            (int) timestampFields.hours(),
-            (int) timestampFields.minutes(),
-            (int) timestampFields.seconds(),
-            0
-        ).atZone(ZoneId.of(zoneIdAsStr));
-        return zonedDateTime.toEpochSecond();
+    public static long toTimestamp(TimestampFields timestampFields, String zoneIdAsStr, boolean isEpochSec) {
+        if (isEpochSec) {
+            return LocalDateTime.of(
+                (int) timestampFields.year(),
+                (int) timestampFields.month(),
+                (int) timestampFields.day(),
+                (int) timestampFields.hours(),
+                (int) timestampFields.minutes(),
+                (int) timestampFields.seconds(),
+                0
+            ).atZone(ZoneId.of(zoneIdAsStr)).toEpochSecond();
+        } else {
+            return LocalDateTime.of(
+                (int) timestampFields.year(),
+                (int) timestampFields.month(),
+                (int) timestampFields.day(),
+                (int) timestampFields.hours(),
+                (int) timestampFields.minutes(),
+                (int) timestampFields.seconds(),
+                (int) timestampFields.millis() * 1_000_000
+            ).atZone(ZoneId.of(zoneIdAsStr)).toInstant().toEpochMilli();
+        }
     }
 
-    public static long getNowAsTimestamp() {
-        return Timestamp.valueOf(LocalDateTime.now(ZoneId.systemDefault())).getTime() / 1000;
+    public static long getNowAsTimestampMillis() {
+        return Timestamp.valueOf(LocalDateTime.now(ZoneId.systemDefault())).getTime();
     }
 
-    public static String getTimeStampAsHumanDatetime(long timestampAsLong, String zoneIdAsStr) {
+    public static long getNowAsTimestampSec() {
+        return getNowAsTimestampMillis() / 1000;
+    }
+
+    public static String getTimeStampAsHumanDatetime(long timestampAsLong, String zoneIdAsStr, boolean isEpochSec) {
         ZoneId zoneId = ZoneId.of(zoneIdAsStr);
         String zoneOffsetText = zoneId.getRules().getStandardOffset(Instant.now()).toString();
 
-        Timestamp timestamp = new Timestamp(timestampAsLong > 9999999999L ? timestampAsLong : timestampAsLong * 1000);
+        Timestamp timestamp;
+        if (isEpochSec) {
+            timestamp = new Timestamp(timestampAsLong * 1000);
+        } else {
+            timestamp = new Timestamp(timestampAsLong);
+        }
         LocalDateTime localDateTime = timestamp.toLocalDateTime();
 
         String datetimeAsText = DATETIME_FORMAT_24H.format(localDateTime.atZone(ZoneId.systemDefault())
@@ -60,7 +85,7 @@ public class TimestampTools {
         return zoneIdAsStr + " (GMT " + zoneOffsetText + ") Date and Time:\n" + datetimeAsText + "\n\nUTC Date and Time:\n" + utcDatetimeAsText;
     }
 
-    public record TimestampFields(long year, long month, long day, long hours, long minutes, long seconds) {
+    public record TimestampFields(long year, long month, long day, long hours, long minutes, long seconds, long millis) {
     }
 
     //

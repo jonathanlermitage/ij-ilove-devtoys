@@ -13,7 +13,7 @@ plugins {
     id("jacoco")
     id("com.adarshr.test-logger") version "3.2.0" // https://github.com/radarsh/gradle-test-logger-plugin
     id("com.palantir.git-version") version "0.15.0" // https://github.com/palantir/gradle-git-version
-    id("org.jetbrains.intellij") version "1.10.1" // https://github.com/JetBrains/gradle-intellij-plugin
+    id("org.jetbrains.intellij") version "1.11.0" // https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.changelog") version "2.0.0" // https://github.com/JetBrains/gradle-changelog-plugin
     id("com.github.ben-manes.versions") version "0.44.0" // https://github.com/ben-manes/gradle-versions-plugin
     id("biz.lermitage.oga") version "1.1.1"
@@ -61,6 +61,7 @@ dependencies {
     implementation("org.yaml:snakeyaml:1.33") // for JSON <> YAML
     implementation("org.apache.commons:commons-text:1.10.0") // for JSON (un)escape
     implementation("com.nulab-inc:zxcvbn:1.7.0") // for password strength evaluation
+    implementation("fr.marcwrobel:jbanking:4.0.0") // for IBAN generation
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")

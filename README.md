@@ -24,7 +24,7 @@ Find useful tools in a Tool Window in the top right corner of your IDE:
 * CSV/HTML/Java/JS/JSON/XML (un)escaper
 * Etc...
 
-The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only.<br/>
+The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only. Also, it is supposed to reduce context-switching.<br/>
 
 **Work in progress**: I am trying to reproduce most of the DevToys features, but it will take some time. Also, contributions are welcome 😎.    
 If you want to support my work, you can consider buying an [Extra Icons](https://plugins.jetbrains.com/plugin/11058-extra-icons) plugin license or make a [donation](https://buymeacoff.ee/jlermitage). Thank you! If you already did this, hum... fiesta! 🥳 (And again, thank you so much!)<br>
@@ -51,7 +51,7 @@ MIT License. In other words, you can do what you want: this project is entirely 
 
 This project integrates original or modified components and files from:
 
-* Etienne Baudoux, [MIT License](https://github.com/veler/DevToys/blob/main/LICENSE.md) -> created tool icons from original `DevToys` tools SVG icons, and yeah, the global idea of this plugin!
+* Etienne Baudoux, [MIT License](https://github.com/veler/DevToys/blob/main/LICENSE.md) -> created tool icons from original `DevToys` tools SVG icons, and the global idea of this plugin!
 * The Apache Software Foundation, [Apache License](https://commons.apache.org) -> using the `Apache Commons Codec`, `Apache Commons Lang` and `Apache Commons Text` libraries for handling Hash and CSV/HTML/Java/JS/JSON/XML Escaping functionalities
 * Miguel De Anda, [MIT License](https://github.com/mdeanda/lorem/blob/master/license.txt) -> using the `Lorem` library for generating Lorem Ipsum strings 
 * FasterXML, LLC, [Apache License](https://github.com/FasterXML/jackson-core/blob/2.14/LICENSE) -> using the `Jackson core`, `databind` and `dataformat-yaml` libraries for handling JSON/YAML conversion
@@ -61,6 +61,7 @@ This project integrates original or modified components and files from:
 * cron-parser.com, [Apache License](https://github.com/jmrozanec/cron-utils/blob/master/LICENSE) -> using the `Cron-utils` library for parsing cron expressions
 * codearte.io, [Apache License](https://github.com/Codearte/props2yaml/blob/master/LICENSE) -> using a modified version of `props2yaml` library for handling Properties to YAML conversion (see modified sources in `src/main/java/io.codearte.props2yaml`)
 * Nulab Inc, [MIT License](https://github.com/nulab/zxcvbn4j/blob/master/LICENSE.txt) -> using the `zxcvbn4j` library for handling password strength evaluation
+* Marc Wrobel, [Apache License](https://github.com/marcwrobel/jbanking/blob/main/LICENSE) -> using the `jbanking` library for handling IBAN code generation
 
 ## Screenshot
 

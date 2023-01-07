@@ -1,5 +1,8 @@
 package lermitage.intellij.ilovedevtoys.tools;
 
+import fr.marcwrobel.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.iban.BbanStructure;
+import fr.marcwrobel.jbanking.iban.RandomIban;
 import net.datafaker.Faker;
 import net.datafaker.providers.base.Address;
 import net.datafaker.providers.base.Ancient;
@@ -97,6 +100,7 @@ public class DataFakerTools {
         "Babylon5 quote",
         "Back To The Future character",
         "Back To The Future quote",
+        "Banking - IBAN",
         "Bar code",
         "Book author",
         "Book title",
@@ -220,16 +224,21 @@ public class DataFakerTools {
                         sb.append(backToTheFuture.quote()).append("\n");
                     }
                 }
-                case "Book author" -> {
-                    Book book = faker.book();
-                    for (int i = 0; i < howMany; i++) {
-                        sb.append(book.author()).append("\n");
+                case "Banking - IBAN" -> {
+                    String country = locale.toUpperCase();
+                    if (country.contains("-")) {
+                        country = country.substring(0, country.indexOf("-"));
                     }
-                }
-                case "Book title" -> {
-                    Book book = faker.book();
+                    IsoCountry isoCountry;
+                    try {
+                        isoCountry = IsoCountry.valueOf(country);
+                    } catch (IllegalArgumentException e) {
+                        isoCountry = IsoCountry.FR;
+                    }
+                    BbanStructure bbanStructure = BbanStructure.forCountry(isoCountry).orElse(BbanStructure.FR);
+                    sb.append("=== ").append(bbanStructure).append(" IBAN codes ===\n");
                     for (int i = 0; i < howMany; i++) {
-                        sb.append(book.title()).append("\n");
+                        sb.append(new RandomIban().next(bbanStructure).toPrintableString()).append("\n");
                     }
                 }
                 case "Bar code" -> {
@@ -257,6 +266,18 @@ public class DataFakerTools {
                     sb.append("\n=== gtin14 bar codes ===\n");
                     for (int i = 0; i < howMany; i++) {
                         sb.append(barcode.gtin14()).append("\n");
+                    }
+                }
+                case "Book author" -> {
+                    Book book = faker.book();
+                    for (int i = 0; i < howMany; i++) {
+                        sb.append(book.author()).append("\n");
+                    }
+                }
+                case "Book title" -> {
+                    Book book = faker.book();
+                    for (int i = 0; i < howMany; i++) {
+                        sb.append(book.title()).append("\n");
                     }
                 }
                 case "Buffy character" -> {

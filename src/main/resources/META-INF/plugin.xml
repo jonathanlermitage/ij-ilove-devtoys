@@ -1,4 +1,4 @@
-<idea-plugin>
+<idea-plugin require-restart="true">
     <id>lermitage.intellij.ilovedevtoys</id>
     <name>I Love DevToys</name>
     <version>REPLACED_BY_GRADLE</version>
@@ -9,7 +9,7 @@
       <ul>
         <li>Base64 encoder/decoder</li>
         <li>URL encoder/decoder</li>
-        <li>Fake Data generator (addresses, Chuck Norris facts, Job titles, Pokemon names, Rick and Morty characters, The It Crowd quotes...)</li>
+        <li>Fake Data generator (addresses, IBAN, Chuck Norris facts, Job titles, Pokemon names, Rick and Morty characters, The It Crowd quotes...)</li>
         <li>Timestamp converter</li>
         <li>Cron parser (Unix, Quartz, Spring 5.3+, Cron4j)</li>
         <li>Set Diff viewer (compare two texts, ignoring lines ordering)</li>
@@ -22,10 +22,10 @@
         <li>BENCODE &lt;&gt; JSON converter</li>
         <li>ASCII &lt;&gt; HEX converter</li>
         <li>CSV/HTML/Java/JS/JSON/XML (un)escaper</li>
+        <li>Password strength evaluator</li>
       </ul>
-      The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only.<br/>
+      The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only. Also, it is supposed to reduce context-switching.<br/>
       <b>Work in progress</b>: I am trying to reproduce most of the DevToys features, while adding some exclusive features, so it will take some time. Also, contributions are welcome 😎.<br/>
-      If you want to support my work, you can consider buying an <a href="https://plugins.jetbrains.com/plugin/11058-extra-icons">Extra Icons</a> plugin license or make a <a href="https://buymeacoff.ee/jlermitage">donation</a>. Thank you!<br>
       <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys">GitHub</a> | <a href="https://github.com/jonathanlermitage/ij-ilove-devtoys/issues">Issues</a> | <a href="https://www.linkedin.com/in/jonathan-lermitage/">LinkedIn</a> | <a href="https://youtrack.jetbrains.com/issue/MP-4248">up-vote MP-4248</a> | <a href="https://vshymanskyy.github.io/StandWithUkraine/">💙 Help Ukraine 💛</a><br>
     ]]>
     </description>
