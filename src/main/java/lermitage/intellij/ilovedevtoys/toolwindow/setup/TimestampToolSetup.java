@@ -212,6 +212,7 @@ public class TimestampToolSetup extends AbstractToolSetup {
             }
         });
 
+        timestampNowButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
         timestampUpdateFromTimestampButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
         timestampUpdateFromFieldsButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
         timestampUpdateFromTimestampButton.addActionListener(e -> updateTimestampToolOnTimestampSpinnerUpdate());
