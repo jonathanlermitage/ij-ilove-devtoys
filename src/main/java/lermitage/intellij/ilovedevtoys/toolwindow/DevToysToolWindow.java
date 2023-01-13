@@ -2,6 +2,7 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.components.JBRadioButton;
+import com.intellij.ui.components.JBTextArea;
 import com.intellij.ui.components.JBTextField;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.ASCIIHEXToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.BENCODEJSONToolSetup;
@@ -9,6 +10,7 @@ import lermitage.intellij.ilovedevtoys.toolwindow.setup.Base64ToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.CronToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.DataFakerToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.EscapeToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.HMACToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.HashToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONStringToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONYAMLToolSetup;
@@ -133,6 +135,12 @@ public class DevToysToolWindow {
     private JTextArea propertiesYamlPropertiesTextArea;
     private JTextArea propertiesYamlYamlTextArea;
 
+    private JPanel hmacPanel;
+    private JComboBox<String> hmacAlgoComboBox;
+    private JTextField hmacKeyTextField;
+    private JTextArea hmacInputTextArea;
+    private JTextField hmacResultTextField;
+
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
     private record PanelAndIcon(JPanel panel, String icon) {
@@ -148,6 +156,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Set Diff viewer", new PanelAndIcon(setDiffPanel, iconsPath + "SetDiff.svg"));
         toolPanelsByTitle.put("Lorem Ipsum generator", new PanelAndIcon(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "HashGenerator.svg"));
+        toolPanelsByTitle.put("HMAC generator", new PanelAndIcon(hmacPanel, iconsPath + "HMACGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new PanelAndIcon(uuidPanel, iconsPath + "UuidGenerator.svg"));
         toolPanelsByTitle.put("Password strength evaluator", new PanelAndIcon(passwordStrengthPanel, iconsPath + "PasswordStrengthEvaluator.svg"));
         toolPanelsByTitle.put("Text escape/unescape", new PanelAndIcon(escapePanel, iconsPath + "Escaper.svg"));
@@ -188,7 +197,8 @@ public class DevToysToolWindow {
             timestampMillisecondSpinner,
             timestampResolutionComboBox,
             timestampMillisecondLabel).setup();
-        new CronToolSetup(cronExpressionTextField,
+        new CronToolSetup(
+            cronExpressionTextField,
             cronExpressionHowManyDaysSpinner,
             cronTypeComboBox,
             cronTextArea,
@@ -230,12 +240,18 @@ public class DevToysToolWindow {
             asciihexASCIITextArea,
             asciihexHEXTextArea,
             asciihexSpacesCheckBox).setup();
-        new EscapeToolSetup(escapeComboBox,
+        new EscapeToolSetup(
+            escapeComboBox,
             unescapedTextArea,
             escapedTextArea).setup();
         new PasswordStrengthToolSetup(
             passwordStrengthPasswordTextField,
             passwordStrengthReportTextArea).setup();
+        new HMACToolSetup(
+            hmacAlgoComboBox,
+            hmacKeyTextField,
+            hmacInputTextArea,
+            hmacResultTextField).setup();
 
         toolPanelsByTitle.forEach((title, panelAndIcon) -> toolComboBox.addItem(new ComboBoxWithImageItem(title, panelAndIcon.icon)));
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());

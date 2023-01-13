@@ -11,24 +11,25 @@ An Intellij IDEA (Community and Ultimate) free plugin which is highly inspired f
 Find useful tools in a Tool Window in the top right corner of your IDE:
 * Base64 encoder/decoder</li>
 * URL encoder/decoder
-* Fake Data generator (addresses, Chuck Norris facts, Job titles, Pokemon names, Rick and Morty characters, The It Crowd quotes...)
+* Fake Data generator (addresses, IBAN, Chuck Norris facts, Job titles, Pokemon names, Rick and Morty characters, The It Crowd quotes...)
 * Timestamp converter
 * Cron parser (Unix, Quartz, Spring 5.3+, Cron4j)
 * Set Diff viewer (compare two texts, ignoring lines ordering)
 * Lorem Ipsum generator
 * Hash generator (MD5, SHA1,256,384,512)
+* HMAC generator (MD5, SHA1,224,256,384,512)
 * UUID generator
 * JSON &lt;&gt; YAML converter
 * BENCODE &lt;&gt; JSON converter
 * ASCII &lt;&gt; HEX converter
 * CSV/HTML/Java/JS/JSON/XML (un)escaper
+* Password strength evaluator
 * Etc...
 
 The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only. Also, it is supposed to reduce context-switching.<br/>
 
 **Work in progress**: I am trying to reproduce most of the DevToys features, but it will take some time. Also, contributions are welcome 😎.    
-If you want to support my work, you can consider buying an [Extra Icons](https://plugins.jetbrains.com/plugin/11058-extra-icons) plugin license or make a [donation](https://buymeacoff.ee/jlermitage). Thank you! If you already did this, hum... fiesta! 🥳 (And again, thank you so much!)<br>
-
+If you want to support my work, you can consider buying an [Extra Icons](https://plugins.jetbrains.com/plugin/11058-extra-icons) plugin license or make a [donation](https://buymeacoff.ee/jlermitage). Thank you!
 ## Download
 
 Download plugin from the JetBrains marketplace or via your IDE: <kbd>File</kbd>, <kbd>Settings...</kbd>, <kbd>Plugins</kbd>, <kbd>Marketplace</kbd> then select `I Love DevToys`.

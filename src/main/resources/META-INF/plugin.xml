@@ -15,6 +15,7 @@
         <li>Set Diff viewer (compare two texts, ignoring lines ordering)</li>
         <li>Lorem Ipsum generator</li>
         <li>Hash generator (MD5, SHA1,256,384,512)</li>
+        <li>HMAC generator (MD5, SHA1,224,256,384,512)</li>
         <li>UUID generator</li>
         <li>JSON to String converter</li>
         <li>Properties to YAML converter (including Spring profiles support)</li>

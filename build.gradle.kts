@@ -48,8 +48,8 @@ repositories {
     mavenCentral()
 }
 
-val junitVersion = "5.9.1"
-val junitPlatformLauncher = "1.9.1"
+val junitVersion = "5.9.2"
+val junitPlatformLauncher = "1.9.2"
 
 dependencies {
     implementation("commons-codec:commons-codec:1.15") // fox Hash
@@ -61,7 +61,7 @@ dependencies {
     implementation("org.yaml:snakeyaml:1.33") // for JSON <> YAML
     implementation("org.apache.commons:commons-text:1.10.0") // for JSON (un)escape
     implementation("com.nulab-inc:zxcvbn:1.7.0") // for password strength evaluation
-    implementation("fr.marcwrobel:jbanking:4.0.0") // for IBAN generation
+    implementation("fr.marcwrobel:jbanking:4.1.0") // for IBAN generation
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")

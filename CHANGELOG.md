@@ -1,5 +1,8 @@
 # I Love DevToys Change Log
 
+## 1.7.0 (WIP)
+* add HMAC tool.
+
 ## 1.6.0 (2023/01/07)
 * fix some bugs with Timestamp tool. 
 * Timestamp tool now supports epoch in milliseconds.
