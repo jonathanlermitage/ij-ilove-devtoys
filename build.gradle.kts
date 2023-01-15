@@ -13,7 +13,7 @@ plugins {
     id("jacoco")
     id("com.adarshr.test-logger") version "3.2.0" // https://github.com/radarsh/gradle-test-logger-plugin
     id("com.palantir.git-version") version "0.15.0" // https://github.com/palantir/gradle-git-version
-    id("org.jetbrains.intellij") version "1.11.0" // https://github.com/JetBrains/gradle-intellij-plugin
+    id("org.jetbrains.intellij") version "1.12.0" // https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.changelog") version "2.0.0" // https://github.com/JetBrains/gradle-changelog-plugin
     id("com.github.ben-manes.versions") version "0.44.0" // https://github.com/ben-manes/gradle-versions-plugin
     id("biz.lermitage.oga") version "1.1.1"

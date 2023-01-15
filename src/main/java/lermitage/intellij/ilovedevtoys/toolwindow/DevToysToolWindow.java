@@ -2,7 +2,6 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.components.JBRadioButton;
-import com.intellij.ui.components.JBTextArea;
 import com.intellij.ui.components.JBTextField;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.ASCIIHEXToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.BENCODEJSONToolSetup;
@@ -14,10 +13,10 @@ import lermitage.intellij.ilovedevtoys.toolwindow.setup.HMACToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.HashToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONStringToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONYAMLToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.LinesUtilsToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.LoremIpsumToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.PasswordStrengthToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.PropertiesYamlToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.SetDiffToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.TimestampToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.URLCodecToolSetup;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.UUIDToolSetup;
@@ -101,13 +100,14 @@ public class DevToysToolWindow {
     private JComboBox<String> dataFakerLocaleComboBox;
     private JTextArea dataFakerTextArea;
 
-    private JPanel setDiffPanel;
-    private JButton setDiffCompareButton;
-    private JCheckBox setDiffCaseSensitiveCheckBox;
-    private JTextArea setDiffTextArea1;
-    private JTextArea setDiffTextArea2;
-    private JTextArea setDiffResultTextArea;
-    private JCheckBox setDiffIgnoreEmptyLinesCheckBox;
+    private JPanel linesUtilsPanel;
+    private JComboBox<String> linesUtilsComboBox;
+    private JButton linesUtilsCompareButton;
+    private JCheckBox linesUtilsCaseSensitiveCheckBox;
+    private JTextArea linesUtilsTextArea1;
+    private JTextArea linesUtilsTextArea2;
+    private JTextArea linesUtilsResultTextArea;
+    private JCheckBox linesUtilsIgnoreEmptyLinesCheckBox;
 
     private JPanel asciihexPanel;
     private JTextArea asciihexASCIITextArea;
@@ -153,7 +153,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("Fake Data generator", new PanelAndIcon(dataFakerPanel, iconsPath + "DataFaker.svg"));
         toolPanelsByTitle.put("Timestamp converter", new PanelAndIcon(timestampPanel, iconsPath + "Timestamp.svg"));
         toolPanelsByTitle.put("Cron parser", new PanelAndIcon(cronPanel, iconsPath + "CronParser.svg"));
-        toolPanelsByTitle.put("Set Diff viewer", new PanelAndIcon(setDiffPanel, iconsPath + "SetDiff.svg"));
+        toolPanelsByTitle.put("Lines utils", new PanelAndIcon(linesUtilsPanel, iconsPath + "SetDiff.svg"));
         toolPanelsByTitle.put("Lorem Ipsum generator", new PanelAndIcon(loremIpsumPanel, iconsPath + "LoremIpsumGenerator.svg"));
         toolPanelsByTitle.put("Hash generator", new PanelAndIcon(hashPanel, iconsPath + "HashGenerator.svg"));
         toolPanelsByTitle.put("HMAC generator", new PanelAndIcon(hmacPanel, iconsPath + "HMACGenerator.svg"));
@@ -203,13 +203,16 @@ public class DevToysToolWindow {
             cronTypeComboBox,
             cronTextArea,
             explainButton).setup();
-        new SetDiffToolSetup(
-            setDiffCompareButton,
-            setDiffCaseSensitiveCheckBox,
-            setDiffTextArea1,
-            setDiffTextArea2,
-            setDiffResultTextArea,
-            setDiffIgnoreEmptyLinesCheckBox).setup();
+        LinesUtilsToolSetup linesUtilsToolSetup = new LinesUtilsToolSetup(
+            helpLabel,
+            linesUtilsComboBox,
+            linesUtilsCompareButton,
+            linesUtilsCaseSensitiveCheckBox,
+            linesUtilsTextArea1,
+            linesUtilsTextArea2,
+            linesUtilsResultTextArea,
+            linesUtilsIgnoreEmptyLinesCheckBox);
+        linesUtilsToolSetup.setup();
         new LoremIpsumToolSetup(
             loremIpsumGenerateButton,
             loremIpsumTextArea).setup();
@@ -311,12 +314,8 @@ public class DevToysToolWindow {
                         "then hit the <i>Update from timestamp</i> or<br>" +
                         "<i>Update from fields</i> button.</html>");
                 }
-                case "Set Diff viewer" -> {
-                    helpLabel.setVisible(true);
-                    helpLabel.setToolTipText("<html>" +
-                        "Type some text in Set 1 and Set 2 then hit <i>Compare</i><br>" +
-                        "in order to see if some lines exist only in Set 1 or<br>" +
-                        "in Set 2.</html>");
+                case "Lines utils" -> {
+                    linesUtilsToolSetup.activate();
                 }
             }
         });
