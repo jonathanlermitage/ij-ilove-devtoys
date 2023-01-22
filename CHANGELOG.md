@@ -1,6 +1,6 @@
 # I Love DevToys Change Log
 
-## 1.7.0 (WIP)
+## 1.7.0 (2023/01/21)
 * add HMAC tool.
 * add Lines merging tool: add the lines of B to A if they're new.
 * add Lines subtract tool: remove the lines of B from A.
