@@ -1,5 +1,11 @@
 # I Love DevToys Change Log
 
+## 1.7.1 (WIP)
+* fix Data Faker tool: remove scientific names attached to animal names since there was to link between them (both were random).
+* Data Faker tool now tries to produce unique and sorted items.
+* rework some tool icons.
+* dependencies upgrade.
+
 ## 1.7.0 (2023/01/21)
 * add HMAC tool.
 * add Lines merging tool: add the lines of B to A if they're new.
@@ -38,7 +44,7 @@
 * add Set Diff tool: it tells if two files have the same lines but in any order.
 
 ## 1.1.0 (2022/10/23)
-* reworked icon renderer and improved quality of tools icons.
+* reworked icon renderer and improved quality of tool icons.
 
 ## 1.0.0 (2022/10/21)
 * first stable release 🎉.
