@@ -1,9 +1,8 @@
 # I Love DevToys Change Log
 
-## 1.7.1 (WIP)
+## 1.7.1 (2023/02/18)
 * fix Data Faker tool: remove scientific names attached to animal names since there was to link between them (both were random).
 * Data Faker tool now tries to produce unique and sorted items.
-* rework some tool icons.
 * dependencies upgrade.
 
 ## 1.7.0 (2023/01/21)
