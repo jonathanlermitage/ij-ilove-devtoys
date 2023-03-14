@@ -62,6 +62,7 @@ dependencies {
     implementation("org.apache.commons:commons-text:1.10.0") // for JSON (un)escape
     implementation("com.nulab-inc:zxcvbn:1.7.0") // for password strength evaluation
     implementation("fr.marcwrobel:jbanking:4.1.0") // for IBAN generation
+    implementation("at.favre.lib:bcrypt:0.10.2") // for Bcrypt hash
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")

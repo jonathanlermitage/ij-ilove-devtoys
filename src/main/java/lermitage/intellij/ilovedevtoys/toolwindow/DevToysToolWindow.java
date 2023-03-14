@@ -58,6 +58,9 @@ public class DevToysToolWindow {
     private JBTextField hashSHA256TextField;
     private JBTextField hashSHA384TextField;
     private JBTextField hashSHA512TextField;
+    private JBTextField hashBCrypt2ATextField;
+    private JBTextField hashBCrypt2BTextField;
+    private JBTextField hashBCrypt2YTextField;
 
     private JPanel uuidPanel;
     private JButton uuidGenerateButton;
@@ -222,7 +225,10 @@ public class DevToysToolWindow {
             hashSHA1TextField,
             hashSHA256TextField,
             hashSHA384TextField,
-            hashSHA512TextField).setup();
+            hashSHA512TextField,
+            hashBCrypt2ATextField,
+            hashBCrypt2BTextField,
+            hashBCrypt2YTextField).setup();
         new UUIDToolSetup(
             uuidGenerateButton,
             uuidTextArea).setup();
