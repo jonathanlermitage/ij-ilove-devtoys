@@ -57,8 +57,8 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2") // for JSON <> YAML
     implementation("com.dampcake:bencode:1.4") // for JSON <> BENCODE
     implementation("com.cronutils:cron-utils:9.2.0") // for cron expression parser
-    implementation("net.datafaker:datafaker:1.8.0") // for Data Faker
-    implementation("org.yaml:snakeyaml:1.33") // for JSON <> YAML
+    implementation("net.datafaker:datafaker:1.8.1") // for Data Faker
+    implementation("org.yaml:snakeyaml:2.0") // for JSON <> YAML
     implementation("org.apache.commons:commons-text:1.10.0") // for JSON (un)escape
     implementation("com.nulab-inc:zxcvbn:1.7.0") // for password strength evaluation
     implementation("fr.marcwrobel:jbanking:4.1.0") // for IBAN generation
@@ -148,7 +148,7 @@ tasks {
 }
 
 fun isNonStable(version: String): Boolean {
-    if (listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().endsWith(it) }) {
+    if (listOf("RELEASE", "FINAL", "GA").any { version.uppercase().endsWith(it) }) {
         return false
     }
     return listOf("alpha", "Alpha", "ALPHA", "b", "beta", "Beta", "BETA", "rc", "RC", "M", "EA", "pr", "atlassian").any {
