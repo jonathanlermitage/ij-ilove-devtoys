@@ -14,7 +14,7 @@
         <li>Cron parser (Unix, Quartz, Spring 5.3+, Cron4j)</li>
         <li>Lines utils: Set Diff viewer (compare two texts, ignoring lines ordering), Lines merging (add the lines of B to A if they're new), Lines subtract (remove the lines of B from A)</li>
         <li>Lorem Ipsum generator</li>
-        <li>Hash generator (MD5, SHA1,256,384,512)</li>
+        <li>Hash generator (MD5, BCrypt 2A,2B,2Y, SHA1,256,384,512)</li>
         <li>HMAC generator (MD5, SHA1,224,256,384,512)</li>
         <li>UUID generator</li>
         <li>JSON to String converter</li>

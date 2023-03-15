@@ -1,7 +1,8 @@
 # I Love DevToys Change Log
 
-## 1.8.0 (WIP)
+## 1.8.0 (2023/03/15)
 * add BCrypt (2A, 2B, 2Y) to Hash tool. Thx to contributor **kpouer**.
+* dependencies upgrade.
 
 ## 1.7.1 (2023/02/18)
 * fix Data Faker tool: remove scientific names attached to animal names since there was to link between them (both were random).
