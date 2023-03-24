@@ -45,16 +45,20 @@ public class HashToolSetup extends AbstractToolSetup {
         hashInputTextArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String input = hashInputTextArea.getText();
-                hashMD5TextField.setText(HashTools.generateMD5(input));
-                hashSHA1TextField.setText(HashTools.generateSHA1(input));
-                hashSHA256TextField.setText(HashTools.generateSHA256(input));
-                hashSHA384TextField.setText(HashTools.generateSHA384(input));
-                hashSHA512TextField.setText(HashTools.generateSHA512(input));
-                hashBCrypt2ATextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2a));
-                hashBCrypt2BTextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2b));
-                hashBCrypt2YTextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2y));
+                update();
             }
         });
+    }
+
+    public void update() {
+        String input = hashInputTextArea.getText();
+        hashMD5TextField.setText(HashTools.generateMD5(input));
+        hashSHA1TextField.setText(HashTools.generateSHA1(input));
+        hashSHA256TextField.setText(HashTools.generateSHA256(input));
+        hashSHA384TextField.setText(HashTools.generateSHA384(input));
+        hashSHA512TextField.setText(HashTools.generateSHA512(input));
+        hashBCrypt2ATextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2a));
+        hashBCrypt2BTextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2b));
+        hashBCrypt2YTextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2y));
     }
 }

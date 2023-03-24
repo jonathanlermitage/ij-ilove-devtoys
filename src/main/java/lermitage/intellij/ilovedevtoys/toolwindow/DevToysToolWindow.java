@@ -131,6 +131,7 @@ public class DevToysToolWindow {
     private JTextField passwordVerifierInputPassword;
     private JTextField passwordVerifierHashTextField;
     private JBTextField passwordVerifierResultLabel;
+    private JButton hashItButton;
     private JTextField resultTextField;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
@@ -209,7 +210,7 @@ public class DevToysToolWindow {
         new LoremIpsumToolSetup(
             loremIpsumGenerateButton,
             loremIpsumTextArea).setup();
-        new HashToolSetup(
+        var hashToolSetup = new HashToolSetup(
             hashInputTextArea,
             hashMD5TextField,
             hashSHA1TextField,
@@ -218,7 +219,8 @@ public class DevToysToolWindow {
             hashSHA512TextField,
             hashBCrypt2ATextField,
             hashBCrypt2BTextField,
-            hashBCrypt2YTextField).setup();
+            hashBCrypt2YTextField);
+        hashToolSetup.setup();
         new PasswordVerifierToolSetup(
             passwordVerifierHashTextField,
             passwordVerifierInputPassword,
@@ -250,7 +252,14 @@ public class DevToysToolWindow {
             escapedTextArea).setup();
         new PasswordStrengthToolSetup(
             passwordStrengthPasswordTextField,
-            passwordStrengthReportTextArea).setup();
+            passwordStrengthReportTextArea,
+            hashItButton,
+            hashInputTextArea,
+            e -> {
+                hashInputTextArea.setText(passwordStrengthPasswordTextField.getText());
+                displayToolPanel("Hash generator");
+                hashToolSetup.update();
+            }).setup();
         new HMACToolSetup(
             hmacAlgoComboBox,
             hmacKeyTextField,
