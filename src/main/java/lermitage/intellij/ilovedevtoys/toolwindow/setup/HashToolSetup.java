@@ -1,12 +1,12 @@
 package lermitage.intellij.ilovedevtoys.toolwindow.setup;
 
-import at.favre.lib.crypto.bcrypt.BCrypt.Version;
 import com.intellij.ui.components.JBTextField;
 import lermitage.intellij.ilovedevtoys.tools.HashTools;
+import lermitage.intellij.ilovedevtoys.tools.hash.BCryptVersion;
 
 import javax.swing.JTextArea;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class HashToolSetup extends AbstractToolSetup {
 
@@ -42,15 +42,7 @@ public class HashToolSetup extends AbstractToolSetup {
 
     public void setup() {
         hashInputTextArea.setToolTipText("Nota: hash outputs type is Hex, not Base64.");
-        hashInputTextArea.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
+        hashInputTextArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 String input = hashInputTextArea.getText();
@@ -59,9 +51,9 @@ public class HashToolSetup extends AbstractToolSetup {
                 hashSHA256TextField.setText(HashTools.generateSHA256(input));
                 hashSHA384TextField.setText(HashTools.generateSHA384(input));
                 hashSHA512TextField.setText(HashTools.generateSHA512(input));
-                hashBCrypt2ATextField.setText(HashTools.generateBCrypt(input, Version.VERSION_2A));
-                hashBCrypt2BTextField.setText(HashTools.generateBCrypt(input, Version.VERSION_2B));
-                hashBCrypt2YTextField.setText(HashTools.generateBCrypt(input, Version.VERSION_2Y));
+                hashBCrypt2ATextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2a));
+                hashBCrypt2BTextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2b));
+                hashBCrypt2YTextField.setText(HashTools.generateBCrypt(input, BCryptVersion.BCryptVersion2y));
             }
         });
     }

@@ -3,23 +3,7 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.ASCIIHEXToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.BENCODEJSONToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.Base64ToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.CronToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.DataFakerToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.EscapeToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.HMACToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.HashToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONStringToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.JSONYAMLToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.LinesUtilsToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.LoremIpsumToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.PasswordStrengthToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.PropertiesYamlToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.TimestampToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.URLCodecToolSetup;
-import lermitage.intellij.ilovedevtoys.toolwindow.setup.UUIDToolSetup;
+import lermitage.intellij.ilovedevtoys.toolwindow.setup.*;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -143,6 +127,11 @@ public class DevToysToolWindow {
     private JTextField hmacKeyTextField;
     private JTextArea hmacInputTextArea;
     private JTextField hmacResultTextField;
+    private JPanel     passwordVerifierPanel;
+    private JTextField passwordVerifierInputPassword;
+    private JTextField passwordVerifierHashTextField;
+    private JBTextField passwordVerifierResultLabel;
+    private JTextField resultTextField;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -162,6 +151,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("HMAC generator", new PanelAndIcon(hmacPanel, iconsPath + "HMACGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new PanelAndIcon(uuidPanel, iconsPath + "UuidGenerator.svg"));
         toolPanelsByTitle.put("Password strength evaluator", new PanelAndIcon(passwordStrengthPanel, iconsPath + "PasswordStrengthEvaluator.svg"));
+        toolPanelsByTitle.put("Password verifier", new PanelAndIcon(passwordVerifierPanel, iconsPath + "PasswordHashVerifier.svg"));
         toolPanelsByTitle.put("Text escape/unescape", new PanelAndIcon(escapePanel, iconsPath + "Escaper.svg"));
         toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
@@ -229,6 +219,11 @@ public class DevToysToolWindow {
             hashBCrypt2ATextField,
             hashBCrypt2BTextField,
             hashBCrypt2YTextField).setup();
+        new PasswordVerifierToolSetup(
+            passwordVerifierHashTextField,
+            passwordVerifierInputPassword,
+            passwordVerifierResultLabel
+        ).setup();
         new UUIDToolSetup(
             uuidGenerateButton,
             uuidTextArea).setup();

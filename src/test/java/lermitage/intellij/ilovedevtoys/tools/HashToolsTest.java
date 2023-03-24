@@ -1,9 +1,11 @@
 package lermitage.intellij.ilovedevtoys.tools;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import lermitage.intellij.ilovedevtoys.tools.hash.BCryptVersion;
 import org.junit.jupiter.api.Test;
 
-import static at.favre.lib.crypto.bcrypt.BCrypt.Version.SUPPORTED_VERSIONS;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HashToolsTest {
@@ -35,7 +37,7 @@ class HashToolsTest {
 
     @Test
     void generateBCrypt() {
-        SUPPORTED_VERSIONS.forEach(v -> {
+        Arrays.stream(BCryptVersion.values()).forEach(v -> {
             String input = "Hello world";
             String hash = HashTools.generateBCrypt(input, v);
             assertTrue(BCrypt.verifyer().verify(input.toCharArray(), hash).verified);
