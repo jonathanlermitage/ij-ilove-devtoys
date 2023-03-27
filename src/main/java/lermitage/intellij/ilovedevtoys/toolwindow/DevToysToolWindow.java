@@ -274,9 +274,6 @@ public class DevToysToolWindow {
         helpLabel.setToolTipText("");
         helpLabel.setVisible(false);
 
-        // todo switch to Hash tool when hashed password from Password strength evaluator
-        // todo fix Password hash validator UI
-
         toolComboBox.addActionListener(e -> {
             ComboBoxWithImageItem item = toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
             displayToolPanel(item.title());
