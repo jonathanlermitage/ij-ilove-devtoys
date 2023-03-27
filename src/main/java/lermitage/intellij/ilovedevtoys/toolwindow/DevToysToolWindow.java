@@ -132,7 +132,6 @@ public class DevToysToolWindow {
     private JTextField passwordVerifierHashTextField;
     private JBTextField passwordVerifierResultLabel;
     private JButton hashItButton;
-    private JTextField resultTextField;
 
     private final LinkedHashMap<String, PanelAndIcon> toolPanelsByTitle = new LinkedHashMap<>();
 
@@ -257,7 +256,7 @@ public class DevToysToolWindow {
             hashInputTextArea,
             e -> {
                 hashInputTextArea.setText(passwordStrengthPasswordTextField.getText());
-                displayToolPanel("Hash generator");
+                selectToolByName("Hash generator");
                 hashToolSetup.update();
             }).setup();
         new HMACToolSetup(
@@ -274,6 +273,9 @@ public class DevToysToolWindow {
         helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", DevToysToolWindow.class));
         helpLabel.setToolTipText("");
         helpLabel.setVisible(false);
+
+        // todo switch to Hash tool when hashed password from Password strength evaluator
+        // todo fix Password hash validator UI
 
         toolComboBox.addActionListener(e -> {
             ComboBoxWithImageItem item = toolComboBox.getItemAt(toolComboBox.getSelectedIndex());
@@ -335,6 +337,15 @@ public class DevToysToolWindow {
     private void displayToolPanel(String toolPanelTitle) {
         toolPanelsByTitle.forEach((s, jPanel) -> jPanel.panel().setVisible(false));
         toolPanelsByTitle.get(toolPanelTitle).panel().setVisible(true);
+    }
+
+    private void selectToolByName(String toolName) {
+        for (int i = 0; i < toolComboBox.getItemCount(); i++) {
+            if (toolComboBox.getItemAt(i).title().equals(toolName)) {
+                toolComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
     }
 
     public JPanel getContent() {
