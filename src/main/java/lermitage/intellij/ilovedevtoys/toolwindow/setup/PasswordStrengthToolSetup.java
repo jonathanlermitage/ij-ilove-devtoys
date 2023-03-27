@@ -13,7 +13,7 @@ public class PasswordStrengthToolSetup extends AbstractToolSetup {
     private final JTextArea passwordStrengthReportTextArea;
     private final JButton hashItButton;
     private final JTextArea hashInputTextArea;
-    private ActionListener hashItActionListener;
+    private final ActionListener hashItActionListener;
 
     public PasswordStrengthToolSetup(JTextField passwordStrengthPasswordTextField,
                                      JTextArea passwordStrengthReportTextArea,
@@ -28,7 +28,6 @@ public class PasswordStrengthToolSetup extends AbstractToolSetup {
     }
 
     public void setup() {
-
         hashItButton.addActionListener(hashItActionListener);
         passwordStrengthPasswordTextField.addKeyListener(new KeyAdapter() {
             @Override
