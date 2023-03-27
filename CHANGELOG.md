@@ -1,5 +1,9 @@
 # I Love DevToys Change Log
 
+## 1.9.0 (WIP)
+* add Password verifier tool. Thx to contributor **kpouer**.
+* dependencies upgrade.
+
 ## 1.8.0 (2023/03/15)
 * add BCrypt (2A, 2B, 2Y) to Hash tool. Thx to contributor **kpouer**.
 * dependencies upgrade.
