@@ -36,7 +36,7 @@
          https://plugins.jetbrains.com/docs/intellij/tool-windows.html#declarative-setup -->
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
-    <idea-version since-build="222.2680.4"/> <!-- 222.2680.4 needed by DevToysToolWindowFactory:ContentFactory.getInstance() -->
+    <idea-version since-build="222.3345.118"/> <!-- 222.3345.118 needed by DevToysToolWindowFactory:ContentFactory.getInstance() -->
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
          on how to target different products -->
