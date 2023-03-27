@@ -151,7 +151,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.put("HMAC generator", new PanelAndIcon(hmacPanel, iconsPath + "HMACGenerator.svg"));
         toolPanelsByTitle.put("UUID generator", new PanelAndIcon(uuidPanel, iconsPath + "UuidGenerator.svg"));
         toolPanelsByTitle.put("Password strength evaluator", new PanelAndIcon(passwordStrengthPanel, iconsPath + "PasswordStrengthEvaluator.svg"));
-        toolPanelsByTitle.put("Password verifier", new PanelAndIcon(passwordVerifierPanel, iconsPath + "PasswordHashVerifier.svg"));
+        toolPanelsByTitle.put("Password hash verifier", new PanelAndIcon(passwordVerifierPanel, iconsPath + "PasswordHashVerifier.svg"));
         toolPanelsByTitle.put("Text escape/unescape", new PanelAndIcon(escapePanel, iconsPath + "Escaper.svg"));
         toolPanelsByTitle.put("ASCII <> HEX converter", new PanelAndIcon(asciihexPanel, iconsPath + "AsciiHex.svg"));
         toolPanelsByTitle.put("BENCODE <> JSON converter", new PanelAndIcon(bencodejsonPanel, iconsPath + "BencodeJson.svg"));
@@ -297,6 +297,13 @@ public class DevToysToolWindow {
                     helpLabel.setToolTipText("<html>" +
                         "Type text and various hash values will<br>" +
                         "be automatically computed as you type.</html>");
+                }
+                case "Password hash verifier" -> {
+                    helpLabel.setVisible(true);
+                    helpLabel.setToolTipText("<html>Type a password and a hash<br>" +
+                        "and the tool will say if the password<br>" +
+                        "verifies the hash with an algorithm like MD5,<br>" +
+                        "SHA1/256/384/512 or BCrypt 2A/2B/2Y.</html>");
                 }
                 case "JSON to String converter" -> {
                     helpLabel.setVisible(true);

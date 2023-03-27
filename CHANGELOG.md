@@ -1,7 +1,7 @@
 # I Love DevToys Change Log
 
 ## 1.9.0 (WIP)
-* add Password verifier tool. Thx to contributor **kpouer**.
+* add Password hash verifier tool. Thx to contributor **kpouer**.
 * dependencies upgrade.
 
 ## 1.8.0 (2023/03/15)
