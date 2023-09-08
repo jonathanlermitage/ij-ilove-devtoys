@@ -36,8 +36,8 @@
          https://github.com/JetBrains/intellij-sdk-code-samples/tree/main/tool_window
          https://plugins.jetbrains.com/docs/intellij/tool-windows.html#declarative-setup -->
 
-    <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
-    <idea-version since-build="222.3345.118"/> <!-- 222.3345.118 needed by DevToysToolWindowFactory:ContentFactory.getInstance() -->
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="231.6890.12"/>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
          on how to target different products -->
