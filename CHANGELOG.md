@@ -1,5 +1,9 @@
 # I Love DevToys Change Log
 
+## 1.9.1 (WIP)
+* fix rendering of `uz` (Asia/Samarkand, Asia/Tashkent) and `ve` (America/Caracas) flags.
+* dependencies upgrade.
+
 ## 1.9.0 (2023/04/07)
 * add Password hash verifier tool. Thx to contributor **kpouer**.
 * dependencies upgrade.

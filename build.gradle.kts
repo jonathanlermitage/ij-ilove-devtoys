@@ -22,7 +22,7 @@ plugins {
     id("java")
     id("org.jetbrains.intellij") version "1.15.0" // https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.changelog") version "2.2.0" // https://github.com/JetBrains/gradle-changelog-plugin
-    id("com.github.ben-manes.versions") version "0.47.0" // https://github.com/ben-manes/gradle-versions-plugin
+    id("com.github.ben-manes.versions") version "0.48.0" // https://github.com/ben-manes/gradle-versions-plugin
     id("com.palantir.git-version") version "3.0.0" // https://github.com/palantir/gradle-git-version
     id("com.github.andygoossens.modernizer") version "1.8.0" // https://github.com/andygoossens/gradle-modernizer-plugin
     id("biz.lermitage.oga") version "1.1.1" // https://github.com/jonathanlermitage/oga-gradle-plugin
@@ -60,15 +60,15 @@ val junitVersion = "5.10.0"
 val junitPlatformLauncher = "1.10.0"
 
 dependencies {
-    implementation("commons-codec:commons-codec:1.15") // for Hash
-    implementation("com.thedeanda:lorem:2.1") // for Lorem Ipsum
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2") // for JSON <> YAML
+    implementation("commons-codec:commons-codec:1.16.0") // for Hash
+    implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2") // for JSON <> YAML
     implementation("com.dampcake:bencode:1.4") // for JSON <> BENCODE
     implementation("com.cronutils:cron-utils:9.2.1") // for cron expression parser https://github.com/jmrozanec/cron-utils
-    implementation("net.datafaker:datafaker:1.8.1") // for Data Faker
-    implementation("org.yaml:snakeyaml:2.0") // for JSON <> YAML
+    implementation("net.datafaker:datafaker:2.0.1") // for Data Faker
+    implementation("org.yaml:snakeyaml:2.2") // for JSON <> YAML
     implementation("org.apache.commons:commons-text:1.10.0") // for JSON (un)escape
-    implementation("com.nulab-inc:zxcvbn:1.7.0") // for password strength evaluation
+    implementation("com.nulab-inc:zxcvbn:1.8.2") // for password strength evaluation
     implementation("fr.marcwrobel:jbanking:4.1.0") // for IBAN generation
     implementation("at.favre.lib:bcrypt:0.10.2") // for Bcrypt hash
 
