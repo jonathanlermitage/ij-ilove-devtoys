@@ -1,6 +1,6 @@
 # I Love DevToys Change Log
 
-## 1.9.1 (WIP)
+## 1.9.1 (2023/09/10)
 * fix rendering of `uz` (Asia/Samarkand, Asia/Tashkent) and `ve` (America/Caracas) flags.
 * dependencies upgrade.
 
