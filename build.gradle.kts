@@ -148,7 +148,7 @@ tasks {
 
         if (pluginEnableDebugLogs.toBoolean()) {
             systemProperties(
-                "idea.log.debug.categories" to "#lermitage.intellij.extratci"
+                "idea.log.debug.categories" to "#lermitage.intellij.ilovedevtoys"
             )
         }
 
