@@ -1,6 +1,6 @@
 package lermitage.intellij.ilovedevtoys.tools;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class EscapeTools {
 
@@ -20,11 +20,11 @@ public class EscapeTools {
             }
             return switch (escapeType) {
                 case CSV -> StringEscapeUtils.escapeCsv(unescaped);
-                case HTML -> StringEscapeUtils.escapeHtml(unescaped);
+                case HTML -> StringEscapeUtils.escapeHtml4(unescaped);
                 case JAVA -> StringEscapeUtils.escapeJava(unescaped);
-                case JAVASCRIPT -> StringEscapeUtils.escapeJavaScript(unescaped);
+                case JAVASCRIPT -> StringEscapeUtils.escapeEcmaScript(unescaped);
                 case JSON -> org.apache.commons.text.StringEscapeUtils.escapeJson(unescaped);
-                case XML -> StringEscapeUtils.escapeXml(unescaped);
+                case XML -> StringEscapeUtils.escapeXml11(unescaped);
             };
         } catch (Exception e) {
             return "Error: " + e.getMessage();
@@ -38,9 +38,9 @@ public class EscapeTools {
             }
             return switch (escapeType) {
                 case CSV -> StringEscapeUtils.unescapeCsv(escaped);
-                case HTML -> StringEscapeUtils.unescapeHtml(escaped);
+                case HTML -> StringEscapeUtils.unescapeHtml4(escaped);
                 case JAVA -> StringEscapeUtils.unescapeJava(escaped);
-                case JAVASCRIPT -> StringEscapeUtils.unescapeJavaScript(escaped);
+                case JAVASCRIPT -> StringEscapeUtils.unescapeEcmaScript(escaped);
                 case JSON -> org.apache.commons.text.StringEscapeUtils.unescapeJson(escaped);
                 case XML -> StringEscapeUtils.unescapeXml(escaped);
             };

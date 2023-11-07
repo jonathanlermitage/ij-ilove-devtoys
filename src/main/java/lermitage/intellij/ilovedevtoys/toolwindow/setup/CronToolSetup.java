@@ -116,7 +116,7 @@ public class CronToolSetup extends AbstractToolSetup {
                     }
 
                 };
-                application.invokeAndWait(() -> application.runReadAction(runnable), ModalityState.NON_MODAL);
+                application.invokeAndWait(() -> application.runReadAction(runnable), ModalityState.nonModal());
             }
         );
     }

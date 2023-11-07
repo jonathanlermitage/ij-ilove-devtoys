@@ -37,7 +37,7 @@
          https://plugins.jetbrains.com/docs/intellij/tool-windows.html#declarative-setup -->
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="231.6890.12"/>
+    <idea-version since-build="232.7754.77"/> <!-- needed by ModalityState.nonModal() -->
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html#modules-available-in-all-products
          on how to target different products -->

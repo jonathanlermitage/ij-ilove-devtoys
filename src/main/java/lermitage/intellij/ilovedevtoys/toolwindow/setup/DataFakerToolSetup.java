@@ -1,5 +1,6 @@
 package lermitage.intellij.ilovedevtoys.toolwindow.setup;
 
+import com.intellij.ui.ComboboxSpeedSearch;
 import lermitage.intellij.ilovedevtoys.tools.DataFakerTools;
 
 import javax.swing.JButton;
@@ -21,6 +22,9 @@ public class DataFakerToolSetup extends AbstractToolSetup {
         this.dataFakerGenerateButton = dataFakerGenerateButton;
         this.dataFakerLocaleComboBox = dataFakerLocaleComboBox;
         this.dataFakerTextArea = dataFakerTextArea;
+
+        ComboboxSpeedSearch.installSpeedSearch(dataFakerGeneratorComboBox, Object::toString);
+        ComboboxSpeedSearch.installSpeedSearch(dataFakerLocaleComboBox, Object::toString);
     }
 
     public void setup() {

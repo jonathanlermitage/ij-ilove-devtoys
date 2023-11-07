@@ -1,6 +1,7 @@
 package lermitage.intellij.ilovedevtoys.toolwindow.setup;
 
 import com.intellij.openapi.util.IconLoader;
+import com.intellij.ui.ComboboxSpeedSearch;
 import lermitage.intellij.ilovedevtoys.tools.TimestampTools;
 import lermitage.intellij.ilovedevtoys.toolwindow.ComboBoxWithImageItem;
 import lermitage.intellij.ilovedevtoys.toolwindow.ComboBoxWithImageRenderer;
@@ -74,6 +75,7 @@ public class TimestampToolSetup extends AbstractToolSetup {
         this.timestampMillisecondSpinner = timestampMillisecondSpinner;
         this.timestampResolutionComboBox = timestampResolutionComboBox;
         this.timestampMillisecondLabel = timestampMillisecondLabel;
+        ComboboxSpeedSearch.installSpeedSearch(timestampTimezoneComboBox, ComboBoxWithImageItem::displayName);
     }
 
     public void setup() {

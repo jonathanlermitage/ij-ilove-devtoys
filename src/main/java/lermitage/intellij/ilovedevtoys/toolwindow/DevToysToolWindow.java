@@ -1,6 +1,7 @@
 package lermitage.intellij.ilovedevtoys.toolwindow;
 
 import com.intellij.openapi.util.IconLoader;
+import com.intellij.ui.ComboboxSpeedSearch;
 import com.intellij.ui.components.JBRadioButton;
 import com.intellij.ui.components.JBTextField;
 import lermitage.intellij.ilovedevtoys.toolwindow.setup.*;
@@ -268,6 +269,7 @@ public class DevToysToolWindow {
         toolPanelsByTitle.forEach((title, panelAndIcon) -> toolComboBox.addItem(new ComboBoxWithImageItem(title, panelAndIcon.icon)));
         toolComboBox.setRenderer(new ComboBoxWithImageRenderer());
         toolComboBox.setMaximumRowCount(11);
+        ComboboxSpeedSearch.installSpeedSearch(toolComboBox, ComboBoxWithImageItem::displayName);
 
         helpLabel.setText("");
         helpLabel.setIcon(IconLoader.getIcon(iconsPath + "contextHelp.svg", DevToysToolWindow.class));

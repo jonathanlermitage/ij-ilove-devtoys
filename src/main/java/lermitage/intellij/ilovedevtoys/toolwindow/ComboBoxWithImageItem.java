@@ -6,4 +6,8 @@ package lermitage.intellij.ilovedevtoys.toolwindow;
  * @param imagePath item's image path relative to 'resources' folder, without leading {@code /}. Example: {@code ilovedevtoys/image.svg}
  */
 public record ComboBoxWithImageItem(String title, String imagePath) {
+
+    public String displayName() {
+        return title;
+    }
 }
