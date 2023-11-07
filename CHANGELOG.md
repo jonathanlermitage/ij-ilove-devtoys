@@ -1,7 +1,7 @@
 # I Love DevToys Change Log
 
 ## 1.10.0 (2023/11/08)
-* install the **Speed Search** functionality, [similar to Speed Search for Tool Windows](https://www.jetbrains.com/help/idea/speed-search-in-the-tool-windows.html) for various selectors: *DevToys* tool selector, *Fake Date generator* type and locale selectors, *Timestamp converter* timezone selector. Click on the selector, type text, and the selection moves to the first item that matches the specified string. This is very useful for selectors with many items.
+* install the **Speed Search** functionality, [similar to Speed Search for Tool Windows](https://www.jetbrains.com/help/idea/speed-search-in-the-tool-windows.html) for various selectors: *DevToys* tool selector, *Fake Data generator* type and locale selectors, *Timestamp converter* timezone selector. Click on the selector, type text, and the selection moves to the first item that matches the specified string. This is very useful for selectors with many items.
 * fix compatibility with future IDEs. 
 * dependencies upgrade.
 
