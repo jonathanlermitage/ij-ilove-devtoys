@@ -61,7 +61,6 @@ val junitPlatformLauncher = "1.10.1"
 
 dependencies {
     implementation("org.apache.commons:commons-lang3:3.13.0") // because no longer bundled with IDE
-    implementation("org.apache.commons:commons-text:1.11.0") // replaces deprecated StringEscapeUtils from commons-lang3
 
     implementation("commons-codec:commons-codec:1.16.0") // for Hash
     implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
