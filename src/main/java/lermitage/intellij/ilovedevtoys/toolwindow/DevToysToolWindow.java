@@ -69,7 +69,6 @@ public class DevToysToolWindow {
     private JSpinner timestampSpinner;
     private JButton timestampNowButton;
     private JButton timestampUpdateFromTimestampButton;
-    private JTextField timestampFilterTextField;
     private JButton timestampUpdateFromFieldsButton;
     private JLabel timestampWarningNoZoneIdLabel;
     private JSpinner timestampYearSpinner;
@@ -179,7 +178,6 @@ public class DevToysToolWindow {
             timestampSpinner,
             timestampNowButton,
             timestampUpdateFromTimestampButton,
-            timestampFilterTextField,
             timestampUpdateFromFieldsButton,
             timestampWarningNoZoneIdLabel,
             timestampYearSpinner,

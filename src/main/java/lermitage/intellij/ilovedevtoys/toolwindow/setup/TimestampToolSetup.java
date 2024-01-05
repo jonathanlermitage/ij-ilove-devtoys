@@ -7,13 +7,7 @@ import lermitage.intellij.ilovedevtoys.toolwindow.ComboBoxWithImageItem;
 import lermitage.intellij.ilovedevtoys.toolwindow.ComboBoxWithImageRenderer;
 import lermitage.intellij.ilovedevtoys.toolwindow.DevToysToolWindow;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.ZoneId;
@@ -28,7 +22,6 @@ public class TimestampToolSetup extends AbstractToolSetup {
     private final JSpinner timestampSpinner;
     private final JButton timestampNowButton;
     private final JButton timestampUpdateFromTimestampButton;
-    private final JTextField timestampFilterTextField;
     private final JButton timestampUpdateFromFieldsButton;
     private final JLabel timestampWarningNoZoneIdLabel;
     private final JSpinner timestampYearSpinner;
@@ -46,7 +39,6 @@ public class TimestampToolSetup extends AbstractToolSetup {
                               JSpinner timestampSpinner,
                               JButton timestampNowButton,
                               JButton timestampUpdateFromTimestampButton,
-                              JTextField timestampFilterTextField,
                               JButton timestampUpdateFromFieldsButton,
                               JLabel timestampWarningNoZoneIdLabel,
                               JSpinner timestampYearSpinner,
@@ -63,7 +55,6 @@ public class TimestampToolSetup extends AbstractToolSetup {
         this.timestampSpinner = timestampSpinner;
         this.timestampNowButton = timestampNowButton;
         this.timestampUpdateFromTimestampButton = timestampUpdateFromTimestampButton;
-        this.timestampFilterTextField = timestampFilterTextField;
         this.timestampUpdateFromFieldsButton = timestampUpdateFromFieldsButton;
         this.timestampWarningNoZoneIdLabel = timestampWarningNoZoneIdLabel;
         this.timestampYearSpinner = timestampYearSpinner;
@@ -165,54 +156,6 @@ public class TimestampToolSetup extends AbstractToolSetup {
         timestampMinuteSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampSecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());
         timestampMillisecondSpinner.addChangeListener(e -> updateTimestampToolOnTimestampFieldsUpdate());*/
-
-        timestampFilterTextField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                timestampTimezoneComboBox.setSelectedIndex(-1);
-                timestampTimezoneComboBox.removeAllItems();
-                //timestampTimezoneComboBox.removeAll();
-                Map<String, String> zoneIdsAndFlags = TimestampTools.getAllAvailableZoneIdesAndFlags();
-                List<String> zoneIds = zoneIdsAndFlags.keySet().stream()
-                    .filter(zoneId -> zoneId.toUpperCase().contains(timestampFilterTextField.getText().toUpperCase()))
-                    .sorted(Comparator.comparing(String::toUpperCase)).toList();
-                if (zoneIds.isEmpty()) {
-                    timestampTimezoneComboBox.setVisible(false);
-                    timestampTimezoneComboBox.setSelectedIndex(-1);
-                    timestampWarningNoZoneIdLabel.setVisible(true);
-                } else {
-                    zoneIds.forEach(zoneId -> {
-                        String flag = zoneIdsAndFlags.get(zoneId);
-                        if (flag == null) {
-                            flag = "_null";
-                        }
-                        timestampTimezoneComboBox.addItem(new ComboBoxWithImageItem(
-                            zoneId, "ilovedevtoys/flags/" + flag + ".svg"));
-                    });
-                    timestampTimezoneComboBox.setVisible(true);
-                    timestampTimezoneComboBox.setSelectedIndex(0);
-                    timestampWarningNoZoneIdLabel.setVisible(false);
-
-                    if (timestampFilterTextField.getText().isBlank()) {
-                        for (int i = 0; i < timestampTimezoneComboBox.getItemCount(); i++) {
-                            ComboBoxWithImageItem comboBoxWithImageItem = timestampTimezoneComboBox.getItemAt(i);
-                            if (comboBoxWithImageItem.title().equalsIgnoreCase(ZoneId.systemDefault().toString())) {
-                                timestampTimezoneComboBox.setSelectedIndex(i);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        });
 
         timestampNowButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
         timestampUpdateFromTimestampButton.setIcon(IconLoader.getIcon("ilovedevtoys/toolicons/refresh.svg", DevToysToolWindow.class));
