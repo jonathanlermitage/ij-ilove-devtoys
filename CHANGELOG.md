@@ -1,5 +1,8 @@
 # I Love DevToys Change Log
 
+## 1.10.2 (2024/01/09)
+* rework tool window icon.
+
 ## 1.10.1 (2024/01/05)
 * remove the timezone filter from the `Timestamp converter` tool, replaced by the Speed Search functionality introduced in previous plugin version.
 
