@@ -20,7 +20,7 @@ import javax.xml.xpath.XPathFactory
 
 plugins {
     id("java")
-    id("org.jetbrains.intellij") version "1.16.1" // https://github.com/JetBrains/gradle-intellij-plugin
+    id("org.jetbrains.intellij") version "1.17.2" // https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.changelog") version "2.2.0" // https://github.com/JetBrains/gradle-changelog-plugin
     id("com.github.ben-manes.versions") version "0.50.0" // https://github.com/ben-manes/gradle-versions-plugin
     id("com.palantir.git-version") version "3.0.0" // https://github.com/palantir/gradle-git-version
@@ -64,13 +64,13 @@ dependencies {
 
     implementation("commons-codec:commons-codec:1.16.0") // for Hash
     implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1") // for JSON <> YAML
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.1") // for JSON <> YAML
     implementation("com.dampcake:bencode:1.4.1") // for JSON <> BENCODE
     implementation("com.cronutils:cron-utils:9.2.1") // for cron expression parser https://github.com/jmrozanec/cron-utils
     implementation("net.datafaker:datafaker:2.0.2") // for Data Faker
     implementation("org.yaml:snakeyaml:2.2") // for JSON <> YAML
     implementation("org.apache.commons:commons-text:1.11.0") // for JSON (un)escape
-    implementation("com.nulab-inc:zxcvbn:1.8.2") // for password strength evaluation
+    implementation("com.nulab-inc:zxcvbn:1.9.0") // for password strength evaluation
     implementation("fr.marcwrobel:jbanking:4.2.0") // for IBAN generation
     implementation("at.favre.lib:bcrypt:0.10.2") // for Bcrypt hash
 

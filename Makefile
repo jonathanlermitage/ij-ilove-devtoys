@@ -54,12 +54,7 @@ runold: intro ## run plugin in oldest supported IntelliJ Community version
 
 .PHONY: build
 build: intro ## build and package a plugin to build/distribution/ (see generated ZIP file)
-	${gradlew_cmd} clean buildPlugin test modernizer biz-lermitage-oga-gradle-check verifyPlugin --warning-mode all
-
-
-.PHONY: lint
-lint: intro ## run linter(s), for now Modernizer
-	${gradlew_cmd} modernizer --warning-mode all
+	${gradlew_cmd} clean buildPlugin test biz-lermitage-oga-gradle-check verifyPlugin --warning-mode all
 
 
 .PHONY: test
