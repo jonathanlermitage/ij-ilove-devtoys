@@ -1,5 +1,8 @@
 # I Love DevToys Change Log
 
+## 1.11.1 (2025/10/21)
+* dependencies upgrade.
+
 ## 1.11.0 (2024/06/14)
 * integrate the new IDE [Exception Analyzer](https://plugins.jetbrains.com/docs/marketplace/exception-analyzer.html). This is an easy way to report plugin exceptions from IntelliJ Platform-based products to plugin developers right on JetBrains Marketplace, instead of opening an issue on the plugin's GitHub repository.
 * dependencies upgrade.
