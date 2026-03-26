@@ -1,5 +1,9 @@
 # I Love DevToys Change Log
 
+## 1.11.2 (2026/03/27)
+* dependencies upgrade.
+* optimize icons with SVGO.
+
 ## 1.11.1 (2025/10/21)
 * dependencies upgrade.
 
