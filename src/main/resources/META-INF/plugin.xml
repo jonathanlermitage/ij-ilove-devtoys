@@ -54,4 +54,10 @@ Check also my other <a href="https://plugins.jetbrains.com/author/ed9cc7eb-74f5-
                     factoryClass="lermitage.intellij.ilovedevtoys.toolwindow.DevToysToolWindowFactory" order="after Notifications"/>
     </extensions>
 
+    <applicationListeners>
+        <listener class="lermitage.intellij.ilovedevtoys.MyAppLifecycleListener"
+                  topic="com.intellij.ide.AppLifecycleListener"
+                  activeInHeadlessMode="false"/>
+    </applicationListeners>
+
 </idea-plugin>
