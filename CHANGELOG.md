@@ -1,5 +1,8 @@
 # I Love DevToys Change Log
 
+## 1.11.4 (2026/06/05)
+* fix usage of JetBrains removed APIs, fixing the compatibility with future IDEs (2026.2+).
+
 ## 1.11.3 (2026/04/08)
 * update the Privacy Policy. A minimal set of anonymous data is now collected and is retained for a maximum of 31 days. This data is used to determine which versions of the IDEs are in use and to assess whether it is worthwhile to continue supporting older IDE versions. The data is never shared with anyone else. [Click here](https://github.com/jonathanlermitage/ij-ilove-devtoys/blob/master/PRIVACY.md) to view the full description and learn how to disable data collection.
 

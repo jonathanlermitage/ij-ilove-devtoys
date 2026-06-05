@@ -1,19 +1,19 @@
 package lermitage.intellij.ilovedevtoys;
 
 import com.intellij.ide.AppLifecycleListener;
-import com.intellij.ide.plugins.IdeaPluginDescriptor;
-import com.intellij.ide.plugins.PluginManager;
+import com.intellij.ide.plugins.cl.PluginAwareClassLoader;
 import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.extensions.PluginId;
 import com.intellij.util.concurrency.AppExecutorUtil;
 import com.intellij.util.io.HttpRequests;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public class MyAppLifecycleListener implements AppLifecycleListener {
@@ -42,15 +42,7 @@ public class MyAppLifecycleListener implements AppLifecycleListener {
 
                 String pluginLicenseType = "free";
 
-                String pluginVersion = "";
-                try {
-                    IdeaPluginDescriptor plugin = PluginManager.getInstance().findEnabledPlugin(PluginId.getId(pluginID));
-                    if (plugin != null) {
-                        pluginVersion = plugin.getVersion();
-                    }
-                } catch (Exception e) {
-                    LOGGER.warn("Failed to detect plugin: " + pluginID, e);
-                }
+                String pluginVersion = getPluginVersion();
 
                 String requestBody = "{" +
                     "\"ideName\":\"" + toBase64(ideName) + "\", " +
@@ -73,7 +65,7 @@ public class MyAppLifecycleListener implements AppLifecycleListener {
         }, 4, TimeUnit.SECONDS);
     }
 
-    private static String toBase64(String text) {
+    private String toBase64(String text) {
         if (text.isBlank()) {
             return "";
         }
@@ -82,5 +74,31 @@ public class MyAppLifecycleListener implements AppLifecycleListener {
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
+    }
+
+    public String getPluginVersion() {
+        Class<?> myClass = this.getClass();
+        try {
+            if (myClass.getClassLoader() instanceof PluginAwareClassLoader c) {
+                return c.getPluginDescriptor().getVersion();
+            }
+        } catch (Exception e) {
+            LOGGER.warn(e);
+        }
+        try (InputStream pluginXmlResStream = myClass.getResourceAsStream("/META-INF/plugin.xml")) {
+            if (pluginXmlResStream != null) {
+                String pluginXml = new String(pluginXmlResStream.readAllBytes(), StandardCharsets.UTF_8);
+                LOGGER.warn(">>" + pluginXml);
+                Optional<String> versionLineOpt = pluginXml.lines().filter(s ->
+                    s.contains("<version>") && s.contains("</version>")
+                ).findFirst();
+                if (versionLineOpt.isPresent()) {
+                    return versionLineOpt.get().replace("<version>", "").replace("</version>", "").trim();
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.warn(e);
+        }
+        return "<unknown>";
     }
 }
