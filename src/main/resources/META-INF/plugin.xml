@@ -49,8 +49,7 @@ Check also my other <a href="https://plugins.jetbrains.com/author/ed9cc7eb-74f5-
 
     <extensions defaultExtensionNs="com.intellij">
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
-        <!--suppress  PluginXmlValidity -->
-        <toolWindow id="DevToys" secondary="false" icon="ilovedevtoys/toolWindowIconSimple.svg" anchor="right"
+        <toolWindow id="DevToys" secondary="false" icon="/ilovedevtoys/toolWindowIconSimple.svg" anchor="right"
                     factoryClass="lermitage.intellij.ilovedevtoys.toolwindow.DevToysToolWindowFactory" order="after Notifications"/>
     </extensions>
 

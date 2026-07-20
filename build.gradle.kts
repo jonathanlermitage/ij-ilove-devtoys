@@ -61,12 +61,12 @@ val junitPlatformLauncher = "1.10.1"
 
 dependencies {
     implementation("org.apache.commons:commons-lang3:3.20.0") // because no longer bundled with IDE
-    implementation("commons-codec:commons-codec:1.21.0") // for Hash
+    implementation("commons-codec:commons-codec:1.22.0") // for Hash
     implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.21.2") // for JSON <> YAML
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.22.1") // for JSON <> YAML
     implementation("com.dampcake:bencode:1.4.2") // for JSON <> BENCODE
     implementation("com.cronutils:cron-utils:9.2.1") // for cron expression parser https://github.com/jmrozanec/cron-utils
-    implementation("net.datafaker:datafaker:2.5.4") // for Data Faker
+    implementation("net.datafaker:datafaker:2.7.0") // for Data Faker
     implementation("org.yaml:snakeyaml:2.6") // for JSON <> YAML
     implementation("org.apache.commons:commons-text:1.15.0") // for JSON (un)escape
     implementation("com.nulab-inc:zxcvbn:1.9.0") // for password strength evaluation

@@ -1,5 +1,9 @@
 # I Love DevToys Change Log
 
+## 1.12.0 (2026/07/20)
+* important code rework. Tool panels are now lazy loaded, which significantly speeds up their initial loading.
+* dependencies upgrade.
+
 ## 1.11.4 (2026/06/05)
 * fix usage of JetBrains removed APIs, fixing the compatibility with future IDEs (2026.2+).
 
