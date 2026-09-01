@@ -49,7 +49,7 @@ Nota: I think we don't need to reproduce tools that exist in IntelliJ already, l
 
 ## License
 
-MIT License. In other words, you can do what you want: this project is entirely OpenSource, Free and Gratis.
+AGPL-3.0 (GNU Affero General Public License).
 
 This project integrates original or modified components and files from:
 
