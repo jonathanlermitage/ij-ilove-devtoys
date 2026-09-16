@@ -1,5 +1,6 @@
 package lermitage.intellij.ilovedevtoys.toolwindow;
 
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.ASCIIHEXToolPanel;
@@ -16,6 +17,7 @@ import lermitage.intellij.ilovedevtoys.toolwindow.panels.LinesUtilsToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.LoremIpsumToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.PasswordStrengthToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.PasswordVerifierToolPanel;
+import lermitage.intellij.ilovedevtoys.toolwindow.panels.PathConverterToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.PropertiesYamlToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.TimestampToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.ToolPanel;
@@ -49,7 +51,11 @@ public class DevToysToolWindow implements ToolSelector {
     private record ToolDescriptor(String icon, Supplier<ToolPanel> factory) {
     }
 
-    public DevToysToolWindow() {
+    /**
+     * @param project current project, made available to the tools that need to know where it lives
+     *                (the Path converter seeds its drive letter from it)
+     */
+    public DevToysToolWindow(Project project) {
         String iconsPath = "ilovedevtoys/toolicons/";
         registry.put("Base64 encoder/decoder", new ToolDescriptor(iconsPath + "Base64EncoderDecoder.svg", Base64ToolPanel::new));
         registry.put("URL encoder/decoder", new ToolDescriptor(iconsPath + "UrlEncoderDecoder.svg", URLCodecToolPanel::new));
@@ -69,6 +75,7 @@ public class DevToysToolWindow implements ToolSelector {
         registry.put("JSON <> YAML converter", new ToolDescriptor(iconsPath + "JsonYaml.svg", JSONYAMLToolPanel::new));
         registry.put("JSON to String converter", new ToolDescriptor(iconsPath + "JsonString.svg", JSONStringToolPanel::new));
         registry.put("Properties to YAML converter ", new ToolDescriptor(iconsPath + "PropertiesYaml.svg", PropertiesYamlToolPanel::new));
+        registry.put("Path converter", new ToolDescriptor(iconsPath + "PathConverter.svg", () -> new PathConverterToolPanel(project)));
 
         toolContainerPanel.setLayout(cardLayout);
 

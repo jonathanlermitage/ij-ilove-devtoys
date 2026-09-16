@@ -25,6 +25,7 @@
         <li>CSV/HTML/Java/JS/JSON/XML (un)escaper</li>
         <li>Password strength evaluator</li>
         <li>Password hash validator</li>
+        <li>Path converter (Convert any path to Windows, Git Bash, WSL, Unix/macOS formats)</li>
       </ul>
       The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only. Also, it is supposed to reduce context-switching.<br/>
       <b>Work in progress</b>: I am trying to reproduce most of the DevToys features, while adding some exclusive features, so it will take some time. Also, contributions are welcome 😎.<br/>
