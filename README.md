@@ -25,6 +25,7 @@ Find useful tools in a Tool Window in the top right corner of your IDE:
 * CSV/HTML/Java/JS/JSON/XML (un)escaper
 * Password strength evaluator
 * Password hash validator
+* Path converter (Convert any path to Windows, Git Bash, WSL, Unix/macOS formats)
 * Etc...
 
 The global idea is to provide these tools on Linux and macOS (Windows is also supported), because the original DevToys software is available on Windows only. Also, it is supposed to reduce context-switching.<br/>

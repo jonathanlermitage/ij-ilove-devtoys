@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class DevToysToolWindowFactory implements ToolWindowFactory, DumbAware {
 
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        DevToysToolWindow myToolWindow = new DevToysToolWindow();
+        DevToysToolWindow myToolWindow = new DevToysToolWindow(project);
         ContentFactory contentFactory = ContentFactory.getInstance();
         Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
         toolWindow.getContentManager().addContent(content);
