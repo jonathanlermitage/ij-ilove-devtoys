@@ -1,10 +1,11 @@
 package lermitage.intellij.ilovedevtoys.tools;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.dataformat.yaml.YAMLFactory;
+import tools.jackson.dataformat.yaml.YAMLMapper;
 
 public class JSONYAMLTools {
 
@@ -15,7 +16,7 @@ public class JSONYAMLTools {
             }
             ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory());
             Object obj = yamlReader.readValue(yaml, Object.class);
-            ObjectMapper jsonWriter = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+            ObjectMapper jsonWriter = JsonMapper.builder().enable(SerializationFeature.INDENT_OUTPUT).build();
             return jsonWriter.writeValueAsString(obj);
         } catch (Exception e) {
             return "Error: " + e.getMessage();
