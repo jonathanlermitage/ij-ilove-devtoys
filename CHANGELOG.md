@@ -1,6 +1,6 @@
 # I Love DevToys Change Log
 
-## 1.13.0 (2026/09/17)
+## 1.13.1 (2026/09/17)
 * add `Path converter` tool. Thx to contributor [Javaru](https://github.com/Javaru).
 * dependencies upgrade.
 
