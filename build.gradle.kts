@@ -63,7 +63,7 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.20.0") // because no longer bundled with IDE
     implementation("commons-codec:commons-codec:1.22.1") // for Hash
     implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.22.2") // for JSON <> YAML
+    implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.2.2") // for JSON <> YAML
     implementation("com.dampcake:bencode:1.4.2") // for JSON <> BENCODE
     implementation("com.cronutils:cron-utils:9.2.1") // for cron expression parser https://github.com/jmrozanec/cron-utils
     implementation("net.datafaker:datafaker:2.7.0") // for Data Faker
