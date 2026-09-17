@@ -1,5 +1,9 @@
 # I Love DevToys Change Log
 
+## 1.13.0 (2026/09/17)
+* add `Path converter` tool. Thx to contributor [Javaru](https://github.com/Javaru).
+* dependencies upgrade.
+
 ## 1.12.0 (2026/07/20)
 * important code rework. Tool panels are now lazy loaded, which significantly speeds up their initial loading.
 * dependencies upgrade.
