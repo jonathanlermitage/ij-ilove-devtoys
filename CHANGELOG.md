@@ -1,5 +1,9 @@
 # I Love DevToys Change Log
 
+## 1.14.0 (2026/10/21)
+* the Base64 tool can now encode and decode multiple values when a separator has been set.
+* dependencies upgrade.
+
 ## 1.13.1 (2026/09/17)
 * add `Path converter` tool. Thx to contributor [Javaru](https://github.com/Javaru).
 * dependencies upgrade.
