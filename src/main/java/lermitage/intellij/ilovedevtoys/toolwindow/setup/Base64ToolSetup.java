@@ -1,6 +1,7 @@
 package lermitage.intellij.ilovedevtoys.toolwindow.setup;
 
 import com.intellij.ui.components.JBRadioButton;
+import com.intellij.ui.components.JBTextField;
 import lermitage.intellij.ilovedevtoys.tools.Base64Tools;
 
 import javax.swing.JTextArea;
@@ -13,11 +14,14 @@ public class Base64ToolSetup extends AbstractToolSetup {
     private final JBRadioButton base64RadioButtonASCII;
     private final JTextArea base64RawTextArea;
     private final JTextArea base64Base64TextArea;
+    private final JBTextField base64SeparatorTextField;
 
     public Base64ToolSetup(JBRadioButton base64RadioButtonUTF8,
                            JBRadioButton base64RadioButtonASCII,
                            JTextArea base64RawTextArea,
-                           JTextArea base64Base64TextArea) {
+                           JTextArea base64Base64TextArea,
+                           JBTextField base64SeparatorTextField) {
+        this.base64SeparatorTextField = base64SeparatorTextField;
         this.base64RadioButtonUTF8 = base64RadioButtonUTF8;
         this.base64RadioButtonASCII = base64RadioButtonASCII;
         this.base64RawTextArea = base64RawTextArea;
@@ -28,6 +32,7 @@ public class Base64ToolSetup extends AbstractToolSetup {
         base64RadioButtonUTF8.setSelected(true);
         base64RadioButtonUTF8.setToolTipText("Encoding change applies on Raw text or Base64 update.");
         base64RadioButtonASCII.setToolTipText("Encoding change applies on Raw text or Base64 update.");
+        base64SeparatorTextField.setToolTipText("Optional. When set, Raw text and Base64 contain several values separated by this separator.");
         base64RawTextArea.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -41,7 +46,8 @@ public class Base64ToolSetup extends AbstractToolSetup {
             public void keyReleased(KeyEvent e) {
                 base64Base64TextArea.setText(Base64Tools.toBase64(
                     base64RawTextArea.getText(),
-                    base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII)
+                    base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII,
+                    base64SeparatorTextField.getText())
                 );
                 base64Base64TextArea.setCaretPosition(0);
                 updateWithBestNumberOfRows(base64RawTextArea, base64Base64TextArea);
@@ -60,9 +66,38 @@ public class Base64ToolSetup extends AbstractToolSetup {
             public void keyReleased(KeyEvent e) {
                 base64RawTextArea.setText(Base64Tools.toText(
                     base64Base64TextArea.getText(),
-                    base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII)
+                    base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII,
+                    base64SeparatorTextField.getText())
                 );
                 base64RawTextArea.setCaretPosition(0);
+                updateWithBestNumberOfRows(base64RawTextArea, base64Base64TextArea);
+            }
+        });
+        base64SeparatorTextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                base64Base64TextArea.setText(Base64Tools.toBase64(
+                    base64RawTextArea.getText(),
+                    base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII,
+                    base64SeparatorTextField.getText())
+                );
+                base64Base64TextArea.setCaretPosition(0);
+
+                base64RawTextArea.setText(Base64Tools.toText(
+                    base64Base64TextArea.getText(),
+                    base64RadioButtonUTF8.isSelected() ? Base64Tools.UTF_8 : Base64Tools.US_ASCII,
+                    base64SeparatorTextField.getText())
+                );
+                base64RawTextArea.setCaretPosition(0);
+
                 updateWithBestNumberOfRows(base64RawTextArea, base64Base64TextArea);
             }
         });
