@@ -64,7 +64,11 @@ dependencies {
     implementation("commons-codec:commons-codec:1.23.0") // for Hash
     implementation("com.thedeanda:lorem:2.2") // for Lorem Ipsum
     implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.2.2") // for JSON <> YAML
+
     implementation("com.dampcake:bencode:1.4.2") // for JSON <> BENCODE
+
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.22") // needed for various JSON tools
+
     implementation("com.cronutils:cron-utils:9.2.1") // for cron expression parser https://github.com/jmrozanec/cron-utils
     implementation("net.datafaker:datafaker:2.7.0") // for Data Faker
     implementation("org.yaml:snakeyaml:2.7") // for JSON <> YAML
