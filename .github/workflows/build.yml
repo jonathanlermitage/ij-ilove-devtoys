@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ij: [ IC-2024.2.6 ]
+        ij: [ IC-2024.2.1 ]
 
     steps:
       - uses: actions/checkout@v3
