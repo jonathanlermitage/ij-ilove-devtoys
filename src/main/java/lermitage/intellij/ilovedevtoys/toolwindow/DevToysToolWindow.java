@@ -1,5 +1,6 @@
 package lermitage.intellij.ilovedevtoys.toolwindow;
 
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.ComboboxSpeedSearch;
@@ -21,13 +22,11 @@ import lermitage.intellij.ilovedevtoys.toolwindow.panels.PathConverterToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.PropertiesYamlToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.TimestampToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.ToolPanel;
-import lermitage.intellij.ilovedevtoys.toolwindow.panels.UUIDToolPanel;
 import lermitage.intellij.ilovedevtoys.toolwindow.panels.URLCodecToolPanel;
+import lermitage.intellij.ilovedevtoys.toolwindow.panels.UUIDToolPanel;
 
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.CardLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -48,6 +47,10 @@ public class DevToysToolWindow implements ToolSelector {
     /** Tool title -> icon + lazy panel factory, in combo box display order. */
     private final LinkedHashMap<String, ToolDescriptor> registry = new LinkedHashMap<>();
 
+    private static final String SELECTED_TOOL_KEY = "biz.lermitage.devtoys.selectedToolWindow";
+
+    private final PropertiesComponent prjProperties;
+
     private record ToolDescriptor(String icon, Supplier<ToolPanel> factory) {
     }
 
@@ -56,6 +59,7 @@ public class DevToysToolWindow implements ToolSelector {
      *                (the Path converter seeds its drive letter from it)
      */
     public DevToysToolWindow(Project project) {
+        this.prjProperties = PropertiesComponent.getInstance(project);
         String iconsPath = "ilovedevtoys/toolicons/";
         registry.put("Base64 encoder/decoder", new ToolDescriptor(iconsPath + "Base64EncoderDecoder.svg", Base64ToolPanel::new));
         registry.put("URL encoder/decoder", new ToolDescriptor(iconsPath + "UrlEncoderDecoder.svg", URLCodecToolPanel::new));
@@ -95,7 +99,15 @@ public class DevToysToolWindow implements ToolSelector {
                 selectTool(toolComboBox.getItemAt(selectedIndex).title());
             }
         });
-        toolComboBox.setSelectedIndex(0);
+
+        // restore previously selected tool, if any
+        boolean enablePrevToolSelection = "true".equals(System.getProperty("devtoys.prevToolSelection.enable", "true"));
+        String prevSelectedTool = prjProperties.getValue(SELECTED_TOOL_KEY);
+        if (enablePrevToolSelection && prevSelectedTool != null && registry.containsKey(prevSelectedTool)) {
+            selectTool(prevSelectedTool);
+        } else {
+            selectTool(registry.sequencedKeySet().getFirst());
+        }
     }
 
     @Override
@@ -114,6 +126,9 @@ public class DevToysToolWindow implements ToolSelector {
         }
 
         cardLayout.show(toolContainerPanel, toolName);
+
+        // persist the selected tool for this project
+        prjProperties.setValue(SELECTED_TOOL_KEY, toolName);
 
         String tooltip = panel.helpTooltip();
         helpLabel.setVisible(tooltip != null);

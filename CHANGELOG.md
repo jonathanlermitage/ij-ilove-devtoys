@@ -1,5 +1,8 @@
 # I Love DevToys Change Log
 
+## 1.15.0 (2026/10/28)
+* remember the last selected tool when opening the DevToys tool window. This information is saved at the project's level. You can disable this behavior by adding `devtoys.prevToolSelection.enable=false` in `Help` | `Edit Custom Properties...`.
+
 ## 1.14.1 (2026/10/25)
 * fix [#5](https://github.com/jonathanlermitage/ij-ilove-devtoys/issues/18): Bencode strings are not encoded correctly.
 * fix compatibility with IntelliJ 2026.3 Beta when using various JSON tools. 
